@@ -17,12 +17,12 @@
     <!-- ========== HEADER ========== -->
     <header id="header" class="header">
       <!-- Search -->
-      <?php require 'div_search.php'; ?>
+      <?php /* require 'div_search.php'; */ ?>
       <!-- End Search -->
 
       <div class="header-section">
         <!-- Topbar -->
-        <?php require 'div_topbar.php'; ?>
+        <?php /* require 'div_topbar.php'; */ ?>
         <!-- End Topbar -->
 
         <div id="logoAndNav" class="container">
@@ -127,13 +127,13 @@
             <!-- Products -->
             <div class="row mx-n2 mb-5">
               <div class="col-sm-6 col-lg-4 px-2 px-sm-3 mb-3 mb-sm-5">
-                <!-- Product -->
-                <div class="card card-bordered shadow-none text-center h-100">
+                <!-- Product 1 -->
+                <div class="card card-bordered shadow-lg text-center h-100">
                   <div class="position-relative">
-                    <img class="card-img-top" src="assets/img/300x180/img3.jpg" alt="Image Description">
+                    <img class="card-img-top" src="assets/docs/producto/img_1.jpeg" alt="Image Description">
 
                     <div class="position-absolute top-0 left-0 pt-3 pl-3">
-                      <span class="badge badge-success badge-pill">New arrival</span>
+                      <span class="badge badge-success badge-pill">Nuevo</span>
                     </div>
                     <div class="position-absolute top-0 right-0 pt-3 pr-3">
                       <button type="button" class="btn btn-xs btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
@@ -144,12 +144,12 @@
 
                   <div class="card-body pt-4 px-4 pb-0">
                     <div class="mb-2">
-                      <a class="d-inline-block text-body small font-weight-bold mb-1" href="#">Accessories</a>
+                      <a class="d-inline-block text-body small font-weight-bold mb-1" href="#">Computadores</a>
                       <span class="d-block font-size-1">
                         <a class="text-inherit" href="shop-single-product.html">Herschel backpack in dark blue</a>
                       </span>
                       <div class="d-block">
-                        <span class="text-dark font-weight-bold">$56.99</span>
+                        <span class="text-dark font-weight-bold">S/. 2,560.99</span>
                       </div>
                     </div>
                   </div>
@@ -167,17 +167,17 @@
                         <span>0</span>
                       </a>
                     </div>
-                    <button type="button" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover">Add to Cart</button>
+                    <button type="button" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover">Añadir al carrito</button>
                   </div>
                 </div>
                 <!-- End Product -->
               </div>
 
               <div class="col-sm-6 col-lg-4 px-2 px-sm-3 mb-3 mb-sm-5">
-                <!-- Product -->
-                <div class="card card-bordered shadow-none text-center h-100">
+                <!-- Product 2 -->
+                <div class="card card-bordered shadow text-center h-100">
                   <div class="position-relative">
-                    <img class="card-img-top" src="assets/img/300x180/img1.jpg" alt="Image Description">
+                    <img class="card-img-top" src="assets/docs/producto/img_2.jpeg" alt="Image Description">
 
                     <div class="position-absolute top-0 right-0 pt-3 pr-3">
                       <button type="button" class="btn btn-xs btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
@@ -188,12 +188,12 @@
 
                   <div class="card-body pt-4 px-4 pb-0">
                     <div class="mb-2">
-                      <a class="d-inline-block text-body small font-weight-bold mb-1" href="#">Clothing</a>
+                      <a class="d-inline-block text-body small font-weight-bold mb-1" href="#">Computadores</a>
                       <span class="d-block font-size-1">
                         <a class="text-inherit" href="shop-single-product.html">Front hoodie</a>
                       </span>
                       <div class="d-block">
-                        <span class="text-dark font-weight-bold">$91.88</span>
+                        <span class="text-dark font-weight-bold">S/. 3,491.88</span>
                       </div>
                     </div>
                   </div>
@@ -211,20 +211,20 @@
                         <span>40</span>
                       </a>
                     </div>
-                    <button type="button" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover">Add to Cart</button>
+                    <button type="button" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover">Añadir al carrito</button>
                   </div>
                 </div>
                 <!-- End Product -->
               </div>
 
               <div class="col-sm-6 col-lg-4 px-2 px-sm-3 mb-3 mb-sm-5">
-                <!-- Product -->
-                <div class="card card-bordered shadow-none text-center h-100">
+                <!-- Product 3 -->
+                <div class="card card-bordered shadow-lg text-center h-100">
                   <div class="position-relative">
-                    <img class="card-img-top" src="assets/img/300x180/img4.jpg" alt="Image Description">
+                    <img class="card-img-top" src="assets/docs/producto/img_3.jpeg" alt="Image Description">
 
                     <div class="position-absolute top-0 left-0 pt-3 pl-3">
-                      <span class="badge badge-danger badge-pill">Sold out</span>
+                      <span class="badge badge-danger badge-pill">Agotado</span>
                     </div>
                     <div class="position-absolute top-0 right-0 pt-3 pr-3">
                       <button type="button" class="btn btn-xs btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
@@ -235,13 +235,13 @@
 
                   <div class="card-body pt-4 px-4 pb-0">
                     <div class="mb-2">
-                      <a class="d-inline-block text-body small font-weight-bold mb-1" href="#">Accessories</a>
+                      <a class="d-inline-block text-body small font-weight-bold mb-1" href="#">Computadores</a>
                       <span class="d-block font-size-1">
                         <a class="text-inherit" href="shop-single-product.html">Herschel backpack in gray</a>
                       </span>
                       <div class="d-block">
-                        <span class="text-dark font-weight-bold">$29.99</span>
-                        <span class="text-body ml-1"><del>$33.99</del></span>
+                        <span class="text-dark font-weight-bold">S/. 2,900.99</span>
+                        <span class="text-body ml-1"><del>S/. 3,500.99</del></span>
                       </div>
                     </div>
                   </div>
@@ -259,17 +259,17 @@
                         <span>125</span>
                       </a>
                     </div>
-                    <button type="button" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover">Add to Cart</button>
+                    <button type="button" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover">Añadir al carrito</button>
                   </div>
                 </div>
                 <!-- End Product -->
               </div>
 
               <div class="col-sm-6 col-lg-4 px-2 px-sm-3 mb-3 mb-sm-5">
-                <!-- Product -->
+                <!-- Product 4 -->
                 <div class="card card-bordered shadow-none text-center h-100">
                   <div class="position-relative">
-                    <img class="card-img-top" src="assets/img/300x180/img6.jpg" alt="Image Description">
+                    <img class="card-img-top" src="assets/docs/producto/img_4.jpeg" alt="Image Description">
 
                     <div class="position-absolute top-0 right-0 pt-3 pr-3">
                       <button type="button" class="btn btn-xs btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
@@ -310,10 +310,10 @@
               </div>
 
               <div class="col-sm-6 col-lg-4 px-2 px-sm-3 mb-3 mb-sm-5">
-                <!-- Product -->
+                <!-- Product 5 -->
                 <div class="card card-bordered shadow-none text-center h-100">
                   <div class="position-relative">
-                    <img class="card-img-top" src="assets/img/300x180/img7.jpg" alt="Image Description">
+                    <img class="card-img-top" src="assets/docs/producto/img_6.jpeg" alt="Image Description">
 
                     <div class="position-absolute top-0 right-0 pt-3 pr-3">
                       <button type="button" class="btn btn-xs btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
@@ -354,10 +354,10 @@
               </div>
 
               <div class="col-sm-6 col-lg-4 px-2 px-sm-3 mb-3 mb-sm-5">
-                <!-- Product -->
+                <!-- Product 6 -->
                 <div class="card card-bordered shadow-none text-center h-100">
                   <div class="position-relative">
-                    <img class="card-img-top" src="assets/img/300x180/img2.jpg" alt="Image Description">
+                    <img class="card-img-top" src="assets/docs/producto/img_6.jpeg" alt="Image Description">
 
                     <div class="position-absolute top-0 left-0 pt-3 pl-3">
                       <span class="badge badge-success badge-pill">New arrival</span>
@@ -401,10 +401,10 @@
               </div>
 
               <div class="col-sm-6 col-lg-4 px-2 px-sm-3 mb-3 mb-sm-5">
-                <!-- Product -->
+                <!-- Product 7 -->
                 <div class="card card-bordered shadow-none text-center h-100">
                   <div class="position-relative">
-                    <img class="card-img-top" src="assets/img/300x180/img5.jpg" alt="Image Description">
+                    <img class="card-img-top" src="assets/docs/producto/img_7.jpeg" alt="Image Description">
 
                     <div class="position-absolute top-0 right-0 pt-3 pr-3">
                       <button type="button" class="btn btn-xs btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
@@ -445,10 +445,10 @@
               </div>
 
               <div class="col-sm-6 col-lg-4 px-2 px-sm-3 mb-3 mb-sm-5">
-                <!-- Product -->
+                <!-- Product 8 -->
                 <div class="card card-bordered shadow-none text-center h-100">
                   <div class="position-relative">
-                    <img class="card-img-top" src="assets/img/300x180/img8.jpg" alt="Image Description">
+                    <img class="card-img-top" src="assets/docs/producto/img_8.jpeg" alt="Image Description">
 
                     <div class="position-absolute top-0 right-0 pt-3 pr-3">
                       <button type="button" class="btn btn-xs btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
