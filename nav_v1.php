@@ -6,12 +6,7 @@
   <!-- End Logo -->
 
   <!-- Responsive Toggle Button -->
-  <button type="button" class="navbar-toggler btn btn-icon btn-sm rounded-circle"
-          aria-label="Toggle navigation"
-          aria-expanded="false"
-          aria-controls="navBar"
-          data-toggle="collapse"
-          data-target="#navBar">
+  <button type="button" class="navbar-toggler btn btn-icon btn-sm rounded-circle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
     <span class="navbar-toggler-default">
       <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
         <path fill="currentColor" d="M17.4,6.2H0.6C0.3,6.2,0,5.9,0,5.5V4.1c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,5.9,17.7,6.2,17.4,6.2z M17.4,14.1H0.6c-0.3,0-0.6-0.3-0.6-0.7V12c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,13.7,17.7,14.1,17.4,14.1z"/>
@@ -29,9 +24,16 @@
   <div id="navBar" class="collapse navbar-collapse">
     <div class="navbar-body header-abs-top-inner">
       <ul class="navbar-nav">
+
         <!-- Home -->
+        <li class="navbar-nav-item">
+          <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link /*nav-link-toggle*/ " href="index.html" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Inicio</a>          
+        </li>
+        <!-- End Home -->
+
+        <!-- Nosotros -->
         <li class="hs-has-mega-menu navbar-nav-item">
-          <a id="homeMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false">Landings</a>
+          <a id="homeMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false">Nosotros</a>
 
           <!-- Home - Mega Menu -->
           <div class="hs-mega-menu dropdown-menu w-100" aria-labelledby="homeMegaMenu">
@@ -85,126 +87,8 @@
           </div>
           <!-- End Home - Mega Menu -->
         </li>
-        <!-- End Home -->
-
-        <!-- Pages -->
-        <li class="hs-has-sub-menu navbar-nav-item">
-          <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Pages</a>
-
-          <!-- Pages - Submenu -->
-          <div id="pagesSubMenu" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
-            <!-- Account -->
-            <div class="hs-has-sub-menu">
-              <a id="navLinkPagesAccount" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesAccount">Account <span class="badge badge-success badge-pill ml-2">New</span></a>
-
-              <div id="navSubmenuPagesAccount" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkPagesAccount" style="min-width: 230px;">
-                <a class="dropdown-item " href="account-overview.html">Personal info</a>
-                <a class="dropdown-item " href="account-login-and-security.html">Login &amp; security</a>
-                <a class="dropdown-item " href="account-notifications.html">Notifications</a>
-                <a class="dropdown-item " href="account-preferences.html">Preferences</a>
-                <a class="dropdown-item " href="account-orders.html">Orders</a>
-                <a class="dropdown-item " href="account-wishlist.html">Wishlist</a>
-                <a class="dropdown-item " href="account-billing.html">Plans &amp; payment</a>
-                <a class="dropdown-item " href="account-address.html">Address</a>
-                <a class="dropdown-item " href="account-teams.html">Teams</a>
-              </div>
-            </div>
-            <!-- Account -->
-
-            <!-- Company -->
-            <div class="hs-has-sub-menu">
-              <a id="navLinkPagesCompany" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">Company</a>
-
-              <div id="navSubmenuPagesCompany" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkPagesCompany" style="min-width: 230px;">
-                <a class="dropdown-item " href="page-about-agency.html">About Agency</a>
-                <a class="dropdown-item " href="page-services-agency.html">Services Agency</a>
-                <a class="dropdown-item " href="page-customers.html">Customers</a>
-                <a class="dropdown-item " href="page-customer-story.html">Customer story</a>
-                <a class="dropdown-item " href="page-careers.html">Careers</a>
-                <a class="dropdown-item " href="page-careers-single.html">Careers Single</a>
-                <a class="dropdown-item " href="page-hire-us.html">Hire Us</a>
-              </div>
-            </div>
-            <!-- Company -->
-
-            <!-- Portfolio -->
-            <div class="hs-has-sub-menu">
-              <a id="navLinkPagesPortfolio" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesPortfolio">Portfolio</a>
-
-              <div id="navSubmenuPagesPortfolio" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkPagesPortfolio" style="min-width: 230px;">
-                <a class="dropdown-item " href="portfolio-grid.html">Grid</a>
-                <a class="dropdown-item " href="portfolio-masonry.html">Masonry</a>
-                <a class="dropdown-item " href="portfolio-modern.html">Modern</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item " href="portfolio-case-studies-branding.html">Case Studies Branding</a>
-                <a class="dropdown-item " href="portfolio-case-studies-product.html">Case Studies Product</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item " href="portfolio-single-page-list.html">Single Page List</a>
-                <a class="dropdown-item " href="portfolio-single-page-grid.html">Single Page Grid</a>
-                <a class="dropdown-item " href="portfolio-single-page-masonry.html">Single Page Masonry</a>
-              </div>
-            </div>
-            <!-- End Portfolio -->
-
-            <!-- Login -->
-            <div class="hs-has-sub-menu">
-              <a id="navLinkPagesLogin" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesLogin">Login &amp; Signup</a>
-
-              <div id="navSubmenuPagesLogin" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkPagesLogin" style="min-width: 230px;">
-                <a class="dropdown-item " href="page-login.html">Login</a>
-                <a class="dropdown-item " href="page-signup.html">Signup</a>
-                <a class="dropdown-item " href="page-recover-account.html">Recover Account</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item " href="page-login-simple.html">Login Simple</a>
-                <a class="dropdown-item " href="page-signup-simple.html">Signup Simple</a>
-                <a class="dropdown-item " href="page-recover-account-simple.html">Recover Account Simple</a>
-              </div>
-            </div>
-            <!-- Signup -->
-
-            <!-- Contacts -->
-            <div class="hs-has-sub-menu">
-              <a id="navLinkContactsServices" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuContactsServices">Contacts</a>
-
-              <div id="navSubmenuContactsServices" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkContactsServices" style="min-width: 230px;">
-                <a class="dropdown-item " href="page-contacts-agency.html">Contacts Agency</a>
-                <a class="dropdown-item " href="page-contacts-start-up.html">Contacts Start-Up</a>
-              </div>
-            </div>
-            <!-- Contacts -->
-
-            <!-- Utilities -->
-            <div class="hs-has-sub-menu">
-              <a id="navLinkPagesUtilities" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesUtilities">Utilities</a>
-
-              <div id="navSubmenuPagesUtilities" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkPagesUtilities" style="min-width: 230px;">
-                <a class="dropdown-item " href="page-pricing.html">Pricing</a>
-                <a class="dropdown-item " href="page-faq.html">FAQ</a>
-                <a class="dropdown-item " href="page-terms.html">Terms &amp; Conditions</a>
-                <a class="dropdown-item " href="page-privacy.html">Privacy &amp; Policy</a>
-              </div>
-            </div>
-            <!-- Utilities -->
-
-            <!-- Specialty -->
-            <div class="hs-has-sub-menu">
-              <a id="navLinkPagesSpecialty" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesSpecialty">Specialty</a>
-
-              <div id="navSubmenuPagesSpecialty" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkPagesSpecialty" style="min-width: 230px;">
-                <a class="dropdown-item " href="page-cover-page.html">Cover Page</a>
-                <a class="dropdown-item " href="page-coming-soon.html">Coming Soon</a>
-                <a class="dropdown-item " href="page-maintenance-mode.html">Maintenance Mode</a>
-                <a class="dropdown-item " href="page-status.html">Status</a>
-                <a class="dropdown-item " href="page-invoice.html">Invoice</a>
-                <a class="dropdown-item " href="page-error-404.html">Error 404</a>
-              </div>
-            </div>
-            <!-- Specialty -->
-          </div>
-          <!-- End Pages - Submenu -->
-        </li>
-        <!-- End Pages -->
-
+        <!-- End Nosotros -->
+        
         <!-- Blog -->
         <li class="hs-has-sub-menu navbar-nav-item">
           <a id="blogMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="blogSubMenu">Blog</a>
@@ -230,7 +114,7 @@
                 "maxWidth": "440px"
               }
             }'>
-          <a id="shopMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle active" href="javascript:;" aria-haspopup="true" aria-expanded="false">Shop</a>
+          <a id="shopMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle active" href="javascript:;" aria-haspopup="true" aria-expanded="false">Compras</a>
 
           <!-- Shop - Mega Menu -->
           <div class="hs-mega-menu dropdown-menu hs-position-right" aria-labelledby="shopMegaMenu">
@@ -276,124 +160,7 @@
         <!-- End Shop -->
 
         <!-- Demos -->
-        <li class="hs-has-mega-menu navbar-nav-item"
-            data-hs-mega-menu-item-options='{
-              "desktop": {
-                "position": "right",
-                "maxWidth": "900px"
-              }
-            }'>
-          <a id="demosMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false">Demos</a>
-
-          <!-- Demos - Mega Menu -->
-          <div class="hs-mega-menu dropdown-menu w-100" aria-labelledby="demosMegaMenu">
-            <div class="row no-gutters">
-              <div class="col-lg-8">
-                <div class="navbar-promo-card-deck">
-                  <!-- Promo Item -->
-                  <div class="navbar-promo-card navbar-promo-item">
-                    <a class="navbar-promo-link" href="demo-course/index.html">
-                      <div class="media align-items-center">
-                        <img class="navbar-promo-icon" src="assets/svg/icons/icon-67.svg" alt="SVG">
-                        <div class="media-body">
-                          <span class="navbar-promo-title">Course</span>
-                          <span class="navbar-promo-text">Learn On-demand demo</span>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <!-- End Promo Item -->
-
-                  <!-- Promo Item -->
-                  <div class="navbar-promo-card navbar-promo-item">
-                    <a class="navbar-promo-link" href="demo-app-marketplace/index.html">
-                      <div class="media align-items-center">
-                        <img class="navbar-promo-icon" src="assets/svg/icons/icon-45.svg" alt="SVG">
-                        <div class="media-body">
-                          <span class="navbar-promo-title">App Marketplace</span>
-                          <span class="navbar-promo-text">Marketplace app demo</span>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <!-- End Promo Item -->
-                </div>
-
-                <div class="navbar-promo-card-deck">
-                  <!-- Promo Item -->
-                  <div class="navbar-promo-card navbar-promo-item">
-                    <a class="navbar-promo-link" href="demo-help-desk/index.html">
-                      <div class="media align-items-center">
-                        <img class="navbar-promo-icon" src="assets/svg/icons/icon-4.svg" alt="SVG">
-                        <div class="media-body">
-                          <span class="navbar-promo-title">Help Desk</span>
-                          <span class="navbar-promo-text">Help desk demo</span>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <!-- End Promo Item -->
-
-                  <!-- Promo Item -->
-                  <div class="navbar-promo-card navbar-promo-item">
-                    <a class="navbar-promo-link" href="demo-real-estate/index.html">
-                      <div class="media align-items-center">
-                        <img class="navbar-promo-icon" src="assets/svg/icons/icon-13.svg" alt="SVG">
-                        <div class="media-body">
-                          <span class="navbar-promo-title">Real Estate <span class="badge badge-success badge-pill ml-1">New</span></span>
-                          <span class="navbar-promo-text">Real estate demo</span>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <!-- End Promo Item -->
-                </div>
-
-                <div class="navbar-promo-card-deck">
-                  <!-- Promo Item -->
-                  <div class="navbar-promo-card navbar-promo-item">
-                    <a class="navbar-promo-link" href="demo-jobs/index.html">
-                      <div class="media align-items-center">
-                        <img class="navbar-promo-icon" src="assets/svg/icons/icon-19.svg" alt="SVG">
-                        <div class="media-body">
-                          <span class="navbar-promo-title">Jobs <span class="badge badge-success badge-pill ml-1">New</span></span>
-                          <span class="navbar-promo-text">Jobs demo</span>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <!-- End Promo Item -->
-
-                  <!-- Promo Item -->
-                  <div class="navbar-promo-card navbar-promo-item">
-                    <a class="navbar-promo-link disabled" href="javascript:;">
-                      <div class="media align-items-center">
-                        <img class="navbar-promo-icon" src="assets/svg/icons/icon-28.svg" alt="SVG">
-                        <div class="media-body">
-                          <span class="navbar-promo-title">New demo</span>
-                          <span class="navbar-promo-text">Coming soon...</span>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <!-- End Promo Item -->
-                </div>
-              </div>
-
-              <!-- Promo -->
-              <div class="col-lg-4 navbar-promo d-none d-lg-block">
-                <a class="d-block navbar-promo-inner" href="#">
-                  <div class="position-relative">
-                    <img class="img-fluid rounded mb-3" src="assets/img/380x227/img1.jpg" alt="Image Description">
-                  </div>
-                  <span class="navbar-promo-text font-size-1">Front makes you look at things from a different perspectives.</span>
-                </a>
-              </div>
-              <!-- End Promo -->
-            </div>
-          </div>
-          <!-- End Demos - Mega Menu -->
-        </li>
+        
         <!-- End Demos -->
 
         <!-- Docs -->
@@ -410,15 +177,15 @@
           <div class="hs-mega-menu dropdown-menu" aria-labelledby="docsMegaMenu" style="min-width: 330px;">
             <!-- Promo Item -->
             <div class="navbar-promo-item">
-              <a class="navbar-promo-link" href="documentation/index.html">
+              <a class="navbar-promo-link" href="terminos_y_condiciones.php" target="_blank">
                 <div class="media align-items-center">
                   <img class="navbar-promo-icon" src="assets/svg/icons/icon-2.svg" alt="SVG">
                   <div class="media-body">
                     <span class="navbar-promo-title">
-                      Documentation
+                      Política de privacidad
                       <span class="badge badge-primary badge-pill ml-1">v3.3</span>
                     </span>
-                    <small class="navbar-promo-text">Development guides</small>
+                    <small class="navbar-promo-text">Revisa nuestra políticas antes de trabajar con nosotros.</small>
                   </div>
                 </div>
               </a>
@@ -427,12 +194,12 @@
 
             <!-- Promo Item -->
             <div class="navbar-promo-item">
-              <a class="navbar-promo-link" href="snippets/index.html">
+              <a class="navbar-promo-link" href="faq.php" target="_blank">
                 <div class="media align-items-center">
                   <img class="navbar-promo-icon" src="assets/svg/icons/icon-1.svg" alt="SVG">
                   <div class="media-body">
-                    <span class="navbar-promo-title">Snippets</span>
-                    <small class="navbar-promo-text">Start building</small>
+                    <span class="navbar-promo-title">Preguntas frecuentes</span>
+                    <small class="navbar-promo-text">Resuelva las dudas mas frecuentes.</small>
                   </div>
                 </div>
               </a>
@@ -444,14 +211,14 @@
               <div class="row no-gutters">
                 <div class="col-6">
                   <div class="navbar-promo-footer-item">
-                    <span class="navbar-promo-footer-text">Check what's new</span>
-                    <a class="navbar-promo-footer-text" href="documentation/changelog.html"> Changelog</a>
+                    <span class="navbar-promo-footer-text">Visianos en:</span>
+                    <a class="navbar-promo-footer-text" target="_blank" href="https://www.facebook.com/profile.php?id=100086343481837"><i class="fab fa-facebook-square"></i> Facebook</a>
                   </div>
                 </div>
                 <div class="col-6 navbar-promo-footer-ver-divider">
                   <div class="navbar-promo-footer-item">
-                    <span class="navbar-promo-footer-text">Have a question?</span>
-                    <a class="navbar-promo-footer-text" href="http://htmlstream.com/contact-us"> Contact us</a>
+                    <span class="navbar-promo-footer-text">Visianos en:</span>
+                    <a class="navbar-promo-footer-text" target="_blank" href="https://www.tiktok.com/@jdltechnology?is_from_webapp=1&sender_device=pc"><i class="fab fa-tiktok"></i> Tiktok</a>
                   </div>
                 </div>
               </div>

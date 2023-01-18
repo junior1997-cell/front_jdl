@@ -129,8 +129,10 @@
               <div class="col-sm-6 col-lg-4 px-2 px-sm-3 mb-3 mb-sm-5">
                 <!-- Product 1 -->
                 <div class="card card-bordered shadow-lg text-center h-100">
-                  <div class="position-relative">
-                    <img class="card-img-top" src="assets/docs/producto/img_1.jpeg" alt="Image Description">
+                  <div class="position-relative" >
+                    <a href="shop-producto-descripcion.php">
+                      <img class="card-img-top" src="assets/docs/producto/img_1.jpeg" alt="Image Description" >
+                    </a>                   
 
                     <div class="position-absolute top-0 left-0 pt-3 pl-3">
                       <span class="badge badge-success badge-pill">Nuevo</span>
@@ -146,7 +148,7 @@
                     <div class="mb-2">
                       <a class="d-inline-block text-body small font-weight-bold mb-1" href="#">Computadores</a>
                       <span class="d-block font-size-1">
-                        <a class="text-inherit" href="shop-single-product.html">Herschel backpack in dark blue</a>
+                        <a class="text-inherit" href="shop-producto-descripcion.php">Herschel backpack in dark blue</a>
                       </span>
                       <div class="d-block">
                         <span class="text-dark font-weight-bold">S/. 2,560.99</span>
@@ -177,7 +179,9 @@
                 <!-- Product 2 -->
                 <div class="card card-bordered shadow text-center h-100">
                   <div class="position-relative">
-                    <img class="card-img-top" src="assets/docs/producto/img_2.jpeg" alt="Image Description">
+                    <a href="shop-producto-descripcion.php">
+                      <img class="card-img-top" src="assets/docs/producto/img_2.jpeg" alt="Image Description">
+                    </a>                  
 
                     <div class="position-absolute top-0 right-0 pt-3 pr-3">
                       <button type="button" class="btn btn-xs btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
@@ -221,7 +225,9 @@
                 <!-- Product 3 -->
                 <div class="card card-bordered shadow-lg text-center h-100">
                   <div class="position-relative">
-                    <img class="card-img-top" src="assets/docs/producto/img_3.jpeg" alt="Image Description">
+                    <a href="shop-producto-descripcion.php">
+                      <img class="card-img-top" src="assets/docs/producto/img_3.jpeg" alt="Image Description">
+                    </a>                   
 
                     <div class="position-absolute top-0 left-0 pt-3 pl-3">
                       <span class="badge badge-danger badge-pill">Agotado</span>
