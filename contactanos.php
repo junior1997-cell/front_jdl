@@ -368,7 +368,7 @@
               <div class="mb-5">
                 <span class="d-block font-size-2 text-dark text-lh-sm">3 medios para</span>
                 <span class="d-block font-size-4 text-dark font-weight-bold text-lh-sm">contactarse</span>
-              </div>
+              </div> 
 
               <!-- Contacts -->
               <div class="media mb-5">
