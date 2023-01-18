@@ -1,58 +1,17 @@
 <footer class="bg-dark position-relative">
   <div class="container space-bottom-1 position-relative z-index-2">
     <div class="row justify-content-lg-between mb-11">
-      <div class="col-lg-5 space-top-2 space-top-lg-3 text-white mb-7 mb-lg-0">
-        <!-- Title -->
-        <div class="mb-7">
-          <h2 class="h1 text-white">We're here to help</h2>
-          <p class="text-white">Find the right solution and get tailored pricing options. Or, find fast answers in our <a class="text-warning font-weight-bold" href="demo-help-desk/index.html">Help Center.</a></p>
-        </div>
-        <!-- End Title -->
-
-        <div class="row">
-          <!-- Contacts Info -->
-          <div class="col-sm-6 mb-5">
-              <span class="icon icon-soft-light icon-circle mb-3">
-                <i class="fas fa-envelope"></i>
-              </span>
-            <h4 class="text-white mb-0">General enquiries</h4>
-            <a class="text-white-70 font-size-1" href="#">hello@example.com.com</a>
-          </div>
-          <!-- End Contacts Info -->
-
-          <!-- Contacts Info -->
-          <div class="col-sm-6 mb-5">
-              <span class="icon icon-soft-light icon-circle mb-3">
-                <i class="fas fa-phone"></i>
-              </span>
-            <h4 class="text-white mb-0">Phone Number</h4>
-            <a class="text-white-70 font-size-1" href="#">+1 (062) 109-9222</a>
-          </div>
-          <!-- End Contacts Info -->
-
-          <!-- Contacts Info -->
-          <div class="col-sm-6">
-              <span class="icon icon-soft-light icon-circle mb-3">
-                <i class="fas fa-map-marker-alt"></i>
-              </span>
-            <h4 class="text-white mb-0">Address</h4>
-            <a class="text-white-70 font-size-1" href="#">153 Williamson Plaza, 09514</a>
-          </div>
-          <!-- End Contacts Info -->
-        </div>
-      </div>
-
-      <div class="col-lg-6 mt-lg-n11">
+    <div class="col-lg-6 mt-lg-n11">
         <!-- Contact Form -->
-        <form class="js-validate card p-5">
+        <form class="js-validate card p-5 shadow-lg">
           <div class="mb-4">
-            <h3>Drop us a message</h3>
+            <h3>Envíanos un mensaje</h3>
           </div>
 
           <div class="row mx-n2">
             <div class="col-md-6 px-2 mb-3">
               <!-- Input -->
-              <label class="sr-only">First name</label>
+              <label class="sr-only">Nombre</label>
 
               <div class="js-form-message">
                 <div class="input-group">
@@ -65,7 +24,7 @@
 
             <div class="col-md-6 px-2 mb-3">
               <!-- Input -->
-              <label class="sr-only">Last name</label>
+              <label class="sr-only">Apellidos</label>
 
               <div class="js-form-message">
                 <div class="input-group">
@@ -80,12 +39,11 @@
 
             <div class="col-md-6 px-2 mb-3">
               <!-- Input -->
-              <label class="sr-only">Country</label>
+              <label class="sr-only">País</label>
 
               <div class="js-form-message">
                 <div class="input-group">
-                  <select class="form-control custom-select text-muted" required
-                          data-msg="Please select country.">
+                  <select class="form-control custom-select text-muted" required data-msg="Please select country.">
                     <option value="">Select country</option>
                     <option value="AF">Afghanistan</option>
                     <option value="AX">Åland Islands</option>
@@ -344,7 +302,7 @@
 
             <div class="col-md-6 px-2 mb-3">
               <!-- Input -->
-              <label class="sr-only">Email address</label>
+              <label class="sr-only">Email</label>
 
               <div class="js-form-message">
                 <div class="input-group">
@@ -359,7 +317,7 @@
 
             <div class="col-md-6 px-2 mb-3">
               <!-- Input -->
-              <label class="sr-only">Company</label>
+              <label class="sr-only">Compañia</label>
 
               <div class="js-form-message">
                 <div class="input-group">
@@ -372,7 +330,7 @@
 
             <div class="col-md-6 px-2 mb-3">
               <!-- Input -->
-              <label class="sr-only">Job title</label>
+              <label class="sr-only">Titulo profesional</label>
 
               <div class="js-form-message">
                 <div class="input-group">
@@ -386,10 +344,10 @@
 
           <!-- Input -->
           <div class="mb-5">
-            <label class="sr-only">How can we help you?</label>
+            <label class="sr-only">Como podemos ayudarte?</label>
 
             <div class="js-form-message input-group">
-                <textarea class="form-control" rows="4" name="description" placeholder="Hi there, I would like to ..." aria-label="Hi there, I would like to ..." required
+                <textarea class="form-control" rows="4" name="description" placeholder="Hola quisiera ..." aria-label="Hola quisiera ..." required
                           data-msg="Please enter a reason."></textarea>
             </div>
           </div>
@@ -422,16 +380,58 @@
           </div>
           <!-- End Checkbox -->
 
-          <button type="submit" class="btn btn-primary btn-pill btn-wide transition-3d-hover">Submit</button>
+          <button type="submit" class="btn btn-primary btn-pill btn-wide transition-3d-hover">Enviar</button>
         </form>
         <!-- End Contact Form -->
       </div>
+      <div class="col-lg-5 space-top-2 space-top-lg-3 text-white mb-7 mb-lg-0">
+        <!-- Title -->
+        <div class="mb-7">
+          <h2 class="h1 text-white">Estamos aquí para ayudar</h2>
+          <p class="text-white">Encuentre la solución adecuada y obtenga opciones de precios personalizadas. O encuentre respuestas rápidas en nuestro <a class="text-warning font-weight-bold" href="demo-help-desk/index.html">Centro de ayuda.</a></p>
+        </div>
+        <!-- End Title -->
+
+        <div class="row">
+          <!-- Contacts Info -->
+          <div class="col-sm-6 mb-5">
+              <span class="icon icon-soft-light icon-circle mb-3">
+                <i class="fas fa-envelope"></i>
+              </span>
+            <h4 class="text-white mb-0">Consultas generales</h4>
+            <a class="text-white-70 font-size-1" href="mailto:gerencia@jdltechnology.com">gerencia@jdltechnology.com</a>
+          </div>
+          <!-- End Contacts Info -->
+
+          <!-- Contacts Info -->
+          <div class="col-sm-6 mb-5">
+              <span class="icon icon-soft-light icon-circle mb-3">
+                <i class="fas fa-phone"></i>
+              </span>
+            <h4 class="text-white mb-0">Número de teléfono</h4>
+            <a class="text-white-70 font-size-1" href="tel:+51921305769">+51 921 305 769</a>            
+          </div>
+          <!-- End Contacts Info -->
+
+          <!-- Contacts Info -->
+          <div class="col-sm-12">
+              <span class="icon icon-soft-light icon-circle mb-3">
+                <i class="fas fa-map-marker-alt"></i>
+              </span>
+            <h4 class="text-white mb-0">Dirección</h4>
+            <a class="text-white-70 font-size-1" href="#"> Jr. Los Mártires 240, Morales - San Martin.</a>
+          </div>
+          <!-- End Contacts Info -->
+        </div>
+      </div>
+
+      
     </div>
 
     <div class="text-center">
       <!-- Logo -->
       <a class="d-inline-flex align-items-center mb-2" href="index.html" aria-label="Front">
-        <img class="brand" src="assets/svg/logos/logo-white.svg" alt="Logo">
+        <img class="brand" src="assets/svg/logos/logo-white.svg" alt="Logo" style="max-width: 10.5rem !important;">
       </a>
       <!-- End Logo -->
 
