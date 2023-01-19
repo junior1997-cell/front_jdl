@@ -6,3 +6,6 @@
 <link rel="stylesheet" href="assets/css/vendor.min.css">
 <!-- CSS Front Template -->
 <link rel="stylesheet" href="assets/css/theme.minc619.css?v=1.0">
+
+<!-- CSS - Stylo propio -->
+<link rel="stylesheet" href="assets/css/style_new.css">

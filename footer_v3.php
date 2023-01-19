@@ -5,7 +5,7 @@
         <div class="col-lg-3 ml-lg-auto mb-5 mb-lg-0">
           <!-- Logo -->
           <div class="mb-4">
-            <a href="index.html" aria-label="Front">
+            <a href="index.php" aria-label="Front">
               <img class="brand" src="assets/svg/logos/logo.svg" alt="Logo">
             </a>
           </div>

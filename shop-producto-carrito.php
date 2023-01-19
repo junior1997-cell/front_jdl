@@ -4,23 +4,14 @@
 <!-- Mirrored from htmlstream.com/front/shop-cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 May 2021 14:21:32 GMT -->
 <head>
   <!-- Title -->
-  <title>Shop Cart | Front - Responsive Website Template</title>
+  <title>Carrito | JDL Technology</title>
 
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="favicon.ico">
+  <?php $title = "Carrito"; require 'head.php'; ?>
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
-
-  <!-- CSS Implementing Plugins -->
-  <link rel="stylesheet" href="assets/css/vendor.min.css">
-
-  <!-- CSS Front Template -->
-  <link rel="stylesheet" href="assets/css/theme.minc619.css?v=1.0">
 </head>
 <body>
   <!-- ========== HEADER ========== -->

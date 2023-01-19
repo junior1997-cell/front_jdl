@@ -3,7 +3,7 @@
     <div class="row mb-9">
       <div class="col-lg-3 mb-5 mb-lg-0">
         <!-- Logo -->
-        <a href="index.html" aria-label="Front">
+        <a href="index.php" aria-label="Front">
           <img class="brand" src="assets/svg/logos/logo-white.svg" alt="Logo">
         </a>
         <!-- End Logo -->

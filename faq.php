@@ -4,23 +4,13 @@
 <!-- Mirrored from htmlstream.com/front/page-faq.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 May 2021 14:17:05 GMT -->
 <head>
   <!-- Title -->
-  <title>FAQ | Front - Responsive Website Template</title>
+  <title>FAQ | JDL Technology</title>
 
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="favicon.ico">
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
-
-  <!-- CSS Implementing Plugins -->
-  <link rel="stylesheet" href="assets/css/vendor.min.css">
-
-  <!-- CSS Front Template -->
-  <link rel="stylesheet" href="assets/css/theme.minc619.css?v=1.0">
+  <?php $title = ">Detalle Producto"; require 'head.php'; ?>
 </head>
 <body>
   <!-- ========== HEADER ========== -->
@@ -463,7 +453,7 @@
           <div class="col-lg-3 ml-lg-auto mb-5 mb-lg-0">
             <!-- Logo -->
             <div class="mb-4">
-              <a href="index.html" aria-label="Front">
+              <a href="index.php" aria-label="Front">
                 <img class="brand" src="assets/svg/logos/logo-white.svg" alt="Logo">
               </a>
             </div>

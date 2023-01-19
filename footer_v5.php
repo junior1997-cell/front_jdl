@@ -388,7 +388,7 @@
         <!-- Title -->
         <div class="mb-7">
           <h2 class="h1 text-white">Estamos aquí para ayudar</h2>
-          <p class="text-white">Encuentre la solución adecuada y obtenga opciones de precios personalizadas. O encuentre respuestas rápidas en nuestro <a class="text-warning font-weight-bold" href="demo-help-desk/index.html">Centro de ayuda.</a></p>
+          <p class="text-white">Encuentre la solución adecuada y obtenga opciones de precios personalizadas. O encuentre respuestas rápidas en nuestro <a class="text-warning font-weight-bold" href="demo-help-desk/index.php">Centro de ayuda.</a></p>
         </div>
         <!-- End Title -->
 
@@ -430,7 +430,7 @@
 
     <div class="text-center">
       <!-- Logo -->
-      <a class="d-inline-flex align-items-center mb-2" href="index.html" aria-label="Front">
+      <a class="d-inline-flex align-items-center mb-2" href="index.php" aria-label="Front">
         <img class="brand" src="assets/svg/logos/logo-white.svg" alt="Logo" style="max-width: 10.5rem !important;">
       </a>
       <!-- End Logo -->

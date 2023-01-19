@@ -4,7 +4,7 @@
   <!-- Mirrored from htmlstream.com/front/shop-products-grid.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 May 2021 14:21:25 GMT -->
   <head>
     <!-- Title -->
-    <title>Tienda de Productos Grid | JDL Technology</title>
+    <title>Tienda de Productos | JDL Technology</title>
 
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">

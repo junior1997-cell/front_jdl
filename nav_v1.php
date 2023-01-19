@@ -1,6 +1,6 @@
 <nav class="js-mega-menu navbar navbar-expand-lg">
   <!-- Logo -->
-  <a class="navbar-brand" href="index.html" aria-label="Front">
+  <a class="navbar-brand" href="index.php" aria-label="Front">
     <img src="assets/svg/logos/logo.svg" alt="Logo">
   </a>
   <!-- End Logo -->
@@ -27,24 +27,24 @@
 
         <!-- Home -->
         <li class="navbar-nav-item">
-          <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link /*nav-link-toggle*/ " href="index.html" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Inicio</a>          
+          <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link /*nav-link-toggle*/ " href="index.php" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Inicio</a>          
         </li>
         <!-- End Home -->
 
-        <!-- Nosotros -->
+        <!-- A cerca de JDL -->
         <li class="hs-has-mega-menu navbar-nav-item">
-          <a id="homeMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false">Nosotros</a>
+          <a id="homeMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false">A cerca de JDL</a>
 
           <!-- Home - Mega Menu -->
-          <div class="hs-mega-menu dropdown-menu w-100" aria-labelledby="homeMegaMenu">
+          <div class="hs-mega-menu dropdown-menu w-100 shadow-0px1rem3rem-rgb-0-0-0-50" aria-labelledby="homeMegaMenu">
             <div class="row no-gutters">
               <div class="col-lg-6">
                 <!-- Banner Image -->
-                <div class="navbar-banner" style="background-image: url(assets/img/750x750/img1.jpg);">
-                  <div class="navbar-banner-content">
+                <div class="navbar-banner" style="background-image: url(assets/img/nav/img_3.webp);">
+                  <div class="navbar-banner-content" style="top: 40% !important;">
                     <div class="mb-4">
-                      <span class="h2 d-block text-white">Branding Works</span>
-                      <p class="text-white">Experience a level of our quality in both design &amp; customization works.</p>
+                      <span class="h2 d-block text-white">Trabajos de marca</span>
+                      <p class="text-white">Experimente un nivel de nuestra calidad en trabajos de diseño &amp; personalización..</p>
                     </div>
                     <a class="btn btn-primary btn-sm transition-3d-hover" href="#">Learn More <i class="fas fa-angle-right fa-sm ml-1"></i></a>
                   </div>
@@ -55,31 +55,28 @@
               <div class="col-lg-6">
                 <div class="row mega-menu-body">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <span class="d-block h5">Classic</span>
-                    <a class="dropdown-item " href="index.html">Agency</a>
-                    <a class="dropdown-item " href="landing-classic-analytics.html">Analytics <span class="badge badge-primary badge-pill ml-2">Hot</span></a>
-                    <a class="dropdown-item " href="landing-classic-studio.html">Studio</a>
-                    <a class="dropdown-item " href="landing-classic-marketing.html">Marketing</a>
-                    <a class="dropdown-item " href="landing-classic-advertisement.html" target="_blank">Advertisement <span class="badge badge-primary badge-pill ml-2">Hot</span></a>
-                    <a class="dropdown-item " href="landing-classic-consulting.html">Consulting</a>
-                    <a class="dropdown-item " href="landing-classic-portfolio.html">Portfolio</a>
-                    <a class="dropdown-item " href="landing-classic-software.html">Software</a>
-                    <a class="dropdown-item " href="landing-classic-business.html">Business</a>
+                    <span class="d-block h5">Corporativo</span>
+                    <a class="dropdown-item " href="mantenimiento.php">Misión</a>
+                    <a class="dropdown-item " href="mantenimiento.php">Visión <span class="badge badge-danger badge-pill ml-2">Hot</span></a>
+                    <a class="dropdown-item " href="mantenimiento.php">Historia</a>
+                    <a class="dropdown-item " href="mantenimiento.php">Ejecutivos <span class="badge badge-danger badge-pill ml-2">Hot</span></a>
+                    <a class="dropdown-item " href="mantenimiento.php">Servicios</a>
+                    <a class="dropdown-item " href="mantenimiento.php">Portfolio</a>
                   </div>
 
                   <div class="col-sm-6">
-                    <span class="d-block h5">App</span>
+                    <span class="d-block h5">Contactanos</span>
                     <div class="mb-3">
-                      <a class="dropdown-item " href="landing-app-ui-kit.html">UI Kit</a>
-                      <a class="dropdown-item " href="landing-app-saas.html">SaaS</a>
-                      <a class="dropdown-item " href="landing-app-workflow.html">Workflow</a>
-                      <a class="dropdown-item " href="landing-app-payment.html">Payment</a>
-                      <a class="dropdown-item " href="landing-app-tool.html">Tool</a>
+                    <a class="dropdown-item " href="mantenimiento.php">Horario</a>
+                      <a class="dropdown-item " href="mantenimiento.php">Ubicación</a>
+                      <a class="dropdown-item " href="mantenimiento.php">Enviar un correo</a>
                     </div>
 
-                    <span class="d-block h5">Onepages</span>
-                    <a class="dropdown-item " href="landing-onepage-corporate.html">Corporate</a>
-                    <a class="dropdown-item " href="landing-onepage-saas.html">SaaS <span class="badge badge-primary badge-pill ml-2">Hot</span></a>
+                    <span class="d-block h5">Redes sociales</span>
+                    <a class="dropdown-item " target="_blank" href="https://www.facebook.com/profile.php?id=100086343481837"><i class="fab fa-facebook-f text-primary"></i> Facebook</a>
+                    <a class="dropdown-item " target="_blank" href="https://www.instagram.com/jdltechnology/"><i class="fab fa-instagram text-purple"></i> Instagram <span class="badge badge-success badge-pill ml-2">New</span></a>
+                    <a class="dropdown-item " target="_blank" href="https://www.tiktok.com/@jdltechnology"><i class="fab fa-tiktok"></i> Tiktok</a>
+                    <a class="dropdown-item " target="_blank" href="https://www.youtube.com/@jdltechnology3948/featured"><i class="fab fa-youtube text-red"></i> Youtube</a>
                   </div>
                 </div>
               </div>
@@ -87,24 +84,7 @@
           </div>
           <!-- End Home - Mega Menu -->
         </li>
-        <!-- End Nosotros -->
-        
-        <!-- Blog -->
-        <li class="hs-has-sub-menu navbar-nav-item">
-          <a id="blogMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="blogSubMenu">Blog</a>
-
-          <!-- Blog - Submenu -->
-          <div id="blogSubMenu" class="hs-sub-menu dropdown-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px;">
-            <a class="dropdown-item " href="blog-journal.html">Journal</a>
-            <a class="dropdown-item " href="blog-metro.html">Metro</a>
-            <a class="dropdown-item " href="blog-newsroom.html">Newsroom</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item " href="blog-profile.html">Blog Profile</a>
-            <a class="dropdown-item " href="blog-single-article.html">Single Article</a>
-          </div>
-          <!-- End Submenu -->
-        </li>
-        <!-- End Blog -->
+        <!-- End A cerca de JDL -->        
 
         <!-- Shop -->
         <li class="hs-has-mega-menu navbar-nav-item"
@@ -117,25 +97,132 @@
           <a id="shopMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle active" href="javascript:;" aria-haspopup="true" aria-expanded="false">Compras</a>
 
           <!-- Shop - Mega Menu -->
-          <div class="hs-mega-menu dropdown-menu hs-position-right" aria-labelledby="shopMegaMenu">
+          <div class="hs-mega-menu dropdown-menu hs-position-right shadow-0px1rem3rem-rgb-0-0-0-50" aria-labelledby="shopMegaMenu">
             <div class="mega-menu-body">
               <span class="d-block h5">Shop Elements</span>
 
               <div class="row">
                 <div class="col-sm-6">
-                  <a class="dropdown-item " href="shop-classic.html">Classic</a>
-                  <a class="dropdown-item " href="shop-categories.html">Categories</a>
-                  <a class="dropdown-item " href="shop-categories-sidebar.html">Categories Sidebar</a>
-                  <a class="dropdown-item active" href="shop-products-grid.html">Products Grid</a>
-                  <a class="dropdown-item " href="shop-products-list.html">Products List</a>
+                  <a class="dropdown-item " href="shop-producto.php"><i class="fas fa-box"></i> Productos</a>                  
+                  <div class="hs-has-sub-menu">
+                    <a id="navLinkProducto" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuProducto"><i class="fas fa-list-ul mr-1"></i> Categorias</a>
+                    <div id="navSubmenuProducto" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkProducto" style="min-width: 230px;">                      
+                      <!-- Computo -->
+                      <div class="hs-has-sub-menu">
+                        <a id="navLinkComputo" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle ml-4" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuComputo">Computo</a>
+                        <div id="navSubmenuComputo" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkComputo" style="min-width: 230px;">
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Ver todo</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Laptops</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Tablets</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Impresoras y tintas</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Computadoras de escritorio</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Mouses y teclados</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Cámaras web y micrófonos</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Discos duros, USB y memorias</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Repetidores wifi y routers</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Monitores, pantallas y proyectores</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Sillas gamer</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Escritorios gamer</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Accesorios gamer</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Racks y soportes</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Cables, adaptadores y cargadores</a>
+                          <a class="dropdown-item ml-4" href="shop-producto.php">Accesorios de cómputo</a>
+                        </div>
+                      </div>
+                      <!-- Telefonia -->
+                      <div class="hs-has-sub-menu">
+                        <a id="navLinkTelefonia" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle ml-4" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuTelefonia">Telefonia</a>
+                        <div id="navSubmenuTelefonia" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkTelefonia" style="min-width: 230px;">
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Ver todo</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Smartwatches</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Cables y cargadores</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Cargadores portátiles</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Aros de luz y trípodes para celular</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Memorias Micro SD</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Carcasas transparentes</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Carcasas de colores</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Micas para celular</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Protectores de cámara de celular</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Combos de accesorios para celulares</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Otros accesorios para celulares</a>
+                        </div>
+                      </div>  
+                      <!-- Tv y Video -->
+                      <div class="hs-has-sub-menu">
+                        <a id="navLinkTvVideo" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle ml-4" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuTvVideo">Tv &amp; Video</a>
+                        <div id="navSubmenuTvVideo" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkTvVideo" style="min-width: 230px;">
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Ver todo</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Televisores</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Racks para TV</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Convertidores Smart TV</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Cables HDMI, VGA y de audio</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Home Theater</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Accesorios para TV</a>
+                        </div>
+                      </div>
+                      <!-- Casa Inteligente -->
+                      <div class="hs-has-sub-menu">
+                        <a id="navLinkCasaInteligente" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle ml-4" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuCasaInteligente">Casa Inteligente</a>
+                        <div id="navSubmenuCasaInteligente" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkCasaInteligente" style="min-width: 230px;">
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Ver todo</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Cámaras de seguridad WiFi</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Enchufes inteligentes</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Focos inteligentes</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Interruptores inteligentes</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Routers</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Repetidores WiFi</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Switches de red</a>
+                        </div>
+                      </div>
+                      <!-- Audio -->
+                      <div class="hs-has-sub-menu">
+                        <a id="navLinkAudio" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle ml-4" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuAudio">Audio</a>
+                        <div id="navSubmenuAudio" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkAudio" style="min-width: 230px;">
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Ver todo</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Audífonos</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Parlantes</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Equipos de sonido</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Home Theater</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Micrófonos</a>
+                        </div>
+                      </div>        
+                      <!-- Videojuegos -->
+                      <div class="hs-has-sub-menu">
+                        <a id="navLinkVideojuegos" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle ml-4" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuVideojuegos">Videojuegos</a>
+                        <div id="navSubmenuVideojuegos" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkVideojuegos" style="min-width: 230px;">
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Ver todo</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Consolas</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Juegos PS5</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Juegos PS4</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Juegos PS3</a>
+                        </div>
+                      </div>
+                      <!-- Camaras -->
+                      <div class="hs-has-sub-menu">
+                        <a id="navLinkCamaras" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle ml-4" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuCamaras">Camaras</a>
+                        <div id="navSubmenuCamaras" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkCamaras" style="min-width: 230px;">
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Ver todo</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">GoPro</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Cámaras espías</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Drones</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Filmadoras</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Cámaras web</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Cámaras de seguridad</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Cámaras de acción</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Equipos de cine</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Accesorios para cámaras</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Accesorios para GoPro</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Memorias Micro SD</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Estudios de fotografía e iluminación</a>
+                          <a class="dropdown-item ml-4" href="mantenimiento.php">Binoculares</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="col-sm-6">
-                  <a class="dropdown-item " href="shop-single-product.html">Single Product</a>
-                  <a class="dropdown-item " href="shop-empty-cart.html">Empty Cart</a>
-                  <a class="dropdown-item " href="shop-cart.html">Cart</a>
-                  <a class="dropdown-item " href="shop-checkout.html">Checkout</a>
-                  <a class="dropdown-item " href="shop-order-completed.html">Order Completed</a>
+                  <a class="dropdown-item " href="shop-producto-carrito.php"><i class="fas fa-shopping-cart"></i> Carrito</a>
                 </div>
               </div>
             </div>
@@ -159,9 +246,11 @@
         </li>
         <!-- End Shop -->
 
-        <!-- Demos -->
-        
-        <!-- End Demos -->
+        <!-- Blog -->
+        <li class="navbar-nav-item">
+          <a id="blogMegaMenu" class="hs-mega-menu-invoker nav-link /*nav-link-toggle*/" href="blog.php" aria-haspopup="true" aria-expanded="false" aria-labelledby="blogSubMenu">Blog</a>          
+        </li>
+        <!-- End Blog -->
 
         <!-- Docs -->
         <li class="hs-has-mega-menu navbar-nav-item"
@@ -174,7 +263,7 @@
           <a id="docsMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">Docs</a>
 
           <!-- Docs - Submenu -->
-          <div class="hs-mega-menu dropdown-menu" aria-labelledby="docsMegaMenu" style="min-width: 330px;">
+          <div class="hs-mega-menu dropdown-menu shadow-0px1rem3rem-rgb-0-0-0-50" aria-labelledby="docsMegaMenu" style="min-width: 330px;">
             <!-- Promo Item -->
             <div class="navbar-promo-item">
               <a class="navbar-promo-link" href="terminos_y_condiciones.php" target="_blank">
@@ -183,7 +272,7 @@
                   <div class="media-body">
                     <span class="navbar-promo-title">
                       Política de privacidad
-                      <span class="badge badge-primary badge-pill ml-1">v3.3</span>
+                      <span class="badge badge-primary badge-pill ml-1">2023</span>
                     </span>
                     <small class="navbar-promo-text">Revisa nuestra políticas antes de trabajar con nosotros.</small>
                   </div>
@@ -231,7 +320,7 @@
 
         <!-- Button -->
         <li class="navbar-nav-last-item">
-          <a class="btn btn-sm btn-primary transition-3d-hover" href="https://themes.getbootstrap.com/product/front-multipurpose-responsive-template/" target="_blank">Buy Now</a>
+          <a class="btn btn-sm btn-primary transition-3d-hover" href="https://themes.getbootstrap.com/product/front-multipurpose-responsive-template/" target="_blank">Inicia Sesion</a>
         </li>
         <!-- End Button -->
       </ul>

@@ -3,7 +3,7 @@
         <div class="row justify-content-lg-between space-top-2 space-bottom-lg-2">
           <div class="col-lg-3 mb-5">
             <div class="d-flex align-items-start flex-column h-100">
-              <a class="w-100 mb-3 mb-lg-auto" href="index.html" aria-label="Front">
+              <a class="w-100 mb-3 mb-lg-auto" href="index.php" aria-label="Front">
                 <img class="brand" src="assets/svg/logos/logo.svg" alt="Logo">
               </a>
               <p class="small text-muted mb-0">&copy; Front. 2020 Htmlstream.</p>
@@ -41,7 +41,7 @@
             <!-- Nav Link -->
             <ul class="nav nav-sm nav-x-0 flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="demo-help-desk/index.html">
+                <a class="nav-link" href="demo-help-desk/index.php">
                     <span class="media align-items-center">
                       <i class="fas fa-info-circle mr-2"></i>
                       <span class="media-body">Help</span>

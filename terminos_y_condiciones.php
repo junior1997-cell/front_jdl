@@ -4,23 +4,14 @@
 <!-- Mirrored from htmlstream.com/front/page-terms.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 May 2021 14:20:42 GMT -->
 <head>
   <!-- Title -->
-  <title>Terms &amp; Conditions | Front - Responsive Website Template</title>
+  <title>Terms &amp; Conditions | JDL Technology</title>
 
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="favicon.ico">
+  <?php $title = ">Detalle Producto"; require 'head.php'; ?>
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
-
-  <!-- CSS Implementing Plugins -->
-  <link rel="stylesheet" href="assets/css/vendor.min.css">
-
-  <!-- CSS Front Template -->
-  <link rel="stylesheet" href="assets/css/theme.minc619.css?v=1.0">
 </head>
 <body>
   <!-- ========== HEADER ========== -->
@@ -161,7 +152,7 @@
 
             <p>Front's privacy policies explain how we treat your personal data and protect your privacy when you use our Services. By using our Services, you agree that Front can use such data in accordance with our privacy policies.</p>
             <p>We respond to notices of alleged copyright infringement and terminate accounts of repeat infringers according to the process set out in the U.S. Digital Millennium Copyright Act.</p>
-            <p>We provide information to help copyright holders manage their intellectual property online. If you think somebody is violating your copyrights and want to notify us, you can find information about submitting notices and Front's policy about responding to notices in <a href="demo-help-desk/index.html">our Help Center</a>.</p>
+            <p>We provide information to help copyright holders manage their intellectual property online. If you think somebody is violating your copyrights and want to notify us, you can find information about submitting notices and Front's policy about responding to notices in <a href="demo-help-desk/index.php">our Help Center</a>.</p>
           </div>
 
           <div id="yourContent">
@@ -192,7 +183,7 @@
           <div class="col-lg-3 ml-lg-auto mb-5 mb-lg-0">
             <!-- Logo -->
             <div class="mb-4">
-              <a href="index.html" aria-label="Front">
+              <a href="index.php" aria-label="Front">
                 <img class="brand" src="assets/svg/logos/logo-white.svg" alt="Logo">
               </a>
             </div>
