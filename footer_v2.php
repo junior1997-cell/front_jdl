@@ -15,22 +15,26 @@
           <ul class="nav nav-sm nav-x-0 nav-white flex-column">
             <li class="nav-item">
               <a class="nav-link media" href="javascript:;">
-                  <span class="media">
-                    <span class="fas fa-location-arrow mt-1 mr-2"></span>
-                    <span class="media-body">
-                      153 Williamson Plaza, Maggieberg
-                    </span>
-                  </span>
+                <span class="media">
+                  <span class="fas fa-location-arrow mt-1 mr-2"></span>
+                  <span class="media-body"> Jr. Los Martires #240 </span>
+                </span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link media" href="tel:1-062-109-9222">
-                  <span class="media">
-                    <span class="fas fa-phone-alt mt-1 mr-2"></span>
-                    <span class="media-body">
-                      +1 (062) 109-9222
-                    </span>
-                  </span>
+              <a class="nav-link media" href="tel:+51921305769">
+                <span class="media">
+                  <span class="fas fa-phone-alt mt-1 mr-2"></span>
+                  <span class="media-body"> +51 921 305 769 </span>
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link media" href="mailto:jdltechnology19@gmail.com">
+                <span class="media">
+                  <span class="far fa-envelope mt-1 mr-2"></span>
+                  <span class="media-body"> jdltechnology19@gmail.com </span>
+                </span>
               </a>
             </li>
           </ul>
@@ -79,23 +83,23 @@
         </div>
 
         <div class="col-6 col-md-3 col-lg">
-          <h5 class="text-white">Resources</h5>
+          <h5 class="text-white">Recursos</h5>
 
           <!-- Nav Link -->
           <ul class="nav nav-sm nav-x-0 nav-white flex-column">
             <li class="nav-item">
               <a class="nav-link" href="#">
                   <span class="media align-items-center">
-                    <i class="fa fa-info-circle mr-2"></i>
-                    <span class="media-body">Help</span>
+                    <i class="fas fa-user mr-2"></i>
+                    <span class="media-body">Cuenta cliente</span>
                   </span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
                   <span class="media align-items-center">
-                    <i class="fa fa-user-circle mr-2"></i>
-                    <span class="media-body">Your Account</span>
+                    <i class="fas fa-shield-alt mr-2"></i>
+                    <span class="media-body">Admin Intranet</span>
                   </span>
               </a>
             </li>
@@ -131,23 +135,23 @@
           <ul class="list-inline mb-0">
             <!-- Social Networks -->
             <li class="list-inline-item">
-              <a class="btn btn-xs btn-icon btn-soft-light" href="#">
-                <i class="fab fa-facebook-f"></i>
+              <a class="btn btn-xs btn-icon btn-soft-light" href="https://www.facebook.com/profile.php?id=100086343481837">
+                <i class="fab fa-facebook-f text-primary"></i>
               </a>
             </li>
             <li class="list-inline-item">
-              <a class="btn btn-xs btn-icon btn-soft-light" href="#">
-                <i class="fab fa-google"></i>
+              <a class="btn btn-xs btn-icon btn-soft-light" href="https://www.instagram.com/jdltechnology/">
+                <i class="fab fa-instagram text-purple"></i>
               </a>
             </li>
             <li class="list-inline-item">
-              <a class="btn btn-xs btn-icon btn-soft-light" href="#">
-                <i class="fab fa-twitter"></i>
+              <a class="btn btn-xs btn-icon btn-soft-light" href="https://www.tiktok.com/@jdltechnology">
+                <i class="fab fa-tiktok"></i>
               </a>
             </li>
             <li class="list-inline-item">
-              <a class="btn btn-xs btn-icon btn-soft-light" href="#">
-                <i class="fab fa-github"></i>
+              <a class="btn btn-xs btn-icon btn-soft-light" href="https://www.youtube.com/@jdltechnology3948/featured">
+                <i class="fab fa-youtube text-red"></i>
               </a>
             </li>
             <!-- End Social Networks -->
@@ -161,14 +165,14 @@
                       "type": "css-animation",
                       "animationIn": "slideInDown"
                       }'>
-                  <img class="dropdown-item-icon" src="assets/vendor/flag-icon-css/flags/4x3/us.svg" alt="United States Flag">
-                  <span>United States</span>
+                  <img class="dropdown-item-icon" src="assets/vendor/flag-icon-css/flags/4x3/es.svg" alt="Bandera de españa">
+                  <span>Español</span>
                 </a>
 
                 <div id="footerLanguage" class="hs-unfold-content dropdown-menu dropdown-unfold dropdown-menu-bottom mb-2">
-                  <a class="dropdown-item active" href="#">English</a>
-                  <a class="dropdown-item" href="#">Deutsch</a>
-                  <a class="dropdown-item" href="#">Español</a>
+                <a class="dropdown-item active" href="#">Español</a>
+                  <a class="dropdown-item" href="#">English</a>
+                  <a class="dropdown-item" href="#">Deutsch</a>                  
                   <a class="dropdown-item" href="#">Français</a>
                   <a class="dropdown-item" href="#">Italiano</a>
                   <a class="dropdown-item" href="#">日本語</a>
@@ -186,8 +190,8 @@
 
       <!-- Copyright -->
       <div class="w-md-75 text-lg-center mx-lg-auto">
-        <p class="text-white opacity-sm small">&copy; Front. 2020 Htmlstream. All rights reserved.</p>
-        <p class="text-white opacity-sm small">When you visit or interact with our sites, services or tools, we or our authorised service providers may use cookies for storing information to help provide you with a better, faster and safer experience and for marketing purposes.</p>
+        <p class="text-white opacity-sm small" id="copyright">&copy; JDL Technology 2022 - <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>.  Todos los derechos reservados.</p>
+        <p class="text-white opacity-sm small">Cuando visita o interactúa con nuestros sitios, servicios o herramientas, nosotros o nuestros proveedores de servicios autorizados podemos usar cookies para almacenar información para ayudarlo a brindarle una experiencia mejor, más rápida y más segura y con fines de marketing.</p>
       </div>
       <!-- End Copyright -->
     </div>

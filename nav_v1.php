@@ -230,13 +230,13 @@
             <!-- Mega Menu Banner -->
             <div class="navbar-product-banner">
               <div class="d-flex align-items-end">
-                <img class="img-fluid mr-4" src="assets/img/mockups/img4.png" alt="Image Description">
+                <img class="img-fluid mr-4" src="assets/img/nav/img_4.png" alt="Image Description" width="200px">
                 <div class="navbar-product-banner-content">
                   <div class="mb-4">
-                    <span class="h4 d-block text-primary">Win T-shirt</span>
-                    <p>Win one of our Front brand T-shirts.</p>
+                    <span class="h4 d-block text-primary">Laptop Gamer HP</span>
+                    <p>Gana una de nuestros productos de las mejores marcas.</p>
                   </div>
-                  <a class="btn btn-sm btn-soft-primary transition-3d-hover" href="shop-classic.html">Learn More <i class="fas fa-angle-right fa-sm ml-1"></i></a>
+                  <a class="btn btn-sm btn-soft-primary transition-3d-hover" href="shop-classic.html">Más info <i class="fas fa-angle-right fa-sm ml-1"></i></a>
                 </div>
               </div>
             </div>
