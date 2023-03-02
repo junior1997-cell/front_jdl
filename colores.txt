@@ -1,0 +1,2 @@
+color primario azul: #0037a4
+color verde: #28a745

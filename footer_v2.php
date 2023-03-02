@@ -42,42 +42,40 @@
         </div>
 
         <div class="col-6 col-md-3 col-lg mb-5 mb-lg-0">
-          <h5 class="text-white">Company</h5>
+          <h5 class="text-white">Corporativo</h5>
 
           <!-- Nav Link -->
           <ul class="nav nav-sm nav-x-0 nav-white flex-column">
-            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Careers <span class="badge badge-primary ml-1">We're hiring</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Customers</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Hire us</a></li>
+            <li class="nav-item"><a class="nav-link" href="mantenimiento.php">Misión</a></li>
+            <li class="nav-item"><a class="nav-link" href="mantenimiento.php">Visión </a></li>
+            <li class="nav-item"><a class="nav-link" href="mantenimiento.php">Historia</a></li>
+            <li class="nav-item"><a class="nav-link" href="mantenimiento.php">Ejecutivos <span class="badge badge-primary ml-1">Nuevo</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="mantenimiento.php">Servicios</a></li>
+            <li class="nav-item"><a class="nav-link" href="mantenimiento.php">Portfolio</a></li>
           </ul>
           <!-- End Nav Link -->
         </div>
 
         <div class="col-6 col-md-3 col-lg mb-5 mb-lg-0">
-          <h5 class="text-white">Features</h5>
+          <h5 class="text-white">Shop Element</h5>
 
           <!-- Nav Link -->
           <ul class="nav nav-sm nav-x-0 nav-white flex-column">
-            <li class="nav-item"><a class="nav-link" href="#">Press</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Release notes</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Integrations</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+            <li class="nav-item"><a class="nav-link" href="mantenimiento.php">Productos</a></li>
+            <li class="nav-item"><a class="nav-link" href="mantenimiento.php">Categorias</a></li>
+            <li class="nav-item"><a class="nav-link" href="mantenimiento.php">Carrito</a></li>
           </ul>
           <!-- End Nav Link -->
         </div>
 
         <div class="col-6 col-md-3 col-lg">
-          <h5 class="text-white">Documentation</h5>
+          <h5 class="text-white">Contactanos</h5>
 
           <!-- Nav Link -->
           <ul class="nav nav-sm nav-x-0 nav-white flex-column">
-            <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Docs</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Status</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">API Reference</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Tech Requirements</a></li>
+            <li class="nav-item"><a class="nav-link" href="mantenimiento.php">Horario</a></li>
+            <li class="nav-item"><a class="nav-link" href="mantenimiento.php">Ubicación</a></li>
+            <li class="nav-item"><a class="nav-link" href="mantenimiento.php">Enviar un correo</a></li>
           </ul>
           <!-- End Nav Link -->
         </div>
@@ -96,7 +94,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="admin/vistas/login.html">
                   <span class="media align-items-center">
                     <i class="fas fa-shield-alt mr-2"></i>
                     <span class="media-body">Admin Intranet</span>
@@ -117,15 +115,15 @@
           <!-- Nav Link -->
           <ul class="nav nav-sm nav-white nav-x-sm align-items-center">
             <li class="nav-item">
-              <a class="nav-link" href="#">Privacy &amp; Policy</a>
+              <a class="nav-link" href="terminos_y_condiciones.php">Politicas  &amp; Privacidad</a>
             </li>
             <li class="nav-item opacity mx-3">&#47;</li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Terms</a>
+              <a class="nav-link" href="faq.php">Preguntas Frecuentes</a>
             </li>
             <li class="nav-item opacity mx-3">&#47;</li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Site Map</a>
+              <a class="nav-link" href="#">Mapa del sitio</a>
             </li>
           </ul>
           <!-- End Nav Link -->

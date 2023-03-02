@@ -103,7 +103,7 @@
 
               <div class="row">
                 <div class="col-sm-6">
-                  <a class="dropdown-item " href="shop-producto.php"><i class="fas fa-box"></i> Productos</a>                  
+                  <a class="dropdown-item " href="shop-producto-grid.php"><i class="fas fa-box"></i> Productos</a>                  
                   <div class="hs-has-sub-menu">
                     <a id="navLinkProducto" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle " href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuProducto"><i class="fas fa-list-ul mr-1"></i> Categorias</a>
                     <div id="navSubmenuProducto" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkProducto" style="min-width: 230px;">                      
@@ -111,22 +111,22 @@
                       <div class="hs-has-sub-menu">
                         <a id="navLinkComputo" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle ml-4" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuComputo">Computo</a>
                         <div id="navSubmenuComputo" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkComputo" style="min-width: 230px;">
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Ver todo</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Laptops</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Tablets</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Impresoras y tintas</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Computadoras de escritorio</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Mouses y teclados</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Cámaras web y micrófonos</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Discos duros, USB y memorias</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Repetidores wifi y routers</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Monitores, pantallas y proyectores</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Sillas gamer</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Escritorios gamer</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Accesorios gamer</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Racks y soportes</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Cables, adaptadores y cargadores</a>
-                          <a class="dropdown-item ml-4" href="shop-producto.php">Accesorios de cómputo</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Ver todo</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Laptops</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Tablets</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Impresoras y tintas</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Computadoras de escritorio</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Mouses y teclados</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Cámaras web y micrófonos</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Discos duros, USB y memorias</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Repetidores wifi y routers</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Monitores, pantallas y proyectores</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Sillas gamer</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Escritorios gamer</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Accesorios gamer</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Racks y soportes</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Cables, adaptadores y cargadores</a>
+                          <a class="dropdown-item ml-4" href="shop-producto-grid.php">Accesorios de cómputo</a>
                         </div>
                       </div>
                       <!-- Telefonia -->

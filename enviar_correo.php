@@ -18,14 +18,14 @@ try {
   $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
   $mail->Username   = '75867189@pronabec.edu.pe';                     //SMTP username
   $mail->Password   = '75867189';                               //SMTP password
-  $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-  $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+  $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
+  $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
   //Recipients
-  $mail->setFrom($mail->Username, 'Junior CErcadoooo');
+  $mail->setFrom('75867189@pronabec.edu.pe', 'Junior CErcadoooo');
   $mail->addAddress('juniorcercado@upeu.edu.pe', 'Joe User');     //Add a recipient
   // $mail->addAddress('ellen@example.com');               //Name is optional
-  $mail->addReplyTo('75867189@pronabec.edu.pe', 'Information');
+  // $mail->addReplyTo('75867189@pronabec.edu.pe', 'Information');
   // $mail->addCC('cc@example.com');
   // $mail->addBCC('bcc@example.com');
 
