@@ -147,7 +147,7 @@ function tbla_principal() {
     order: [[0, "asc"]], //Ordenar (columna,orden)
     columnDefs: [
       //{ targets: [], visible: false, searchable: false, }, 
-      { targets: [5], render: $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY'), },
+      // { targets: [5], render: $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY'), },
       { targets: [6,7,8], render: function (data, type) { var number = $.fn.dataTable.render.number(',', '.', 2).display(data); if (type === 'display') { let color = 'numero_positivos'; if (data < 0) {color = 'numero_negativos'; } return `<span class="float-left">S/</span> <span class="float-right ${color} "> ${number} </span>`; } return number; }, },      
     ],
   }).DataTable();
@@ -160,7 +160,7 @@ function comprob_factura() {
   var precio_parcial = $("#precio_parcial").val(); 
 
   
-  if ($("#tipo_comprobante").select2("val") == "" || $("#tipo_comprobante").select2("val") == null) {
+  if ($("#tipo_comprobante").select2('val') == "" || $("#tipo_comprobante").select2('val') == null) {
 
     $(".nro_comprobante").html("Núm. Comprobante");
 
@@ -176,7 +176,7 @@ function comprob_factura() {
 
   } else {
 
-    if ($("#tipo_comprobante").select2("val") == "Ninguno") { 
+    if ($("#tipo_comprobante").select2('val') == "Ninguno") { 
 
       $(".nro_comprobante").html("Núm. de Operación");
 
