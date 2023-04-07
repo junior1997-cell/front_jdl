@@ -82,16 +82,16 @@
                                           <table id="tabla-materiales" class="table table-bordered table-striped display" style="width: 100% !important;">
                                             <thead>
                                               <tr>
-                                                <th class="text-center">#</th>
-                                                <th class="">Acciones</th>
-                                                <th class="">Code</th>
-                                                <th>Nombre</th>
-                                                <th>Categoria</th>
-                                                <th data-toggle="tooltip" data-original-title="Unidad Medida">UM</th>
-                                                <th >Precio </th>
-                                                <th>Stock</th>
-                                                <th>Contenido Neto</th>
-                                                <th>Descripción</th> 
+                                                <th class="py-1text-center">#</th>
+                                                <th class="py-1">Acciones</th>
+                                                <th class="py-1">Code</th>
+                                                <th class="py-1">Nombre</th>
+                                                <th class="py-1">Categoria</th>
+                                                <th class="py-1" data-toggle="tooltip" data-original-title="Unidad Medida">UM</th>
+                                                <th class="py-1">Precio </th>
+                                                <th class="py-1">Stock</th>
+                                                <th class="py-1">Contenido Neto</th>
+                                                <th class="py-1">Descripción</th> 
 
                                                 <th>Nombre</th>
                                                 <th>Marca</th>
@@ -100,16 +100,16 @@
                                             <tbody></tbody>
                                             <tfoot>
                                               <tr>
-                                              <th class="text-center">#</th>
-                                              <th class="">Acciones</th>
-                                              <th class="">Code</th>
-                                              <th>Nombre</th>
-                                              <th>Categoria</th>
-                                              <th data-toggle="tooltip" data-original-title="Unidad Medida">UM</th>
-                                              <th >Precio </th>
-                                              <th>Stock</th>
-                                              <th>Contenido Neto</th>
-                                              <th>Descripción</th>
+                                              <th class="py-1 text-center">#</th>
+                                              <th class="py-1">Acciones</th>
+                                              <th class="py-1">Code</th>
+                                              <th class="py-1">Nombre</th>
+                                              <th class="py-1">Categoria</th>
+                                              <th class="py-1" data-toggle="tooltip" data-original-title="Unidad Medida">UM</th>
+                                              <th class="py-1">Precio </th>
+                                              <th class="py-1">Stock</th>
+                                              <th class="py-1">Contenido Neto</th>
+                                              <th class="py-1">Descripción</th>
 
                                               <th>Nombre</th>
                                               <th>Marca</th>
@@ -301,7 +301,7 @@
                           <span class="text-white cursor-pointer" aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <div class="modal-body"> 
+                      <div class="modal-body "> 
                         <div id="perfil-insumo" class="text-center">
                           <!-- vemos los datos del trabajador -->
                         </div>

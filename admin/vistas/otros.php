@@ -31,17 +31,17 @@
             ?>
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-              <div class="row">
+            <div class="content-wrapper">               
 
-                <!-- TBLA - BANCOS -->
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                  <!-- Content Header (Page header) -->
-                  <section class="content-header">
-                    <div class="container-fluid">
-                      <div class="row mb-2">
+              <!-- Main content -->
+              <section class="content">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-6g col-xl-6">
+                      <!-- TBLA - BANCOS -->
+                      <div class="row">
                         <div class="col-sm-6">
-                          <h1>Bancos</h1>
+                          <h2>Bancos</h2>
                         </div>
                         <div class="col-sm-6">
                           <ol class="breadcrumb float-sm-right">
@@ -49,72 +49,60 @@
                             <li class="breadcrumb-item active">Bancos</li>
                           </ol>
                         </div>
+                        <div class="col-12">
+                          <div class="card card-primary card-outline">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <button type="button" class="btn bg-gradient-primary" data-toggle="modal" data-target="#modal-agregar-bancos" onclick="limpiar_banco();"><i class="fas fa-plus-circle"></i> Agregar</button>
+                                Administrar Bancos.
+                              </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                              <table id="tabla-bancos" class="table table-bordered table-striped display" style="width: 100% !important;">
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="">Acciones</th>
+                                    <th>Nombre</th>
+                                    <th>Formato Cta/CCI</th>
+                                    <th>Estado</th>
+                                    <th>Nombre</th>
+                                    <th>Alias</th>
+                                    <th>Formato Cta</th>
+                                    <th>Formato CCI</th>
+                                    <th>Formato Cta. Dtrac.</th>
+                                  </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                  <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="">Acciones</th>
+                                    <th>Nombre</th>
+                                    <th>Formato</th>
+                                    <th>Estado</th>
+                                    <th>Nombre</th>
+                                    <th>Alias</th>
+                                    <th>Formato Cta</th>
+                                    <th>Formato CCI</th>
+                                    <th>Formato Cta. Dtrac.</th>
+                                  </tr>
+                                </tfoot>
+                              </table>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
+                          <!-- /.card -->
+                        </div>
                       </div>
                     </div>
-                    <!-- /.container-fluid -->
-                  </section>
 
-                  <!-- Main content -->
-                  <section class="content">
-                    <div class="container-fluid">
-                      <div class="card card-primary card-outline">
-                        <div class="card-header">
-                          <h3 class="card-title">
-                            <button type="button" class="btn bg-gradient-primary" data-toggle="modal" data-target="#modal-agregar-bancos" onclick="limpiar_banco();"><i class="fas fa-plus-circle"></i> Agregar</button>
-                            Administrar Bancos.
-                          </h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                          <table id="tabla-bancos" class="table table-bordered table-striped display" style="width: 100% !important;">
-                            <thead>
-                              <tr>
-                                <th class="text-center">#</th>
-                                <th class="">Acciones</th>
-                                <th>Nombre</th>
-                                <th>Formato Cta/CCI</th>
-                                <th>Estado</th>
-                                <th>Nombre</th>
-                                <th>Alias</th>
-                                <th>Formato Cta</th>
-                                <th>Formato CCI</th>
-                                <th>Formato Cta. Dtrac.</th>
-                              </tr>
-                            </thead>
-                            <tbody></tbody>
-                            <tfoot>
-                              <tr>
-                                <th class="text-center">#</th>
-                                <th class="">Acciones</th>
-                                <th>Nombre</th>
-                                <th>Formato</th>
-                                <th>Estado</th>
-                                <th>Nombre</th>
-                                <th>Alias</th>
-                                <th>Formato Cta</th>
-                                <th>Formato CCI</th>
-                                <th>Formato Cta. Dtrac.</th>
-                              </tr>
-                            </tfoot>
-                          </table>
-                        </div>
-                        <!-- /.card-body -->
-                      </div>
-                      <!-- /.card -->
-                    </div>
-                    <!-- /.container-fluid -->
-                  </section>
-                  <!-- /.content -->
-                </div>
-
-                <!-- TBLA - UNIDAD DE MEDIDA-->
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                  <!-- Content Header (Page header) -->
-                  <section class="content-header">
-                    <div class="container-fluid">
-                      <div class="row mb-2">
+                    <div class="col-sm-12 col-md-12 col-lg-6g col-xl-6">
+                      <!-- TBLA - UNIDAD DE MEDIDA-->
+                      <div class="row">
                         <div class="col-sm-6">
-                          <h1>Unidades de Medida</h1>
+                          <h2>Unidades de Medida</h2>
                         </div>
                         <div class="col-sm-6">
                           <ol class="breadcrumb float-sm-right">
@@ -122,247 +110,204 @@
                             <li class="breadcrumb-item active">Unidad de Medida</li>
                           </ol>
                         </div>
+                        <div class="col-12">
+                          <div class="card card-primary card-outline">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <button type="button" class="btn bg-gradient-primary" data-toggle="modal" data-target="#modal-agregar-unidad-m" onclick="limpiar_unidades_m();"><i class="fas fa-plus-circle"></i> Agregar</button>
+                                Admnistrar Unidad de medidas.
+                              </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                              <table id="tabla-unidades-m" class="table table-bordered table-striped display" style="width: 100% !important;">
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="">Acciones</th>
+                                    <th>Nombre</th>
+                                    <th>Abreviación</th>
+                                    <th>Descripciòn</th>
+                                    <th>Estado</th>
+                                    
+                                  </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                  <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="">Acciones</th>
+                                    <th>Nombre</th>
+                                    <th>Abreviación</th>
+                                    <th>Descripciòn</th>
+                                    <th>Estado</th>
+                                  </tr>
+                                </tfoot>
+                              </table>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
+                          <!-- /.card -->
+                        </div>
                       </div>
                     </div>
-                    <!-- /.container-fluid -->
-                  </section>
 
-                  <!-- Main content -->
-
-                  <!-- Main content -->
-                  <section class="content">
-                    <div class="container-fluid">
-                      <div class="card card-primary card-outline">
-                        <div class="card-header">
-                          <h3 class="card-title">
-                            <button type="button" class="btn bg-gradient-primary" data-toggle="modal" data-target="#modal-agregar-unidad-m" onclick="limpiar_unidades_m();"><i class="fas fa-plus-circle"></i> Agregar</button>
-                            Admnistrar Unidad de medidas.
-                          </h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                          <table id="tabla-unidades-m" class="table table-bordered table-striped display" style="width: 100% !important;">
-                            <thead>
-                              <tr>
-                                <th class="text-center">#</th>
-                                <th class="">Acciones</th>
-                                <th>Nombre</th>
-                                <th>Abreviación</th>
-                                <th>Descripciòn</th>
-                                <th>Estado</th>
-                                
-                              </tr>
-                            </thead>
-                            <tbody></tbody>
-                            <tfoot>
-                              <tr>
-                                <th class="text-center">#</th>
-                                <th class="">Acciones</th>
-                                <th>Nombre</th>
-                                <th>Abreviación</th>
-                                <th>Descripciòn</th>
-                                <th>Estado</th>
-                              </tr>
-                            </tfoot>
-                          </table>
-                        </div>
-                        <!-- /.card-body -->
-                      </div>
-                      <!-- /.card -->
-                    </div>
-                    <!-- /.container-fluid -->
-                  </section>
-                  <!-- /.content -->
-                </div>
-
-
-                <!-- TBLA - TIPO TRABAJADOR-->
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                  <!-- Content Header (Page header) -->
-                  <section class="content-header">
-                    <div class="container-fluid">
-                      <div class="row mb-2">
+                    <div class="col-sm-12 col-md-12 col-lg-6g col-xl-6">
+                      <!-- TBLA - TIPO TRABAJADOR-->
+                      <div class="row">
                         <div class="col-sm-6">
-                          <h1>Tipo Persona</h1>
+                          <h2>Tipo Persona</h2>
+                        </div>
+                        <div class="col-12">
+                          <div class="card card-primary card-outline">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <button type="button" class="btn bg-gradient-primary" data-toggle="modal" data-target="#modal-agregar-tipo" onclick="limpiar_tipo();"><i class="fas fa-plus-circle"></i> Agregar</button>
+                                Admnistrar Tipo* .
+                              </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                              <table id="tabla-tipo" class="table table-bordered table-striped display" style="width: 100% !important;">
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="">Acciones</th>
+                                    <th>Nombre</th>
+                                    <th>Descripcion</th>
+                                    <th>Estado</th>
+                                  </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                  <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="">Acciones</th>
+                                    <th>Nombre</th>
+                                    <th>Descripcion</th>
+                                    <th>Estado</th>
+                                  </tr>
+                                </tfoot>
+                              </table>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <!-- /.container-fluid -->
-                  </section>
 
-                  <!-- Main content -->
-
-                  <!-- Main content -->
-                  <section class="content">
-                    <div class="container-fluid">
-                      <div class="card card-primary card-outline">
-                        <div class="card-header">
-                          <h3 class="card-title">
-                            <button type="button" class="btn bg-gradient-primary" data-toggle="modal" data-target="#modal-agregar-tipo" onclick="limpiar_tipo();"><i class="fas fa-plus-circle"></i> Agregar</button>
-                            Admnistrar Tipo* .
-                          </h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                          <table id="tabla-tipo" class="table table-bordered table-striped display" style="width: 100% !important;">
-                            <thead>
-                              <tr>
-                                <th class="text-center">#</th>
-                                <th class="">Acciones</th>
-                                <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Estado</th>
-                              </tr>
-                            </thead>
-                            <tbody></tbody>
-                            <tfoot>
-                              <tr>
-                                <th class="text-center">#</th>
-                                <th class="">Acciones</th>
-                                <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Estado</th>
-                              </tr>
-                            </tfoot>
-                          </table>
-                        </div>
-                        <!-- /.card-body -->
-                      </div>
-                      <!-- /.card -->
-                    </div>
-                    <!-- /.container-fluid -->
-                  </section>
-                  <!-- /.content -->
-                </div>
-
-                <!-- TBLA - CARGO-->
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                  <!-- Content Header (Page header) -->
-                  <section class="content-header">
-                    <div class="container-fluid">
-                      <div class="row mb-2">
+                    <div class="col-sm-12 col-md-12 col-lg-6g col-xl-6">
+                      <!-- TBLA - CARGO-->
+                      <div class="row">
+                        
                         <div class="col-sm-6">
-                          <h1>Cargos</h1>
+                          <h2>Cargos</h2>
                         </div>
+                        <!-- /.col-6 -->
+
                         <div class="col-sm-6">
                           <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">Cargos</li>
                           </ol>
                         </div>
+                        <!-- /.col-6 -->
+
+                        <div class="col-12">
+                          <div class="card card-primary card-outline">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <button type="button" class="btn bg-gradient-primary" data-toggle="modal" data-target="#modal-agregar-cargo" onclick="limpiar_cargo();"><i class="fas fa-plus-circle"></i> Agregar</button>
+                                Admnistrar Cargos.
+                              </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                              <table id="tabla-cargo" class="table table-bordered table-striped display" style="width: 100% !important;">
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="">Acciones</th>                                
+                                    <th>Nombre</th>
+                                    <th>Estado</th>
+                                  </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                  <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="">Acciones</th>                                
+                                    <th>Nombre</th>
+                                    <th>Estado</th>
+                                  </tr>
+                                </tfoot>
+                              </table>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
+                          <!-- /.card -->
+                        </div>    
+                        <!-- /.col-12 -->
                       </div>
                     </div>
-                    <!-- /.container-fluid -->
-                  </section>
 
-                  <!-- Main content -->
-
-                  <!-- Main content -->
-                  <section class="content">
-                    <div class="container-fluid">
-                      <div class="card card-primary card-outline">
-                        <div class="card-header">
-                          <h3 class="card-title">
-                            <button type="button" class="btn bg-gradient-primary" data-toggle="modal" data-target="#modal-agregar-cargo" onclick="limpiar_cargo();"><i class="fas fa-plus-circle"></i> Agregar</button>
-                            Admnistrar Cargos.
-                          </h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                          <table id="tabla-cargo" class="table table-bordered table-striped display" style="width: 100% !important;">
-                            <thead>
-                              <tr>
-                                <th class="text-center">#</th>
-                                <th class="">Acciones</th>                                
-                                <th>Nombre</th>
-                                <th>Estado</th>
-                              </tr>
-                            </thead>
-                            <tbody></tbody>
-                            <tfoot>
-                              <tr>
-                                <th class="text-center">#</th>
-                                <th class="">Acciones</th>                                
-                                <th>Nombre</th>
-                                <th>Estado</th>
-                              </tr>
-                            </tfoot>
-                          </table>
-                        </div>
-                        <!-- /.card-body -->
-                      </div>
-                      <!-- /.card -->
-                    </div>
-                    <!-- /.container-fluid -->
-                  </section>
-                  <!-- /.content -->
-                </div>
-
-                <!-- TBLA - CATEGORIAS - ACTIVOS FIJO -->
-                <div class="col-sm-12 col-md-12 col-lg-6g col-xl-6">
-                  <!-- Content Header (Page header) -->
-                  <section class="content-header">
-                    <div class="container-fluid">
-                      <div class="row mb-2">
+                    <div class="col-sm-12 col-md-12 col-lg-6g col-xl-6">
+                      <!-- TBLA - CATEGORIAS PRODUCTO -->
+                      <div class="row">
                         <div class="col-sm-6">
-                          <h1>Categorias Producto</h1>
+                          <h2>Categorias Producto</h2>
                         </div>
+                        <!-- /.col-6 -->
                         <div class="col-sm-6">
                           <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">Producto</li>
                           </ol>
                         </div>
-                      </div>
-                    </div>
-                    <!-- /.container-fluid -->
-                  </section>
-
-                  <!-- Main content -->
-
-                  <!-- Main content -->
-                  <section class="content">
-                    <div class="container-fluid">
-                      <div class="card card-primary card-outline">
-                        <div class="card-header">
-                          <h3 class="card-title">
-                            <button type="button" class="btn bg-gradient-primary" data-toggle="modal" data-target="#modal-agregar-categorias-af" onclick="limpiar_c_af();"><i class="fas fa-plus-circle"></i> Agregar</button>
-                            Categorías Producto.
-                          </h3>
+                        <!-- /.col-6 -->
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                          <div class="card card-primary card-outline">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <button type="button" class="btn bg-gradient-primary" data-toggle="modal" data-target="#modal-agregar-categorias-af" onclick="limpiar_c_af();"><i class="fas fa-plus-circle"></i> Agregar</button>
+                                Categorías Producto.
+                              </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                              <table id="tabla-categorias-af" class="table table-bordered table-striped display" style="width: 100% !important;">
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="">Acciones</th>
+                                    <th>Nombre</th>
+                                    <th>Descripcion</th>
+                                    <th>Estado</th>
+                                  </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                  <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="">Acciones</th>
+                                    <th>Nombre</th>
+                                    <th>Descripcion</th>
+                                    <th>Estado</th>
+                                  </tr>
+                                </tfoot>
+                              </table>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
+                          <!-- /.card -->
                         </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                          <table id="tabla-categorias-af" class="table table-bordered table-striped display" style="width: 100% !important;">
-                            <thead>
-                              <tr>
-                                <th class="text-center">#</th>
-                                <th class="">Acciones</th>
-                                <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Estado</th>
-                              </tr>
-                            </thead>
-                            <tbody></tbody>
-                            <tfoot>
-                              <tr>
-                                <th class="text-center">#</th>
-                                <th class="">Acciones</th>
-                                <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Estado</th>
-                              </tr>
-                            </tfoot>
-                          </table>
-                        </div>
-                        <!-- /.card-body -->
-                      </div>
-                      <!-- /.card -->
-                    </div>
-                    <!-- /.container-fluid -->
-                  </section>
-                  <!-- /.content -->
+                      </div> 
+                    </div>                    
+                  </div>                  
                 </div>
-              </div>
+                <!-- /.container-fluid -->
+              </section>
+              <!-- /.content -->     
 
               <!-- MODAL - BANCOS -->
               <div class="modal fade" id="modal-agregar-bancos">

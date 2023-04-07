@@ -107,63 +107,59 @@ function lista_de_items() {
 
 //Función Listar
 function tbla_principal(idcategoria = 'todos') {
-  $("#tabla-materiales").DataTable({
-    responsive: true,
-    lengthChange: true,
-    autoWidth: false,
-    dom: '<row lBf>rtip',
-    buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
-  }).buttons().container().appendTo("#example1_wrapper .col-md-6:eq(0)");
+  
 
-  // tabla = $("#tabla-materiales").dataTable({
-  //   responsive: true,
-  //   lengthMenu: [[ -1, 5, 10, 25, 75, 100, 200,], ["Todos", 5, 10, 25, 75, 100, 200, ]], //mostramos el menú de registros a revisar
-  //   aProcessing: true, //Activamos el procesamiento del datatables
-  //   aServerSide: true, //Paginación y filtrado realizados por el servidor
-  //   dom: "<Bl<f>rtip>", //Definimos los elementos del control de tabla
-  //   buttons: [
-  //     { text: '<i class="fa-solid fa-arrows-rotate"></i>', action: function ( e, dt, node, config ) { tabla.ajax.reload(); toastr_success('Exito!!', 'Actualizando tabla', 400); } },
-  //     { extend: 'copyHtml5', footer: true, exportOptions: { columns: [0,10,11,4,5,6,7,8,9], } }, 
-  //     { extend: 'excelHtml5', footer: true, exportOptions: { columns: [0,10,11,4,5,6,7,8,9], } }, 
-  //     { extend: 'pdfHtml5', footer: false, orientation: 'landscape', pageSize: 'LEGAL', exportOptions: { columns: [0,10,11,4,5,6,7,8,9], } },
-  //   ],
-  //   ajax: {
-  //     url: `../ajax/producto.php?op=tbla_principal&idcategoria=${idcategoria}`,
-  //     type: "get",
-  //     dataType: "json",
-  //     error: function (e) {
-  //       console.log(e.responseText); ver_errores(e);
-  //     },
-  //   },
-  //   createdRow: function (row, data, ixdex) {    
-  //     // columna: #
-  //     if (data[0] != '') { $("td", row).eq(0).addClass("text-center"); }
-  //     // columna: opciones
-  //     if (data[1] != '') { $("td", row).eq(1).addClass("text-center text-nowrap"); }
-  //     // columna: code
-  //     if (data[2] != '') { $("td", row).eq(2).addClass("text-center"); }
-  //     // columna: precio unitario
-  //     if (data[7] != '') { $("td", row).eq(7).addClass("text-nowrap text-center"); }
-  //     // columna: precio sin igv
-  //     if (data[8] != '') { $("td", row).eq(8).addClass("text-nowrap text-center"); }
-  //     // columna: monto igv
-  //     if (data[9] != '') { $("td", row).eq(9).addClass("text-nowrap"); }
-  //     // columna: precio total
-  //     if (data[10] != '') { $("td", row).eq(10).addClass("text-nowrap"); }
-  //   },
-  //   language: {
-  //     lengthMenu: "Mostrar: _MENU_ registros",
-  //     buttons: { copyTitle: "Tabla Copiada", copySuccess: { _: "%d líneas copiadas", 1: "1 línea copiada", }, },
-  //     sLoadingRecords: '<i class="fas fa-spinner fa-pulse fa-lg"></i> Cargando datos...'
-  //   },
-  //   bDestroy: true,
-  //   iDisplayLength: 10, //Paginación
-  //   order: [[0, "asc"]], //Ordenar (columna,orden)
-  //   columnDefs: [
-  //     { targets: [10,11], visible: false, searchable: true, },   
-  //     { targets: [6], render: function (data, type) { var number = $.fn.dataTable.render.number(',', '.', 2).display(data); if (type === 'display') { let color = 'numero_positivos'; if (data < 0) {color = 'numero_negativos'; } return `<span class="float-left">S/</span> <span class="float-right ${color} "> ${number} </span>`; } return number; }, },
-  //   ],
-  // }).DataTable();
+  tabla = $("#tabla-materiales").dataTable({
+    responsive: true,
+    lengthMenu: [[ -1, 5, 10, 25, 75, 100, 200,], ["Todos", 5, 10, 25, 75, 100, 200, ]], //mostramos el menú de registros a revisar
+    aProcessing: true, //Activamos el procesamiento del datatables
+    aServerSide: true, //Paginación y filtrado realizados por el servidor
+    // dom: "<Bl<f>rtip>", //Definimos los elementos del control de tabla
+    dom:"<'row'<'col-md-3'B><'col-md-3 float-left'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+    buttons: [
+      { text: '<i class="fa-solid fa-arrows-rotate" data-toggle="tooltip" data-original-title="Recargar"></i>', className: "btn bg-gradient-info", action: function ( e, dt, node, config ) { tabla.ajax.reload(); toastr_success('Exito!!', 'Actualizando tabla', 400); } },
+      { extend: 'copyHtml5', exportOptions: { columns: [0,10,11,4,5,6,7,8,9], }, text: `<i class="fas fa-copy" data-toggle="tooltip" data-original-title="Copiar"></i>`, className: "btn bg-gradient-gray", footer: true,  }, 
+      { extend: 'excelHtml5', exportOptions: { columns: [0,10,11,4,5,6,7,8,9], }, text: `<i class="far fa-file-excel fa-lg" data-toggle="tooltip" data-original-title="Excel"></i>`, className: "btn bg-gradient-success", footer: true,  }, 
+      { extend: 'pdfHtml5', exportOptions: { columns: [0,10,11,4,5,6,7,8,9], }, text: `<i class="far fa-file-pdf fa-lg" data-toggle="tooltip" data-original-title="PDF"></i>`, className: "btn bg-gradient-danger", footer: false, orientation: 'landscape', pageSize: 'LEGAL',  },
+      { extend: "colvis", text: `Columnas`, className: "btn bg-gradient-gray", exportOptions: { columns: "th:not(:last-child)", }, },
+    ],
+    ajax: {
+      url: `../ajax/producto.php?op=tbla_principal&idcategoria=${idcategoria}`,
+      type: "get",
+      dataType: "json",
+      error: function (e) {
+        console.log(e.responseText); ver_errores(e);
+      },
+    },
+    createdRow: function (row, data, ixdex) {    
+      // columna: #
+      if (data[0] != '') { $("td", row).eq(0).addClass("text-center"); }
+      // columna: opciones
+      if (data[1] != '') { $("td", row).eq(1).addClass("text-center text-nowrap"); }
+      // columna: code
+      if (data[2] != '') { $("td", row).eq(2).addClass("text-center"); }
+      // columna: precio unitario
+      if (data[7] != '') { $("td", row).eq(7).addClass("text-nowrap text-center"); }
+      // columna: precio sin igv
+      if (data[8] != '') { $("td", row).eq(8).addClass("text-nowrap text-center"); }
+      // columna: monto igv
+      if (data[9] != '') { $("td", row).eq(9).addClass("text-nowrap"); }
+      // columna: precio total
+      if (data[10] != '') { $("td", row).eq(10).addClass("text-nowrap"); }
+    },
+    language: {
+      lengthMenu: "Mostrar: _MENU_ registros",
+      buttons: { copyTitle: "Tabla Copiada", copySuccess: { _: "%d líneas copiadas", 1: "1 línea copiada", }, },
+      sLoadingRecords: '<i class="fas fa-spinner fa-pulse fa-lg"></i> Cargando datos...'
+    },
+    bDestroy: true,
+    iDisplayLength: 10, //Paginación
+    order: [[0, "asc"]], //Ordenar (columna,orden)
+    columnDefs: [
+      { targets: [10,11], visible: false, searchable: true, },   
+      { targets: [6], render: function (data, type) { var number = $.fn.dataTable.render.number(',', '.', 2).display(data); if (type === 'display') { let color = 'numero_positivos'; if (data < 0) {color = 'numero_negativos'; } return `<span class="float-left">S/</span> <span class="float-right ${color} "> ${number} </span>`; } return number; }, },
+    ],
+  }).DataTable();
 }
 
 //ver ficha tecnica
