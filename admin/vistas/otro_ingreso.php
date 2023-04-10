@@ -13,7 +13,7 @@
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Otros Ingresos | Admin JDL</title>
+        <title>Comprobantes | Admin JDL</title>
         
         <?php $title = "Otros Ingresos"; require 'head.php'; ?>
           
@@ -35,12 +35,12 @@
                 <div class="container-fluid">
                   <div class="row mb-2">
                     <div class="col-sm-6">
-                      <h1>Otros Ingresos</h1>
+                      <h1>Comprobantes</h1>
                     </div>
                     <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="otro_ingreso.php">Home</a></li>
-                        <li class="breadcrumb-item active">Otros Ingresos</li>
+                        <li class="breadcrumb-item active">Comprobantes</li>
                       </ol>
                     </div>
                   </div>
@@ -60,7 +60,7 @@
                           </h3>
                           <h3 class="card-title btn-agregar">
                             <button type="button" class="btn bg-gradient-primary" onclick="limpiar_form(); show_hide_form(2);"><i class="fas fa-plus-circle"></i> Agregar</button>
-                            Administra de manera eficiente otros ingresos.
+                            Administra de manera eficiente los comprobantes.
                           </h3>
                         </div>
                         <!-- /.card-header -->

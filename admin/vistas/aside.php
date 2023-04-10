@@ -8,15 +8,6 @@
 
   <!-- Sidebar -->
   <div class="sidebar"> 
-    <!-- Sidebar user panel (optional) -->
-    <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <div class="image">
-        <img src="../dist/svg/empresa-logo.svg" class="img-circle elevation-2" alt="User Image">
-      </div>
-      <div class="info">
-        <a href="#" class="d-block">Construccion del baño portodoloque parte de no se</a>
-      </div>
-    </div>     -->
 
     <!-- SidebarSearch Form -->
     <div class="form-inline mt-4">
@@ -29,16 +20,7 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column /*nav-flat*/" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- MANUAL DE USUARIO -->
-        <!-- <li class="nav-item">
-          <a href="manual_de_usuario.php" class="nav-link pl-2" id="mManualDeUsuario">
-            <i class="nav-icon fas fa-book"></i>
-            <p>
-              Manual de Usuario
-              <span class="right badge badge-success">new</span>
-            </p>
-          </a>
-        </li> -->
+
         <?php if ($_SESSION['escritorio']==1) {  ?>
           <!-- ESCRITORIO -->
           <li class="nav-item">
@@ -94,14 +76,6 @@
             </a>
             <ul class="nav nav-treeview ">
 
-              <!-- Usuarios del sistema -->
-              <!-- <li class="nav-item ">
-                <a href="trabajador.php" class="nav-link" id="lTrabajador">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>Trabajador</p>
-                </a>
-              </li> -->
-
               <!-- Proveedores y clientes de la empresa -->
               <li class="nav-item ">
                 <a href="persona.php" class="nav-link" id="lClienteProveedor">
@@ -141,7 +115,7 @@
         <li class="nav-header">MÓDULOS</li>
         
         <!-- LOGÍSTICA Y ADQUISICIONES -->      
-        <li class="nav-item " id="bloc_LogisticaAdquisiciones">
+        <li class="nav-item hidden" id="bloc_LogisticaAdquisiciones">
           <a href="#" class="nav-link bg-color-2c2c2c" id="mLogisticaAdquisiciones" style="padding-left: 7px;">
             <i class="nav-icon far fa-circle"></i>
             <p class="font-size-14px">LOGÍSTICA Y ADQUISICIONES <i class="fas fa-angle-left right"></i></p>
@@ -149,7 +123,7 @@
           <ul class="nav nav-treeview">
 
             <?php if ($_SESSION['almacen_abono']==1) {  ?>   
-              <!-- COMPRAS -->      
+              <!-- COMPRAS       -->
               <li class="nav-item  b-radio-3px" id="bloc_Compras">
                 <a href="#" class="nav-link pl-2" id="mCompra">
                 <i class="fa-solid fa-boxes-stacked"></i>
@@ -277,7 +251,7 @@
               <li class="nav-item ">
                 <a href="otro_ingreso.php" class="nav-link pl-2" id="lOtroIngreso">             
                   <i class="nav-icon fas fa-hand-holding-usd"></i>
-                  <p>Otro ingreso </p>
+                  <p>Comprobantes</p>
                 </a>
               </li>
             <?php  }  ?>
