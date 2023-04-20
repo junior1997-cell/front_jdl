@@ -298,7 +298,7 @@ function modal_comprobante(comprobante,tipo,numero_comprobante) {
   $('#modal-ver-comprobante').modal("show");
   $('#ver_fact_pdf').html(doc_view_extencion(comprobante, 'otro_gasto', 'comprobante', '100%', '550'));
 
-  if (DocExist(`dist/docs/otro_gasto/comprobante/${comprobante}`) == 200) {
+  if (DocExist(`admin/dist/docs/otro_gasto/comprobante/${comprobante}`) == 200) {
     $("#iddescargar").attr("href","../dist/docs/otro_gasto/comprobante/"+comprobante).attr("download", `${tipo}-${numero_comprobante}  - ${dia_actual}`).removeClass("disabled");
     $("#ver_completo").attr("href","../dist/docs/otro_gasto/comprobante/"+comprobante).removeClass("disabled");
   } else {

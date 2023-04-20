@@ -231,7 +231,7 @@
 
         <!-- CONTABLE Y FINANCIERO -->   
         <li class="nav-item " id="bloc_ContableFinanciero">
-          <a href="#" class="nav-link bg-color-2c2c2c" id="mContableFinanciero" style="padding-left: 7px;">
+          <a href="#" class="nav-link" id="mContableFinanciero" style="padding-left: 7px;">
             <i class="nav-icon far fa-circle"></i>
             <p class="font-size-14px">CONTABLE Y FINANCIERO<i class="fas fa-angle-left right"></i></p>
           </a>
@@ -249,7 +249,7 @@
 
             <?php if ($_SESSION['otro_ingreso']==1) {  ?>
               <li class="nav-item ">
-                <a href="otro_ingreso.php" class="nav-link pl-2" id="lOtroIngreso">             
+                <a href="comprobante.php" class="nav-link pl-2" id="lOtroIngreso">             
                   <i class="nav-icon fas fa-hand-holding-usd"></i>
                   <p>Comprobantes</p>
                 </a>

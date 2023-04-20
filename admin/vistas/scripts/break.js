@@ -1033,7 +1033,7 @@ function ver_modal_comprobante(comprobante,tipo,numero_comprobante) {
   $('#modal-ver-comprobante').modal("show");
   $('#ver_fact_pdf').html(doc_view_extencion(comprobante, 'break', 'comprobante', '100%', '550'));
 
-  if (DocExist(`dist/docs/break/comprobante/${comprobante}`) == 200) {
+  if (DocExist(`admin/dist/docs/break/comprobante/${comprobante}`) == 200) {
     $("#iddescargar").attr("href","../dist/docs/break/comprobante/"+comprobante).attr("download", `${tipo}-${numero_comprobante}  - ${dia_actual}`).removeClass("disabled");
     $("#ver_completo").attr("href","../dist/docs/break/comprobante/"+comprobante).removeClass("disabled");
   } else {

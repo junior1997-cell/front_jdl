@@ -160,7 +160,7 @@ function modal_comprobante(comprobante,tipo,numero_comprobante){
 
   $('#ver_fact_pdf').html(doc_view_extencion(comprobante, 'comida_extra', 'comprobante', '100%', '550'));
 
-  if (DocExist(`dist/docs/comida_extra/comprobante/${comprobante}`) == 200) {
+  if (DocExist(`admin/dist/docs/comida_extra/comprobante/${comprobante}`) == 200) {
     $("#iddescargar").attr("href","../dist/docs/comida_extra/comprobante/"+comprobante).attr("download", `${tipo}-${numero_comprobante}  - ${dia_actual}`).removeClass("disabled");
     $("#ver_completo").attr("href","../dist/docs/comida_extra/comprobante/"+comprobante).removeClass("disabled");
   } else {

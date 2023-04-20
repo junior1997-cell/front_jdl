@@ -645,7 +645,7 @@ function modal_ficha_tec(ficha_tecnica) {
   $("#modal-ver-ficha_tec").modal("show");
   $('#ver_fact_pdf').html(doc_view_extencion(ficha_tecnica, 'material', 'ficha_tecnica', '100%', '550'));
 
-  if (DocExist(`dist/docs/material/ficha_tecnica/${ficha_tecnica}`) == 200) {
+  if (DocExist(`admin/dist/docs/material/ficha_tecnica/${ficha_tecnica}`) == 200) {
     $("#iddescargar").attr("href","../dist/docs/material/ficha_tecnica/"+ficha_tecnica).attr("download", 'ficha tecncia').removeClass("disabled");
     $("#ver_completo").attr("href","../dist/docs/material/ficha_tecnica/"+ficha_tecnica).removeClass("disabled");
   } else {

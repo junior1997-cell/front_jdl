@@ -52,9 +52,8 @@ function validar_response(e) {
                 //console.log('vacio perrro');
                 $(location).attr("href","escritorio.php");
             } else {
-                //console.log(redirecinando.file);
-                //$(location).attr("href",redirecinando.file);  
-                $(location).attr("href","escritorio.php");                              
+                $(location).attr("href",redirecinando.file);  
+                //$(location).attr("href","escritorio.php");                              
             }
             //console.log(redirecinando);            
         }

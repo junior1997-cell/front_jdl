@@ -871,9 +871,9 @@ function doc_view_extencion(filename, carpeta='', sub_carpeta='', width='50%', h
     ruta = sub_carpeta == '' || sub_carpeta == null ?  `../dist/docs/${carpeta}/${filename}`: `../dist/docs/${carpeta}/${sub_carpeta}/${filename}`;
     
     if (sub_carpeta == '' || sub_carpeta == null) {
-      host = window.location.host == 'localhost'? `http://localhost/front_jdl/admin/dist/docs/${carpeta}/${filename}` : `${window.location.origin}/dist/docs/${carpeta}/${filename}` ;
+      host = window.location.host == 'localhost'? `http://localhost/front_jdl/admin/dist/docs/${carpeta}/${filename}` : `${window.location.origin}/admin/dist/docs/${carpeta}/${filename}` ;
     } else {
-      host = window.location.host == 'localhost'? `http://localhost/front_jdl/admin/dist/docs/${carpeta}/${sub_carpeta}/${filename}` : `${window.location.origin}/dist/docs/${carpeta}/${sub_carpeta}/${filename}` ;
+      host = window.location.host == 'localhost'? `http://localhost/front_jdl/admin/dist/docs/${carpeta}/${sub_carpeta}/${filename}` : `${window.location.origin}/admin/dist/docs/${carpeta}/${sub_carpeta}/${filename}` ;
     }
   }
   

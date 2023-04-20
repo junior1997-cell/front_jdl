@@ -946,7 +946,7 @@ function mostrar_detalle(idproyecto) {
     if (ruta_carpeta == 'localhost') {
       ruta_carpeta = 'http://localhost/front_jdl/admin/dist/docs/valorizacion/documento/'
     } else {
-      ruta_carpeta = `${window.location.origin}/dist/docs/valorizacion/documento/`;
+      ruta_carpeta = `${window.location.origin}/admin/dist/docs/valorizacion/documento/`;
     }
 
     if (data.status) {
