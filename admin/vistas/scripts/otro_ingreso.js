@@ -358,6 +358,7 @@ function quitar_igv_del_precio(precio , igv, tipo ) {
 
 //ver ficha tecnica
 function modal_comprobante(comprobante,tipo,numero_comprobante) {
+  console.log(comprobante,tipo,numero_comprobante);
 
   var dia_actual = moment().format('DD-MM-YYYY');
   $(".nombre_comprobante").html(`${tipo}-${numero_comprobante}`);
