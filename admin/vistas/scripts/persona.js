@@ -149,8 +149,10 @@ function tbla_principal(tipo_persona) {
     createdRow: function (row, data, ixdex) {
       // columna: #
       if (data[0] != '') { $("td", row).eq(0).addClass('text-center'); } 
-      // columna: 1
+      // columna: botones
       if (data[1] != '') { $("td", row).eq(1).addClass('text-nowrap'); }
+      // columna: telefono
+      if (data[4] != '') { $("td", row).eq(4).addClass('text-nowrap'); }
     },
     language: {
       lengthMenu: "Mostrar: _MENU_ registros",
@@ -161,49 +163,68 @@ function tbla_principal(tipo_persona) {
     iDisplayLength: 10,//Paginación
     order: [[ 0, "asc" ]],//Ordenar (columna,orden)
     columnDefs: [
-      { targets: [6,7,8,9,10,11,12], visible: false, searchable: false, }, 
+      { targets: [8,9,10,11,12,13,14], visible: false, searchable: false, }, 
     ],
   }).DataTable();
 
 }
 
 function show_hide_btn_add(tipo_persona) {
-  $("#sueldo_mensual").val("");
+  $("#sueldo_mensual").val("0.00");
   $(".campos_trabajador").hide();
 
   if (tipo_persona=="todos") {
     $("#id_tipo_persona").val("");
-    $(".class_btn").hide();
-    
+    $(".class_btn").hide();    
   }else{
 
     $("#id_tipo_persona").val(tipo_persona);
     $(".class_btn").show();
 
-    if (tipo_persona=="2") {
-      $("#sueldo_mensual").val("0.00");
-      $(".campos_trabajador").hide();
+    if (tipo_persona=="2") { // trabajador :::::::::::
+      $(".div_tipo_doc").show();
+      $(".div_num_doc").show();
+      $(".div_nombre").show();
+      $(".div_telefono").show();
+      $(".div_correo").show();
+      $(".div_fecha_nacimiento").show();
+      $(".div_edad").show();
+      $(".div_banco").show();
+      $(".div_cta").show();
+      $(".div_cci").show();
+      $(".div_titular_cuenta").show().removeClass("col-lg-8").addClass("col-lg-4");
+      $(".div_cargo").show();
+      $(".div_sueldo_mensual").show();
+      $(".div_sueldo_diario").show();
+      $(".div_direccion").show();
+      $(".btn_add").html(`<i class="fas fa-plus"></i> Agregar Trabajador`);
 
-      $(".btn_add").html(`<i class="fas fa-plus"></i> Agregar Productor`);
-      //remove class
-      $(".classswichs").removeClass("hidden");
-      $(".classdirecc").removeClass("col-lg-12").addClass("col-lg-9");
+      $("#cargo_trabajador").val(null).trigger("change");
 
-    }else if (tipo_persona=="3") {
-      $("#sueldo_mensual").val("0.00");
-      $(".campos_trabajador").hide();
+    }else if (tipo_persona=="3") { //proveedor :::::::::::
+
+      $(".div_tipo_doc").show();
+      $(".div_num_doc").show();
+      $(".div_nombre").show();
+      $(".div_telefono").show();
+      $(".div_correo").show();
+      $(".div_fecha_nacimiento").hide();
+      $(".div_edad").hide();
+      $(".div_banco").show();
+      $(".div_cta").show();
+      $(".div_cci").show();
+      $(".div_titular_cuenta").show().removeClass("col-lg-4").addClass("col-lg-8");
+      $(".div_cargo").hide();
+      $(".div_sueldo_mensual").hide();
+      $(".div_sueldo_diario").hide();
+      $(".div_direccion").show();
 
       $(".btn_add").html(`<i class="fas fa-plus"></i> Agregar Proveedor`);
-      //add class
-      $(".classswichs").addClass("hidden");
-      $(".classdirecc").removeClass("col-lg-9").addClass("col-lg-12");
+      $("#cargo_trabajador").val(1).trigger("change");
 
-    }else if (tipo_persona=="4") {
-      $(".campos_trabajador").show();
+    }else {
 
       $(".btn_add").html(`<i class="fas fa-plus"></i> Agregar Trabajador`);
-      //remove class
-      $(".classswichs").removeClass("hidden");
       $(".classdirecc").removeClass("col-lg-12").addClass("col-lg-9");
       
     }    

@@ -4,10 +4,14 @@ require "../config/Conexion_v2.php";
 
 class Compra_producto
 {
-  //Implementamos nuestro constructor
-  public function __construct()
-  {
-  }
+  //Implementamos nuestro variable global
+	public $id_usr_sesion;
+
+	//Implementamos nuestro constructor
+	public function __construct($id_usr_sesion = 0)
+	{
+		$this->id_usr_sesion = $id_usr_sesion;
+	}
 
   // ::::::::::::::::::::::::::::::::::::::::: S E C C I O N   C O M P R A  ::::::::::::::::::::::::::::::::::::::::: 
   //Implementamos un método para insertar registros
@@ -29,7 +33,7 @@ class Compra_producto
       $idventanew = ejecutarConsulta_retornarID($sql_3); if ($idventanew['status'] == false) { return  $idventanew;}
 
       //add registro en nuestra bitacora
-      $sql_bit = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('compra_producto','".$idventanew['data']."','Nueva compra','" . $_SESSION['idusuario'] . "')";
+      $sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('compra_producto','".$idventanew['data']."','Nueva compra','" . $_SESSION['idusuario'] . "')";
       $bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; } 
 
       $num_elementos = 0;
@@ -55,7 +59,7 @@ class Compra_producto
           $producto = ejecutarConsulta($sql_producto); if ($producto['status'] == false) { return  $producto;}
 
           //add registro en nuestra bitacora.
-          $sql_bit_d = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('detalle_compra_producto','".$compra_new['data']."','Detalle compra','" . $_SESSION['idusuario'] . "')";
+          $sql_bit_d = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('detalle_compra_producto','".$compra_new['data']."','Detalle compra','" . $_SESSION['idusuario'] . "')";
           $bitacora = ejecutarConsulta($sql_bit_d); if ( $bitacora['status'] == false) {return $bitacora; } 
 
           $num_elementos = $num_elementos + 1;
@@ -101,7 +105,7 @@ class Compra_producto
       $update_compra = ejecutarConsulta($sql); if ($update_compra['status'] == false) { return $update_compra; }
 
       //add registro en nuestra bitacora
-      $sql_bit = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('compra_producto','$idcompra_producto','Editar compra','" . $_SESSION['idusuario'] . "')";
+      $sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('compra_producto','$idcompra_producto','Editar compra','" . $_SESSION['idusuario'] . "')";
       $bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }
 
       $num_elementos = 0; $detalle_compra = "";
@@ -123,7 +127,7 @@ class Compra_producto
           $producto = ejecutarConsulta($sql_producto); if ($producto['status'] == false) { return  $producto;}
 
         //add registro en nuestra bitacora.
-        $sql_bit_d = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('detalle_compra_producto','".$detalle_compra['data']."','Detalle editado compra','" . $_SESSION['idusuario'] . "')";
+        $sql_bit_d = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('detalle_compra_producto','".$detalle_compra['data']."','Detalle editado compra','" . $_SESSION['idusuario'] . "')";
         $bitacora = ejecutarConsulta($sql_bit_d); if ( $bitacora['status'] == false) {return $bitacora; } 
 
         $num_elementos = $num_elementos + 1;
@@ -161,7 +165,7 @@ class Compra_producto
 		$desactivar= ejecutarConsulta($sql);if ($desactivar['status'] == false) {  return $desactivar; }
 		
 		//add registro en nuestra bitacora
-		$sql_bit = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('compra_producto','".$idcompra_producto."','Compra desactivada','" . $_SESSION['idusuario'] . "')";
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('compra_producto','".$idcompra_producto."','Compra desactivada','" . $_SESSION['idusuario'] . "')";
 		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }  
     
     // buscamos las cantidades
@@ -182,7 +186,7 @@ class Compra_producto
 		$eliminar =  ejecutarConsulta($sql);if ( $eliminar['status'] == false) {return $eliminar; }  
 		
 		//add registro en nuestra bitacora
-		$sql = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('compra_producto','$idcompra_producto','Compra Eliminada','" . $_SESSION['idusuario'] . "')";
+		$sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('compra_producto','$idcompra_producto','Compra Eliminada','" . $_SESSION['idusuario'] . "')";
 		$bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
 
     // buscamos las cantidades

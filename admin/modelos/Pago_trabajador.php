@@ -5,10 +5,15 @@
   class PagoTrabajador
   {
 
+    //Implementamos nuestro variable global
+    public $id_usr_sesion;
+
     //Implementamos nuestro constructor
-    public function __construct()
+    public function __construct($id_usr_sesion = 0)
     {
+      $this->id_usr_sesion = $id_usr_sesion;
     }
+
     public function insertar_mes_pago($idpersona,$nombres,$mes,$anio)
     {
 
@@ -78,7 +83,7 @@
       if ( $desactivar['status'] == false) {return $desactivar; }  
 
       //add registro en nuestra bitacora
-      $sql = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('pago_trabajador','.$idpago_trabajador.','Desativar el registro Trabajador','" . $_SESSION['idusuario'] . "')";
+      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('pago_trabajador','.$idpago_trabajador.','Desativar el registro Trabajador','" . $_SESSION['idusuario'] . "')";
       $bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
 
       return $desactivar;
@@ -92,7 +97,7 @@
       if ( $eliminar['status'] == false) {return $eliminar; }  
 
       //add registro en nuestra bitacora
-      $sql = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('pago_trabajador','.$idpago_trabajador.','Eliminar registro Trabajador','" . $_SESSION['idusuario'] . "')";
+      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('pago_trabajador','.$idpago_trabajador.','Eliminar registro Trabajador','" . $_SESSION['idusuario'] . "')";
       $bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
 
       return $eliminar;

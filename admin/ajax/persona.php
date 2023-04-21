@@ -17,7 +17,7 @@
 
       require_once "../modelos/Persona.php";
 
-      $persona = new Persona();
+      $persona = new Persona($_SESSION['idusuario']);
 
       date_default_timezone_set('America/Lima'); $date_now = date("d-m-Y h.i.s A");
 
@@ -29,7 +29,6 @@
       $nombre 		      = isset($_POST["nombre"])? limpiarCadena($_POST["nombre"]):"";
       $tipo_documento 	= isset($_POST["tipo_documento"])? limpiarCadena($_POST["tipo_documento"]):"";
       $num_documento  	= isset($_POST["num_documento"])? limpiarCadena($_POST["num_documento"]):"";
-      $input_socio     	= isset($_POST["input_socio"])? limpiarCadena($_POST["input_socio"]):"";
       $direccion		    = isset($_POST["direccion"])? limpiarCadena($_POST["direccion"]):"";
       $telefono		      = isset($_POST["telefono"])? limpiarCadena($_POST["telefono"]):"";     
       $email			      = isset($_POST["email"])? limpiarCadena($_POST["email"]):"";
@@ -62,7 +61,7 @@
 
           if (empty($idpersona)){
             
-            $rspta=$persona->insertar($id_tipo_persona,$tipo_documento,$num_documento,$nombre,$input_socio,$email,$telefono,$banco,$cta_bancaria,$cci,
+            $rspta=$persona->insertar($id_tipo_persona,$tipo_documento,$num_documento,$nombre,$email,$telefono,$banco,$cta_bancaria,$cci,
             $titular_cuenta,$direccion,$nacimiento,$cargo_trabajador,$sueldo_mensual,$sueldo_diario,$edad, $imagen1);
             
             echo json_encode($rspta, true);
@@ -77,7 +76,7 @@
             }            
 
             // editamos un persona existente
-            $rspta=$persona->editar($idpersona,$id_tipo_persona,$tipo_documento,$num_documento,$nombre,$input_socio,$email,$telefono,$banco,$cta_bancaria,$cci,
+            $rspta=$persona->editar($idpersona,$id_tipo_persona,$tipo_documento,$num_documento,$nombre,$email,$telefono,$banco,$cta_bancaria,$cci,
             $titular_cuenta,$direccion,$nacimiento,$cargo_trabajador,$sueldo_mensual,$sueldo_diario,$edad, $imagen1);
             
             echo json_encode($rspta, true);
@@ -130,18 +129,21 @@
                 "2"=>'<div class="user-block">
                   <img class="profile-user-img img-responsive img-circle cursor-pointer" src="'. $imagen .'" alt="User Image" onerror="'.$imagen_error.'" onclick="ver_img_persona(\'' . $imagen . '\', \''.encodeCadenaHtml($value['nombres']).'\');" data-toggle="tooltip" data-original-title="Ver foto">
                   <span class="username"><p class="text-primary m-b-02rem" >'. $value['nombres'] .'</p></span>
-                  <span class="description"><b>Cargo: </b>'. $value['cargo'] .' ─ <b>'. $value['tipo_documento'] .':</b> '. $value['numero_documento'] .' </span>
+                  <span class="description"> <b>'. $value['tipo_documento'] .':</b> '. $value['numero_documento'] .' </span>
                 </div>',
-                "3"=> '<textarea cols="30" rows="1" class="textarea_datatable" readonly="">' . $value['direccion'] . '</textarea>',
+                "3"=>$value['cargo'],                
                 "4"=> '<a href="tel:+51'.quitar_guion($value['celular']).'" data-toggle="tooltip" data-original-title="Llamar al persona.">'. $value['celular'] . '</a>',
-                "5"=> '<b>'.$value['banco'] .': </b>'. $value['cuenta_bancaria'] .' <br> <b>CCI: </b>'.$value['cci'],
-                "6"=> (($value['estado'])?'<span class="text-center badge badge-success">Activado</span>': '<span class="text-center badge badge-danger">Desactivado</span>').$toltip,
-                "7"=> $value['nombres'],
-                "8"=> $value['tipo_documento'],
-                "9"=> $value['numero_documento'],
-                "10"=> $value['banco'],
-                "11"=> $value['cuenta_bancaria'],
-                "12"=> $value['cci']
+                "5"=> $value['sueldo_mensual'],
+                "6"=> '<b>'.$value['banco'] .': </b>'. $value['cuenta_bancaria'] .' <br> <b>CCI: </b>'.$value['cci'],
+                "7"=> '<textarea cols="30" rows="1" class="textarea_datatable" readonly="">' . $value['direccion'] . '</textarea>',
+                
+                "8"=> (($value['estado'])?'<span class="text-center badge badge-success">Activado</span>': '<span class="text-center badge badge-danger">Desactivado</span>').$toltip,
+                "9"=> $value['nombres'],
+                "10"=> $value['tipo_documento'],
+                "11"=> $value['numero_documento'],
+                "12"=> $value['banco'],
+                "13"=> $value['cuenta_bancaria'],
+                "14"=> $value['cci']
 
               );
             }

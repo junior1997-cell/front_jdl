@@ -4,10 +4,13 @@ require "../config/Conexion_v2.php";
 
 Class Ocupacion
 {
-	//Implementamos nuestro constructor
-	public function __construct()
-	{
+	//Implementamos nuestro variable global
+	public $id_usr_sesion;
 
+	//Implementamos nuestro constructor
+	public function __construct($id_usr_sesion = 0)
+	{
+		$this->id_usr_sesion = $id_usr_sesion;
 	}
 
 	//Implementamos un método para insertar registros
@@ -18,7 +21,7 @@ Class Ocupacion
 		if ($intertar['status'] == false) {  return $intertar; } 
 		
 		//add registro en nuestra bitacora
-		$sql_bit = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('ocupacion','".$intertar['data']."','Nueva ocupacion registrada','" . $_SESSION['idusuario'] . "')";
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('ocupacion','".$intertar['data']."','Nueva ocupacion registrada','" . $_SESSION['idusuario'] . "')";
 		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }   
 		
 		return $intertar;
@@ -32,7 +35,7 @@ Class Ocupacion
 		if ( $editar['status'] == false) {return $editar; } 
 	
 		//add registro en nuestra bitacora
-		$sql_bit = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('proveedor','$idocupacion','Ocupacion editada','" . $_SESSION['idusuario'] . "')";
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('proveedor','$idocupacion','Ocupacion editada','" . $_SESSION['idusuario'] . "')";
 		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }  
 	
 		return $editar;
@@ -47,7 +50,7 @@ Class Ocupacion
 		if ($desactivar['status'] == false) {  return $desactivar; }
 		
 		//add registro en nuestra bitacora
-		$sql_bit = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('ocupacion','".$idocupacion."','Ocupacion desactivada','" . $_SESSION['idusuario'] . "')";
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('ocupacion','".$idocupacion."','Ocupacion desactivada','" . $_SESSION['idusuario'] . "')";
 		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }   
 		
 		return $desactivar;
@@ -68,7 +71,7 @@ Class Ocupacion
 		if ( $eliminar['status'] == false) {return $eliminar; }  
 		
 		//add registro en nuestra bitacora
-		$sql = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('ocupacion','$idocupacion','Ocupacion Eliminada','" . $_SESSION['idusuario'] . "')";
+		$sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('ocupacion','$idocupacion','Ocupacion Eliminada','" . $_SESSION['idusuario'] . "')";
 		$bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
 		
 		return $eliminar;

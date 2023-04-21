@@ -11,10 +11,9 @@
     
     require_once "../modelos/Bancos.php";
 
-    $bancos = new Bancos();
+    $bancos = new Bancos($_SESSION['idusuario']);
 
-    date_default_timezone_set('America/Lima');
-    $date_now = date("d-m-Y h.i.s A");
+    date_default_timezone_set('America/Lima');  $date_now = date("d-m-Y h.i.s A");
 
     $idbancos = isset($_POST["idbancos"]) ? limpiarCadena($_POST["idbancos"]) : "";
     $nombre = isset($_POST["nombre_b"]) ? limpiarCadena($_POST["nombre_b"]) : "";

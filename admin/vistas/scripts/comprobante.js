@@ -108,9 +108,9 @@ function tbla_principal() {
     dom:"<'row'<'col-md-3'B><'col-md-3 float-left'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", //Definimos los elementos del control de tabla
     buttons: [
       { text: '<i class="fa-solid fa-arrows-rotate" data-toggle="tooltip" data-original-title="Recargar"></i>', className: "btn bg-gradient-info", action: function ( e, dt, node, config ) { tabla.ajax.reload(null, false); toastr_success('Exito!!', 'Actualizando tabla', 400); } },
-      { extend: 'copyHtml5', exportOptions: { columns: [0,2,8,9,4,5,6,7,8], }, text: `<i class="fas fa-copy" data-toggle="tooltip" data-original-title="Copiar"></i>`, className: "btn bg-gradient-gray", footer: true,  }, 
-      { extend: 'excelHtml5', exportOptions: { columns: [0,2,8,9,4,5,6,7,8], }, text: `<i class="far fa-file-excel fa-lg" data-toggle="tooltip" data-original-title="Excel"></i>`, className: "btn bg-gradient-success", footer: true,  }, 
-      { extend: 'pdfHtml5', exportOptions: { columns: [0,2,8,9,4,5,6,7,8], }, text: `<i class="far fa-file-pdf fa-lg" data-toggle="tooltip" data-original-title="PDF"></i>`, className: "btn bg-gradient-danger", footer: false, orientation: 'landscape', pageSize: 'LEGAL',  },
+      { extend: 'copyHtml5', exportOptions: { columns: [0,9,10,11,3,12,13,5,14,15,6,16,7], }, text: `<i class="fas fa-copy" data-toggle="tooltip" data-original-title="Copiar"></i>`, className: "btn bg-gradient-gray", footer: true,  }, 
+      { extend: 'excelHtml5', exportOptions: { columns: [0,9,10,11,3,12,13,5,14,15,6,16,7], }, text: `<i class="far fa-file-excel fa-lg" data-toggle="tooltip" data-original-title="Excel"></i>`, className: "btn bg-gradient-success", footer: true,  }, 
+      { extend: 'pdfHtml5', exportOptions: { columns: [0,9,10,11,3,12,13,5,14,15,6,16,7], }, text: `<i class="far fa-file-pdf fa-lg" data-toggle="tooltip" data-original-title="PDF"></i>`, className: "btn bg-gradient-danger", footer: false, orientation: 'landscape', pageSize: 'LEGAL',  },
       { extend: "colvis", text: `Columnas`, className: "btn bg-gradient-gray", exportOptions: { columns: "th:not(:last-child)", }, },
     ],
     ajax: {
@@ -124,14 +124,10 @@ function tbla_principal() {
     createdRow: function (row, data, ixdex) {
       // columna: #
       if (data[0] != "") { $("td", row).eq(0).addClass("text-center"); }
-      // columna: sub total
+      // columna: botones
       if (data[1] != "") { $("td", row).eq(1).addClass("text-nowrap"); }
-      // columna: sub total
-      if (data[5] != "") { $("td", row).eq(5).addClass("text-nowrap text-right"); }
-      // columna: igv
-      if (data[6] != "") { $("td", row).eq(6).addClass("text-nowrap text-right"); }
       // columna: total
-      if (data[7] != "") { $("td", row).eq(7).addClass("text-nowrap text-right"); }
+      if (data[6] != "") { $("td", row).eq(6).addClass("text-nowrap text-right"); }
     },
     language: {
       lengthMenu: "Mostrar: _MENU_ registros",
@@ -140,21 +136,15 @@ function tbla_principal() {
     },
     footerCallback: function( tfoot, data, start, end, display ) {
       var api1 = this.api(); var total1 = api1.column( 6 ).data().reduce( function ( a, b ) { return  (parseFloat(a) + parseFloat( b)) ; }, 0 )
-      $( api1.column( 6 ).footer() ).html( `<span class="float-left">S/</span> <span class="float-right">${formato_miles(total1)}</span>` ); 
-      
-      var api2 = this.api(); var total2 = api2.column( 7 ).data().reduce( function ( a, b ) { return  (parseFloat(a) + parseFloat( b)) ; }, 0 )
-      $( api2.column( 7 ).footer() ).html( `<span class="float-left">S/</span> <span class="float-right">${formato_miles(total2)}</span>` );
-
-      var api3 = this.api(); var total3 = api3.column( 8 ).data().reduce( function ( a, b ) { return  (parseFloat(a) + parseFloat( b)) ; }, 0 )
-      $( api3.column( 8 ).footer() ).html( `<span class="float-left">S/</span> <span class="float-right">${formato_miles(total3)}</span>` );
+      $( api1.column( 6 ).footer() ).html( `<span class="float-left">S/</span> <span class="float-right">${formato_miles(total1)}</span>` );       
     },
     bDestroy: true,
     iDisplayLength: 10, //Paginación
     order: [[0, "asc"]], //Ordenar (columna,orden)
     columnDefs: [
-      //{ targets: [], visible: false, searchable: false, }, 
+      { targets: [9,10,11,12,13,14,15,16], visible: false, searchable: false, }, 
       { targets: [5], render: $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY'), },
-      { targets: [6,7,8], render: function (data, type) { var number = $.fn.dataTable.render.number(',', '.', 2).display(data); if (type === 'display') { let color = 'numero_positivos'; if (data < 0) {color = 'numero_negativos'; } return `<span class="float-left">S/</span> <span class="float-right ${color} "> ${number} </span>`; } return number; }, },      
+      { targets: [6], render: function (data, type) { var number = $.fn.dataTable.render.number(',', '.', 2).display(data); if (type === 'display') { let color = 'numero_positivos'; if (data < 0) {color = 'numero_negativos'; } return `<span class="float-left">S/</span> <span class="float-right ${color} "> ${number} </span>`; } return number; }, },      
     ],
   }).DataTable();
 
@@ -479,7 +469,7 @@ function mostrar(idcomprobante) {
 }
 
 function ver_datos(idcomprobante) {
-  $("#modal-ver-comprobante").modal("show");
+  $("#modal-ver-detalle-comprobante").modal("show");
   $('#datos_otro_ingreso').html(`<div class="row"><div class="col-lg-12 text-center"><i class="fas fa-spinner fa-pulse fa-6x"></i><br/><br/><h4>Cargando...</h4></div></div>`);
 
   var comprobante=''; var btn_comprobante = '';
@@ -503,7 +493,7 @@ function ver_datos(idcomprobante) {
     
     } else {
 
-      comprobante='Sin Ficha Técnica';
+      comprobante='Sin comprobante';
       btn_comprobante='';
 
     }
@@ -532,7 +522,7 @@ function ver_datos(idcomprobante) {
               </tr>
               <tr data-widget="expandable-table" aria-expanded="false">
                 <th>Fecha Emisión</th>
-                <td>${e.data.fecha_ingreso}</td>
+                <td>${format_d_m_a(e.data.fecha_ingreso)}</td>
               </tr>
               <tr data-widget="expandable-table" aria-expanded="false">
                 <th>Sub total</th>
@@ -544,7 +534,7 @@ function ver_datos(idcomprobante) {
               </tr>
               <tr data-widget="expandable-table" aria-expanded="false">
                 <th>Monto total</th>
-                <td>${parseFloat(e.data.precio_con_igv).toFixed(2)}</td>
+                <td>${redondearExp(e.data.precio_con_igv, 2)}</td>
               </tr>
               <tr data-widget="expandable-table" aria-expanded="false">
                 <th>Comprobante</th>

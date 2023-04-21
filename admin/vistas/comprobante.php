@@ -76,11 +76,19 @@
                                   <th data-toggle="tooltip" data-original-title="Forma Pago">Forma P.</th>
                                   <th data-toggle="tooltip" data-original-title="Tipo Comprobante">Tipo Comp.</th>
                                   <th>Fecha</th>
-                                  <th>Subtotal</th>
-                                  <th>IGV</th>
                                   <th>Total</th>
                                   <th>Descripción</th>
-                                  <th data-toggle="tooltip" data-original-title="Comprobante">Comp.</th>
+                                  <th data-toggle="tooltip" data-original-title="Comprobante">CFDI</th>
+
+                                  <th>Nombre</th>
+                                  <th>Tipo doc.</th>
+                                  <th>Num. doc.</th>
+                                  <th>Tipo Comprobante</th>
+                                  <th>Num. Comprobante</th>
+                                  <th>Subtotal</th>
+                                  <th>IGV</th>
+                                  <th>Gravada</th>
+
                                 </tr>
                               </thead>
                               <tbody></tbody>
@@ -93,10 +101,17 @@
                                   <th data-toggle="tooltip" data-original-title="Tipo Comprobante">Tipo Comp.</th>
                                   <th>Fecha</th>
                                   <th class="text-nowrap px-2">0.00</th>
-                                  <th class="text-nowrap px-2">0.00</th>
-                                  <th class="text-nowrap px-2">0.00</th>
                                   <th>Descripción</th>
-                                  <th data-toggle="tooltip" data-original-title="Comprobante">Comp.</th>
+                                  <th data-toggle="tooltip" data-original-title="Comprobante">CFDI</th>
+
+                                  <th>Nombre</th>
+                                  <th>Tipo doc.</th>
+                                  <th>Num. doc.</th>
+                                  <th>Tipo Comprobante</th>
+                                  <th>Num. Comprobante</th>
+                                  <th>Subtotal</th>
+                                  <th>IGV</th>
+                                  <th>Gravada</th>
                                 </tr>
                               </tfoot>
                             </table>
@@ -432,7 +447,7 @@
                 </div>
 
                 <!-- MODAL - VER DETALLE DE OTRO INGRESO -->
-                <div class="modal fade" id="modal-ver-comprobante">
+                <div class="modal fade" id="modal-ver-detalle-comprobante">
                   <div class="modal-dialog modal-dialog-scrollable modal-xm">
                     <div class="modal-content">
                       <div class="modal-header">

@@ -84,9 +84,11 @@
                                                 <th class="text-center">#</th>
                                                 <th class=""><i class="fa fa-cogs" aria-hidden="true"></i></th>
                                                 <th class="">Nombres</th>
-                                                <th>Dirección</th>
+                                                <th class="">Cargo</th>                                                
                                                 <th>Telefono</th>
-                                                <th>C. Bancaria</th>
+                                                <th>Sueldo</th>
+                                                <th>Cta. Bancaria</th>
+                                                <th>Dirección</th>
 
                                                 <th>Estado</th>
                                                 <th>Nombres</th>
@@ -104,9 +106,11 @@
                                                 <th class="text-center">#</th>
                                                 <th class=""><i class="fa fa-cogs" aria-hidden="true"></i></th>
                                                 <th class="">Nombres</th>
-                                                <th>Dirección</th>
+                                                <th class="">Cargo</th>
                                                 <th>Telefono</th>
-                                                <th>C. Bancaria</th>
+                                                <th>Sueldo</th>
+                                                <th>Cta. Bancaria</th>
+                                                <th>Dirección</th>
 
                                                 <th>Estado</th>
                                                 <th>Nombres</th>
@@ -166,7 +170,7 @@
                               <!-- tipo persona  -->
                               <input type="hidden" name="id_tipo_persona" id="id_tipo_persona" />
                               <!-- Tipo de documento -->
-                              <div class="col-12 col-sm-6 col-md-6 col-lg-2">
+                              <div class="col-12 col-sm-6 col-md-6 col-lg-2 div_tipo_doc">
                                 <div class="form-group">
                                   <label for="tipo_documento">Tipo Doc.</label>
                                   <select name="tipo_documento" id="tipo_documento" class="form-control" placeholder="Tipo de documento">
@@ -179,7 +183,7 @@
                               </div>
                               
                               <!-- N° de documento -->
-                              <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                              <div class="col-12 col-sm-6 col-md-6 col-lg-3 div_num_doc">
                                 <div class="form-group">
                                   <label for="num_documento">N° de documento</label>
                                   <div class="input-group">
@@ -195,14 +199,15 @@
                               </div>
 
                               <!-- Nombre -->
-                              <div class="col-12 col-sm-12 col-md-12 col-lg-5">
+                              <div class="col-12 col-sm-12 col-md-12 col-lg-5 div_nombre">
                                 <div class="form-group">
                                   <label for="nombre">Nombres/Razon Social</label>
                                   <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombres y apellidos" />
                                 </div>
                               </div>
+
                               <!-- Telefono -->
-                              <div class="col-12 col-sm-12 col-md-6 col-lg-2">
+                              <div class="col-12 col-sm-12 col-md-6 col-lg-2 div_telefono">
                                 <div class="form-group">
                                   <label for="telefono">Teléfono</label>
                                   <input type="text" name="telefono" id="telefono" class="form-control" data-inputmask="'mask': ['999-999-999', '+51 999 999 999']" data-mask />
@@ -210,7 +215,7 @@
                               </div>
 
                               <!-- Correo electronico -->
-                              <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                              <div class="col-12 col-sm-12 col-md-6 col-lg-4 div_correo">
                                 <div class="form-group">
                                   <label for="email">Correo electrónico</label>
                                   <input type="email" name="email" class="form-control" id="email" placeholder="Correo electrónico" onkeyup="convert_minuscula(this);" />
@@ -218,7 +223,7 @@
                               </div>
 
                               <!-- fecha de nacimiento -->
-                              <div class="col-12 col-sm-10 col-md-6 col-lg-3">
+                              <div class="col-12 col-sm-10 col-md-6 col-lg-3 div_fecha_nacimiento">
                                 <div class="form-group">
                                   <label for="nacimiento">Fecha Nacimiento</label>
                                   <input
@@ -235,15 +240,23 @@
                               </div>
 
                               <!-- edad -->
-                              <div class="col-12 col-sm-2 col-md-6 col-lg-1">
+                              <div class="col-12 col-sm-2 col-md-6 col-lg-1 div_edad">
                                 <div class="form-group">
                                   <label for="edad">Edad</label>
                                   <p class="edad" style="border: 1px solid #ced4da; border-radius: 4px; padding: 5px;">0 años.</p>
                                 </div>
                               </div>
 
+                              <!-- Titular de la cuenta -->
+                              <div class="col-12 col-sm-12 col-md-6 col-lg-4 div_titular_cuenta">
+                                <div class="form-group">
+                                  <label for="titular_cuenta">Titular de la cuenta</label>
+                                  <input type="text" name="titular_cuenta" class="form-control" id="titular_cuenta" placeholder="Titular de la cuenta" />
+                                </div>
+                              </div>
+
                               <!-- banco -->
-                              <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                              <div class="col-12 col-sm-12 col-md-6 col-lg-4 div_banco">
                                 <div class="form-group">
                                   <label for="banco">Banco</label>
                                   <select name="banco" id="banco" class="form-control select2 banco" style="width: 100%;" onchange="formato_banco();">
@@ -253,7 +266,7 @@
                               </div>
 
                               <!-- Cuenta bancaria -->
-                              <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                              <div class="col-12 col-sm-12 col-md-6 col-lg-4 div_cta">
                                 <div class="form-group">
                                   <label for="cta_bancaria" class="chargue-format-1">Cuenta Bancaria</label>
                                   <input type="text" name="cta_bancaria" class="form-control" id="cta_bancaria" placeholder="Cuenta Bancaria" data-inputmask="" data-mask />
@@ -261,30 +274,15 @@
                               </div>
 
                               <!-- CCI -->
-                              <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                              <div class="col-12 col-sm-12 col-md-6 col-lg-4 div_cci">
                                 <div class="form-group">
                                   <label for="cci" class="chargue-format-2">CCI</label>
                                   <input type="text" name="cci" class="form-control" id="cci" placeholder="CCI" data-inputmask="" data-mask />
                                 </div>
-                              </div>
-
-                              <!-- Titular de la cuenta -->
-                              <div class="col-12 col-sm-12 col-md-6 col-lg-4">
-                                <div class="form-group">
-                                  <label for="titular_cuenta">Titular de la cuenta</label>
-                                  <input type="text" name="titular_cuenta" class="form-control" id="titular_cuenta" placeholder="Titular de la cuenta" />
-                                </div>
-                              </div>
-
-                              <!-- Ruc -->
-                              <div class="col-12 col-sm-12 col-md-6 col-lg-4" style="display: none;">
-                                <div class="form-group">
-                                  <label for="ruc">Ruc</label>
-                                  <input type="number" name="ruc" class="form-control" id="ruc" placeholder="Ingrese número de ruc" />
-                                </div>
-                              </div>
+                              </div>                             
+                              
                               <!-- cargo_trabajador  -->
-                              <div class="col-12 col-sm-12 col-md-6 col-lg-6 campos_trabajador">
+                              <div class="col-12 col-sm-12 col-md-6 col-lg-6 div_cargo">
                                 <div class="form-group">
                                   <label for="cargo_trabajador">Cargo </label>
                                   <select name="cargo_trabajador" id="cargo_trabajador" class="form-control select2 cargo_trabajador" style="width: 100%;">
@@ -294,7 +292,7 @@
                               </div>
 
                               <!-- Sueldo(Mensual) -->
-                              <div class="col-12 col-sm-6 col-md-3 col-lg-3 campos_trabajador">
+                              <div class="col-12 col-sm-6 col-md-3 col-lg-3 div_sueldo_mensual">
                                 <div class="form-group">
                                   <label for="sueldo_mensual">Sueldo(Mensual)</label>
                                   <input type="number" step="any" name="sueldo_mensual" class="form-control" id="sueldo_mensual" onclick="sueld_mensual();" onkeyup="sueld_mensual();" />
@@ -302,30 +300,22 @@
                               </div>
 
                               <!-- Sueldo(Diario) -->
-                              <div class="col-12 col-sm-6 col-md-3 col-lg-3 campos_trabajador">
+                              <div class="col-12 col-sm-6 col-md-3 col-lg-3 div_sueldo_diario">
                                 <div class="form-group">
                                   <label for="sueldo_diario">Sueldo(Diario)</label>
                                   <input type="number" step="any" name="sueldo_diario" class="form-control" id="sueldo_diario" readonly />
                                 </div>
                               </div>
-                              <!--nacimiento,ruc,cargo_trabajador, sueldo_mensual,sueldo_diario -->
-                              <!-- Swichs permanente -->
-                              <div class="col-4 col-sm-5 col-md-6 col-lg-3 classswichs">
-                                  <label for="socio">Es socio ? <small class="text-danger text-bold sino">(NO)</small> </label>
-                                  <div class="switch-toggle">
-                                    <input type="checkbox" id="socio" >
-                                    <label for="socio" onclick="habilitando_socio();" onchange="habilitando_socio();"></label>
-                                  </div>
-                                  <input type="hidden" name="input_socio" id="input_socio" value="0"  >
-                              </div>
+                              
 
                               <!-- Direccion -->
-                              <div class="col-12 col-sm-12 col-md-6 col-lg-9 classdirecc">
+                              <div class="col-12 col-sm-12 col-md-12 col-lg-12 div_direccion">
                                 <div class="form-group">
                                   <label for="direccion">Dirección</label>
                                   <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Dirección" />
                                 </div>
                               </div>
+
                               <!-- imagen perfil -->
                               <div class="col-12 col-sm-6 col-md-6 col-lg-4">
                                 <div class="col-lg-12 borde-arriba-naranja mt-2 mb-2"></div>

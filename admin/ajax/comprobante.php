@@ -14,7 +14,8 @@
       require_once "../modelos/Comprobante.php";
       $comprobante_m = new Comprobante();
             
-      date_default_timezone_set('America/Lima');  $date_now = date("d-m-Y h.i.s A");   
+      date_default_timezone_set('America/Lima');  $date_now = date("d-m-Y h.i.s A");
+      $toltip = '<script> $(function () { $(\'[data-toggle="tooltip"]\').tooltip(); }); </script>';
       
       $idcomprobante   = isset($_POST["idcomprobante"]) ? limpiarCadena($_POST["idcomprobante"]) : "";      
       $idpersona        = isset($_POST["idpersona"]) ? limpiarCadena($_POST["idpersona"]) : "";  
@@ -135,22 +136,15 @@
         case 'tbla_principal':
           $rspta = $comprobante_m->tbla_principal();
           //Vamos a declarar un array
-          $data = [];
-          $comprobante = '';
-          $cont = 1;
-          if ($rspta['status']) {
+          $data = [];  $comprobante = '';   $cont = 1;
+
+          if ($rspta['status'] == true) {
             while ($reg = $rspta['data']->fetch_object()) {
 
               empty($reg->comprobante)
                 ? ($comprobante = '<div><center><a type="btn btn-danger" class=""><i class="fas fa-file-invoice-dollar fa-2x text-gray-50"></i></a></center></div>')
                 : ($comprobante = '<div><center><a type="btn btn-danger" class=""  href="#" onclick="modal_comprobante(' . "'" . $reg->comprobante . "'" . ',' . "'" . $reg->tipo_comprobante . "'" . ',' . "'" .(empty($reg->numero_comprobante) ? " - " : $reg->numero_comprobante). "'" . ')"><i class="fas fa-file-invoice-dollar fa-2x"></i></a></center></div>');
-              if (strlen($reg->descripcion) >= 20) {
-                $descripcion = substr($reg->descripcion, 0, 20) . '...';
-              } else {
-                $descripcion = $reg->descripcion;
-              }
-              $tool = '"tooltip"';
-              $toltip = "<script> $(function () { $('[data-toggle=$tool]').tooltip(); }); </script>";
+              
               $data[] = [
                 "0" => $cont++,
                 "1" => '<button class="btn btn-warning btn-sm" onclick="mostrar(' . $reg->idcomprobante . ')"><i class="fas fa-pencil-alt"></i></button>' .
@@ -167,17 +161,18 @@
                   <span class="description ml-0" >N° ' . (empty($reg->numero_comprobante) ? " - " : $reg->numero_comprobante) . '</span>         
                 </div>',
                 "5" => $reg->fecha_ingreso,
-                "6" =>$reg->precio_sin_igv,
-                "7" =>$reg->precio_igv,
-                "8" =>$reg->precio_con_igv,
-                "9" => '<textarea cols="30" rows="1" class="textarea_datatable" readonly="">' . $reg->descripcion . '</textarea>',
-                "10" => $comprobante. $toltip,
-                "11"=>$reg->numero_documento,
-                "12"=>$reg->nombres,
-                "13"=>$reg->direccion,
-                "14"=>$reg->tipo_comprobante,
-                "15"=>$reg->numero_comprobante,
-                "16"=>$reg->tipo_gravada
+                "6" =>$reg->precio_con_igv,
+                "7" => '<textarea cols="30" rows="1" class="textarea_datatable" readonly="">' . $reg->descripcion . '</textarea>',
+                "8" => $comprobante. $toltip,
+
+                "9"=>$reg->nombres,
+                "10"=>$reg->tipo_documento,
+                "11"=>(empty($reg->numero_documento) ? "Sin Ruc" : $reg->numero_documento),
+                "12"=>$reg->tipo_comprobante,
+                "13"=>$reg->numero_comprobante,
+                "14"=>$reg->precio_sin_igv,
+                "15"=>$reg->precio_igv,
+                "16"=>$reg->tipo_gravada,
               ];
             }
             $results = [

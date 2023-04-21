@@ -4,9 +4,13 @@
 
   class Trabajador
   {
+    //Implementamos nuestro variable global
+    public $id_usr_sesion;
+
     //Implementamos nuestro constructor
-    public function __construct()
+    public function __construct($id_usr_sesion = 0)
     {
+      $this->id_usr_sesion = $id_usr_sesion;
     }
 
     public function insertar( $idcargo_trabajador,$nombre, $tipo_documento, $num_documento, $direccion, $telefono, $nacimiento, $edad,  $email, $banco, $cta_bancaria,  $cci,  $titular_cuenta, $ruc,$sueldo_mensual,$sueldo_diario, $imagen1) {
@@ -25,7 +29,7 @@
         if ($new_trabajador['status'] == false) { return $new_trabajador;}
 
         //add registro en nuestra bitacora
-        $sql = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('trabajador','".$new_trabajador['data']."','Registro Nuevo Trabajador','" . $_SESSION['idusuario'] . "')";
+        $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('trabajador','".$new_trabajador['data']."','Registro Nuevo Trabajador','" . $_SESSION['idusuario'] . "')";
         $bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
         
         $sw = array( 'status' => true, 'message' => 'noduplicado', 'data' => $new_trabajador['data'], 'id_tabla' =>$new_trabajador['id_tabla'] );
@@ -58,7 +62,7 @@
       if ($trabajdor['status'] == false) { return  $trabajdor;}
 
       //add registro en nuestra bitacora
-      $sql = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('trabajador','".$idtrabajador."','Editamos el registro Trabajador','" . $_SESSION['idusuario'] . "')";
+      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('trabajador','".$idtrabajador."','Editamos el registro Trabajador','" . $_SESSION['idusuario'] . "')";
       $bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
       
       return $trabajdor;      
@@ -71,7 +75,7 @@
       if ( $desactivar['status'] == false) {return $desactivar; }  
 
       //add registro en nuestra bitacora
-      $sql = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('trabajador','.$idtrabajador.','Desativar el registro Trabajador','" . $_SESSION['idusuario'] . "')";
+      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('trabajador','.$idtrabajador.','Desativar el registro Trabajador','" . $_SESSION['idusuario'] . "')";
       $bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
 
       return $desactivar;
@@ -84,7 +88,7 @@
       if ( $eliminar['status'] == false) {return $eliminar; }  
 
       //add registro en nuestra bitacora
-      $sql = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('trabajador','.$idtrabajador.','Eliminar registro Trabajador','" . $_SESSION['idusuario'] . "')";
+      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('trabajador','.$idtrabajador.','Eliminar registro Trabajador','" . $_SESSION['idusuario'] . "')";
       $bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
 
       return $eliminar;

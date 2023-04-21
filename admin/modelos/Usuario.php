@@ -4,10 +4,14 @@ require "../config/Conexion_v2.php";
 
 class Usuario
 {
-  //Implementamos nuestro constructor
-  public function __construct()
-  {
-  }
+  //Implementamos nuestro variable global
+	public $id_usr_sesion;
+
+	//Implementamos nuestro constructor
+	public function __construct($id_usr_sesion = 0)
+	{
+		$this->id_usr_sesion = $id_usr_sesion;
+	}
 
   //Implementamos un método para insertar registros
   public function insertar($trabajador, $cargo, $login, $clave, $permisos) {
@@ -17,7 +21,7 @@ class Usuario
     $data_user = ejecutarConsulta_retornarID($sql); if ($data_user['status'] == false){return $data_user; }
 
     //add registro en nuestra bitacora
-    $sql2 = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('usuario','" . $data_user['data'] . "','Registrar','" . $_SESSION['idusuario'] . "')";
+    $sql2 = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('usuario','" . $data_user['data'] . "','Registrar','" . $_SESSION['idusuario'] . "')";
     $bitacora1 = ejecutarConsulta($sql2); if ( $bitacora1['status'] == false) {return $bitacora1; }
 
     $num_elementos = 0; $sw = "";
@@ -35,7 +39,7 @@ class Usuario
         if ( $sw['status'] == false) {return $sw; }
 
         //add registro en nuestra bitacora
-        $sql2 = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('usuario_permiso','" .  $sw['data'] . "','Registrar permisos','" . $_SESSION['idusuario'] . "')";
+        $sql2 = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('usuario_permiso','" .  $sw['data'] . "','Registrar permisos','" . $_SESSION['idusuario'] . "')";
         $bitacora = ejecutarConsulta($sql2);
 
         if ( $bitacora['status'] == false) {return $bitacora; }
@@ -70,7 +74,7 @@ class Usuario
     $update_user = ejecutarConsulta($sql); if ($update_user['status'] == false) {return $update_user; }     
     
     //add registro en nuestra bitacora
-    $sql5_1 = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('usuario', '$idusuario' ,'Editamos los campos del usuario','" . $_SESSION['idusuario'] . "')";
+    $sql5_1 = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('usuario', '$idusuario' ,'Editamos los campos del usuario','" . $_SESSION['idusuario'] . "')";
     $bitacora5_1 = ejecutarConsulta($sql5_1); if ( $bitacora5_1['status'] == false) {return $bitacora5_1; }  
 
     $num_elementos = 0; $sw = "";
@@ -86,7 +90,7 @@ class Usuario
         if ( $sw['status'] == false) {return $sw; }
 
         //add registro en nuestra bitacora
-        $sqlsw = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('usuario_permiso','" .  $sw['data'] . "','Asigamos nuevos persmisos cuando editamos usuario','" . $_SESSION['idusuario'] . "')";
+        $sqlsw = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('usuario_permiso','" .  $sw['data'] . "','Asigamos nuevos persmisos cuando editamos usuario','" . $_SESSION['idusuario'] . "')";
         $bitacorasw = ejecutarConsulta($sqlsw);
 
         if ( $bitacorasw['status'] == false) {return $bitacorasw; }
@@ -107,7 +111,7 @@ class Usuario
     $desactivar = ejecutarConsulta($sql); if ( $desactivar['status'] == false) {return $desactivar; }    
 
     //add registro en nuestra bitacora
-    $sqlde = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('usuario_permiso','$idusuario','Registro desactivado','" . $_SESSION['idusuario'] . "')";
+    $sqlde = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('usuario_permiso','$idusuario','Registro desactivado','" . $_SESSION['idusuario'] . "')";
     $bitacorade = ejecutarConsulta($sqlde); if ( $bitacorade['status'] == false) {return $bitacorade; }   
 
     return $desactivar;
@@ -119,7 +123,7 @@ class Usuario
     $activar= ejecutarConsulta($sql); if ( $activar['status'] == false) {return $activar; }    
 
     //add registro en nuestra bitacora
-    $sqlde = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('usuario_permiso','$idusuario','Registro activado','" . $_SESSION['idusuario'] . "')";
+    $sqlde = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('usuario_permiso','$idusuario','Registro activado','" . $_SESSION['idusuario'] . "')";
     $bitacorade = ejecutarConsulta($sqlde); if ( $bitacorade['status'] == false) {return $bitacorade; }   
 
     return $activar;
@@ -131,7 +135,7 @@ class Usuario
     $eliminar= ejecutarConsulta($sql);  if ( $eliminar['status'] == false) {return $eliminar; }    
 
     //add registro en nuestra bitacora
-    $sqlde = "INSERT INTO bitacora_bd( nombre_tabla, id_tabla, accion, id_user) VALUES ('usuario_permiso','$idusuario','Registro Eliminado','" . $_SESSION['idusuario'] . "')";
+    $sqlde = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('usuario_permiso','$idusuario','Registro Eliminado','" . $_SESSION['idusuario'] . "')";
     $bitacorade = ejecutarConsulta($sqlde); if ( $bitacorade['status'] == false) {return $bitacorade; }   
 
     return $eliminar;
