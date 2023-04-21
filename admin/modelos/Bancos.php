@@ -17,14 +17,14 @@ Class Bancos
 	public function insertar($nombre, $alias, $formato_cta, $formato_cci, $formato_detracciones, $imagen1)
 	{
 		$sql="INSERT INTO bancos (nombre, alias, formato_cta, formato_cci, formato_detracciones, icono, user_created)
-		VALUES ('$nombre', '$alias', '$formato_cta', '$formato_cci', '$formato_detracciones', '$imagen1','" . $_SESSION['idusuario'] . "')";
+		VALUES ('$nombre', '$alias', '$formato_cta', '$formato_cci', '$formato_detracciones', '$imagen1','$this->id_usr_sesion')";
 
 		$intertar =  ejecutarConsulta_retornarID($sql); 
 
 		if ($intertar['status'] == false) {  return $intertar; } 
 
 		//add registro en nuestra bitacora
-		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('bancos','".$intertar['data']."','Nuevo banco registrado','" . $_SESSION['idusuario'] . "')";
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('bancos','".$intertar['data']."','Nuevo banco registrado','$this->id_usr_sesion')";
 		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }   
 
 		return $intertar;
@@ -35,14 +35,14 @@ Class Bancos
 	{
 		$sql="UPDATE bancos SET nombre='$nombre', alias ='$alias', formato_cta='$formato_cta', 
 		formato_cci='$formato_cci', formato_detracciones='$formato_detracciones', icono='$imagen1',
-		user_updated= '" . $_SESSION['idusuario'] . "' 
+		user_updated= '$this->id_usr_sesion' 
 		WHERE idbancos='$idbancos'";
 		$editar =  ejecutarConsulta($sql);
 
 		if ( $editar['status'] == false) {return $editar; } 
 	
 		//add registro en nuestra bitacora
-		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('bancos','$idbancos','Banco editado','" . $_SESSION['idusuario'] . "')";
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('bancos','$idbancos','Banco editado','$this->id_usr_sesion')";
 		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }  
 	
 		return $editar;
@@ -51,13 +51,13 @@ Class Bancos
 	//Implementamos un método para desactivar bancos
 	public function desactivar($idbancos)
 	{
-		$sql="UPDATE bancos SET estado='0' ,user_trash= '" . $_SESSION['idusuario'] . "' WHERE idbancos='$idbancos'";
+		$sql="UPDATE bancos SET estado='0' ,user_trash= '$this->id_usr_sesion' WHERE idbancos='$idbancos'";
 		$desactivar= ejecutarConsulta($sql);
 
 		if ($desactivar['status'] == false) {  return $desactivar; }
 		
 		//add registro en nuestra bitacora
-		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('bancos','".$idbancos."','Banco desactivado','" . $_SESSION['idusuario'] . "')";
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('bancos','".$idbancos."','Banco desactivado','$this->id_usr_sesion')";
 		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }   
 		
 		return $desactivar;
@@ -73,12 +73,12 @@ Class Bancos
 	//Implementamos un método para eliminar bancos
 	public function eliminar($idbancos)
 	{
-		$sql="UPDATE bancos SET estado_delete='0',user_delete= '" . $_SESSION['idusuario'] . "' WHERE idbancos='$idbancos'";
+		$sql="UPDATE bancos SET estado_delete='0',user_delete= '$this->id_usr_sesion' WHERE idbancos='$idbancos'";
 		$eliminar =  ejecutarConsulta($sql);
 		if ( $eliminar['status'] == false) {return $eliminar; }  
 		
 		//add registro en nuestra bitacora
-		$sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('bancos','$idbancos','Banco Eliminado','" . $_SESSION['idusuario'] . "')";
+		$sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('bancos','$idbancos','Banco Eliminado','$this->id_usr_sesion')";
 		$bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
 		
 		return $eliminar;

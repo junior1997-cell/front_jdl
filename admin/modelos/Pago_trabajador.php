@@ -77,13 +77,13 @@
     //Implementamos un método para desactivar registros
     public function desactivar_pago($idpago_trabajador)
     {
-      $sql="UPDATE pago_trabajador SET estado='0',user_trash= '" . $_SESSION['idusuario'] . "' WHERE idpago_trabajador='$idpago_trabajador'";
+      $sql="UPDATE pago_trabajador SET estado='0',user_trash= '$this->id_usr_sesion' WHERE idpago_trabajador='$idpago_trabajador'";
       $desactivar =  ejecutarConsulta($sql);
 
       if ( $desactivar['status'] == false) {return $desactivar; }  
 
       //add registro en nuestra bitacora
-      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('pago_trabajador','.$idpago_trabajador.','Desativar el registro Trabajador','" . $_SESSION['idusuario'] . "')";
+      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('pago_trabajador','.$idpago_trabajador.','Desativar el registro Trabajador','$this->id_usr_sesion')";
       $bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
 
       return $desactivar;
@@ -91,13 +91,13 @@
     
     //Implementamos un método para activar registros
     public function eliminar_pago($idpago_trabajador) {
-      $sql="UPDATE pago_trabajador SET estado_delete='0',user_delete= '" . $_SESSION['idusuario'] . "' WHERE idpago_trabajador='$idpago_trabajador'";
+      $sql="UPDATE pago_trabajador SET estado_delete='0',user_delete= '$this->id_usr_sesion' WHERE idpago_trabajador='$idpago_trabajador'";
       $eliminar =  ejecutarConsulta($sql);
       
       if ( $eliminar['status'] == false) {return $eliminar; }  
 
       //add registro en nuestra bitacora
-      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('pago_trabajador','.$idpago_trabajador.','Eliminar registro Trabajador','" . $_SESSION['idusuario'] . "')";
+      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('pago_trabajador','.$idpago_trabajador.','Eliminar registro Trabajador','$this->id_usr_sesion')";
       $bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
 
       return $eliminar;

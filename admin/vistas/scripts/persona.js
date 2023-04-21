@@ -224,8 +224,7 @@ function show_hide_btn_add(tipo_persona) {
 
     }else {
 
-      $(".btn_add").html(`<i class="fas fa-plus"></i> Agregar Trabajador`);
-      $(".classdirecc").removeClass("col-lg-12").addClass("col-lg-9");
+      $(".btn_add").html(`<i class="fas fa-plus"></i> Agregar...`);
       
     }    
   }
@@ -435,20 +434,10 @@ function mostrar(idpersona) {
       $("#sueldo_mensual").val(e.data.sueldo_mensual);
       $("#sueldo_diario").val(e.data.sueldo_diario);  
 
-      $("#input_socio").val(e.data.es_socio); 
       $("#id_tipo_persona").val(e.data.idtipo_persona); 
-      // $('#socio').is(':checked'); ("#definiendo").prop('checked', true);
       $("#sueldo_mensual").val(e.data.sueldo_mensual);
       $("#sueldo_diario").val(e.data.sueldo_diario);  
       
-      if (e.data.es_socio==1) {
-        
-        $("#input_socio").val('1');
-        $(".sino").html('(SI)');
-        
-        if($('#socio').is(':checked') ){$("#definiendo").prop('checked', false);  }else{ $("#socio").prop('checked', true); }
-      }
-
       if (e.data.foto_perfil!="") {
         $("#foto1_i").attr("src", "../dist/docs/persona/perfil/" + e.data.foto_perfil);
         $("#foto1_actual").val(e.data.foto_perfil);

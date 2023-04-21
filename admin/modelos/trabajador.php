@@ -23,13 +23,13 @@
       if ( empty($existe['data']) ) {
 
         $sql="INSERT INTO trabajador (idcargo_trabajador, idbancos, nombres, tipo_documento, numero_documento, fecha_nacimiento, edad, titular_cuenta,cuenta_bancaria,cci, direccion, telefono, email, imagen_perfil, ruc,sueldo_mensual,sueldo_diario,user_created)
-        VALUES ( '$idcargo_trabajador','$banco','$nombre', '$tipo_documento', '$num_documento', '$nacimiento', '$edad', '$titular_cuenta','$cta_bancaria', '$cci', '$direccion', '$telefono', '$email', '$imagen1', '$ruc','$sueldo_mensual','$sueldo_diario', '" . $_SESSION['idusuario'] . "')";
+        VALUES ( '$idcargo_trabajador','$banco','$nombre', '$tipo_documento', '$num_documento', '$nacimiento', '$edad', '$titular_cuenta','$cta_bancaria', '$cci', '$direccion', '$telefono', '$email', '$imagen1', '$ruc','$sueldo_mensual','$sueldo_diario', '$this->id_usr_sesion')";
         $new_trabajador = ejecutarConsulta_retornarID($sql);
 
         if ($new_trabajador['status'] == false) { return $new_trabajador;}
 
         //add registro en nuestra bitacora
-        $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('trabajador','".$new_trabajador['data']."','Registro Nuevo Trabajador','" . $_SESSION['idusuario'] . "')";
+        $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('trabajador','".$new_trabajador['data']."','Registro Nuevo Trabajador','$this->id_usr_sesion')";
         $bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
         
         $sw = array( 'status' => true, 'message' => 'noduplicado', 'data' => $new_trabajador['data'], 'id_tabla' =>$new_trabajador['id_tabla'] );
@@ -62,33 +62,33 @@
       if ($trabajdor['status'] == false) { return  $trabajdor;}
 
       //add registro en nuestra bitacora
-      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('trabajador','".$idtrabajador."','Editamos el registro Trabajador','" . $_SESSION['idusuario'] . "')";
+      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('trabajador','".$idtrabajador."','Editamos el registro Trabajador','$this->id_usr_sesion')";
       $bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
       
       return $trabajdor;      
     }
 
     public function desactivar($idtrabajador) {
-      $sql="UPDATE trabajador SET estado='0',user_trash= '" . $_SESSION['idusuario'] . "' WHERE idtrabajador='$idtrabajador'";
+      $sql="UPDATE trabajador SET estado='0',user_trash= '$this->id_usr_sesion' WHERE idtrabajador='$idtrabajador'";
       $desactivar =  ejecutarConsulta($sql);
 
       if ( $desactivar['status'] == false) {return $desactivar; }  
 
       //add registro en nuestra bitacora
-      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('trabajador','.$idtrabajador.','Desativar el registro Trabajador','" . $_SESSION['idusuario'] . "')";
+      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('trabajador','.$idtrabajador.','Desativar el registro Trabajador','$this->id_usr_sesion')";
       $bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
 
       return $desactivar;
     }
 
     public function eliminar($idtrabajador) {
-      $sql="UPDATE trabajador SET estado_delete='0',user_delete= '" . $_SESSION['idusuario'] . "' WHERE idtrabajador='$idtrabajador'";
+      $sql="UPDATE trabajador SET estado_delete='0',user_delete= '$this->id_usr_sesion' WHERE idtrabajador='$idtrabajador'";
       $eliminar =  ejecutarConsulta($sql);
       
       if ( $eliminar['status'] == false) {return $eliminar; }  
 
       //add registro en nuestra bitacora
-      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('trabajador','.$idtrabajador.','Eliminar registro Trabajador','" . $_SESSION['idusuario'] . "')";
+      $sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('trabajador','.$idtrabajador.','Eliminar registro Trabajador','$this->id_usr_sesion')";
       $bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
 
       return $eliminar;
