@@ -18,9 +18,16 @@ class Comprobante
   public function insertar($idpersona, $fecha_i, $forma_pago, $tipo_comprobante, $nro_comprobante, $subtotal, $igv, $val_igv, $tipo_gravada, $precio_parcial, $descripcion, $comprobante)
   {
 
-    $sql = "INSERT INTO comprobante( idpersona, fecha_ingreso, tipo_comprobante, numero_comprobante, forma_de_pago, precio_sin_igv, precio_igv, precio_con_igv,val_igv, tipo_gravada, descripcion, comprobante) 
-    VALUES ('$idpersona', '$fecha_i', '$tipo_comprobante', '$nro_comprobante', '$forma_pago', '$subtotal', '$igv', '$precio_parcial',$val_igv, '$tipo_gravada', '$descripcion', '$comprobante')";
-    return ejecutarConsulta($sql);
+    $sql = "INSERT INTO comprobante( idpersona, fecha_ingreso, tipo_comprobante, numero_comprobante, forma_de_pago, precio_sin_igv, precio_igv, precio_con_igv,val_igv, tipo_gravada, descripcion, comprobante, user_created) 
+    VALUES ('$idpersona', '$fecha_i', '$tipo_comprobante', '$nro_comprobante', '$forma_pago', '$subtotal', '$igv', '$precio_parcial',$val_igv, '$tipo_gravada', '$descripcion', '$comprobante','$this->id_usr_sesion')";
+    $intertar =  ejecutarConsulta_retornarID($sql); if ($intertar['status'] == false) {  return $intertar; } 
+
+		//add registro en nuestra bitacora
+    $sql_d = $idpersona.', '.$fecha_i.', '.$forma_pago.', '.$tipo_comprobante.', '.$nro_comprobante.', '.$subtotal.', '.$igv.', '.$val_igv.', '.$tipo_gravada.', '.$precio_parcial.', '.$descripcion.', '.$comprobante;
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES (5,'comprobante','".$intertar['data']."','$sql_d','$this->id_usr_sesion')";
+		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }   
+
+		return $intertar;
 
   }
 
@@ -40,22 +47,41 @@ class Comprobante
     val_igv='$val_igv',
     tipo_gravada='$tipo_gravada',
     descripcion='$descripcion',
-    comprobante='$comprobante'
-
+    comprobante='$comprobante',
+    user_updated = '$this->id_usr_sesion'
 		WHERE idcomprobante='$idcomprobante'";
-    return ejecutarConsulta($sql);
+    $edit = ejecutarConsulta($sql);  if ( $edit['status'] == false) {return $edit; }
+
+    //add registro en nuestra bitacora
+    $sql_d = $idcomprobante.', '.$idpersona.', '.$fecha_i.', '.$forma_pago.', '.$tipo_comprobante.', '.$nro_comprobante.', '.$subtotal.', '.$igv.', '.$val_igv.', '.$tipo_gravada.', '.$precio_parcial.', '.$descripcion.', '.$comprobante;
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES (5,'comprobante','$idcomprobante','$sql_d','$this->id_usr_sesion')";
+		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }   
+
+		return $edit;
   }
 
   //Implementamos un método para desactivar categorías
-  public function desactivar($idcomprobante) {
-    $sql = "UPDATE comprobante SET estado='0' WHERE idcomprobante ='$idcomprobante'";
-    return ejecutarConsulta($sql);
+  public function desactivar($id) {
+    $sql = "UPDATE comprobante SET estado='0' WHERE idcomprobante ='$id'";
+    $desactivar= ejecutarConsulta($sql); if ($desactivar['status'] == false) {  return $desactivar; }
+		
+		//add registro en nuestra bitacora
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES (2,'comprobante','$id','$id','$this->id_usr_sesion')";
+		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }   
+		
+		return $desactivar;
   }
 
   //Implementamos un método para desactivar categorías
-  public function eliminar($idcomprobante) {
-    $sql = "UPDATE comprobante SET estado_delete='0' WHERE idcomprobante ='$idcomprobante'";
-    return ejecutarConsulta($sql);
+  public function eliminar($id) {
+    $sql = "UPDATE comprobante SET estado_delete='0' WHERE idcomprobante ='$id'";
+    $eliminar =  ejecutarConsulta($sql);	if ( $eliminar['status'] == false) {return $eliminar; }  
+		
+		//add registro en nuestra bitacora
+		$sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES (4, 'comprobante','$id','$id','$this->id_usr_sesion')";
+		$bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
+		
+		return $eliminar;
   }
 
   //Implementar un método para mostrar los datos de un registro a modificar
@@ -87,14 +113,6 @@ class Comprobante
   public function ficha_tec($idcomprobante) {
     $sql = "SELECT comprobante FROM comprobante WHERE idcomprobante='$idcomprobante'";
     return ejecutarConsulta($sql);
-  }
-
-  //metodos para registar una persona
-  public function insertar_persona($id_tipo_persona, $nombre, $tipo_documento, $num_documento, $direccion, $telefono, $banco, $cta_bancaria, $cci, $titular_cuenta)
-  {
-    $sql="INSERT INTO persona (idtipo_persona, nombres, tipo_documento, numero_documento, direccion,celular,idbancos, cuenta_bancaria, cci, titular_cuenta)
-    VALUES ('$id_tipo_persona', '$nombre', '$tipo_documento', '$num_documento', '$direccion', '$telefono', '$banco', '$cta_bancaria', '$cci', '$titular_cuenta');";
-    return ejecutarConsulta_retornarID($sql);
   }
 
   public function selecct_produc_o_provee()

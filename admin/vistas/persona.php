@@ -148,7 +148,7 @@
                 </div>
                 <!-- /.container-fluid -->
 
-                <!-- Modal agregar persona -->
+                <!-- MODAL - AGREGAR PERSONA -->
                 <div class="modal fade" id="modal-agregar-persona">
                   <div class="modal-dialog modal-dialog-scrollable modal-xl">
                     <div class="modal-content">
@@ -326,11 +326,12 @@
                                 <div class="text-center" id="foto1_nombre"><!-- aqui va el nombre de la FOTO --></div>
                               </div>
 
-                              <!-- Progress -->
-                              <div class="col-md-12">
-                                <div class="form-group">
-                                  <div class="progress" id="div_barra_progress" style="display: none !important;">
-                                    <div id="barra_progress" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+                              <!-- barprogress -->
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-20px" id="barra_progress_persona_div" style="display: none;">
+                                <div class="progress" >
+                                  <div id="barra_progress_persona" class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+                                    0%
                                   </div>
                                 </div>
                               </div>
@@ -350,13 +351,13 @@
                       </div>
                       <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-danger" onclick="limpiar_form_persona();" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" id="guardar_registro">Guardar Cambios</button>
+                        <button type="submit" class="btn btn-success" id="guardar_registro_persona">Guardar Cambios</button>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <!--Modal ver persona-->
+                <!-- MODAL - VER DETALLE PERSONA-->
                 <div class="modal fade" id="modal-ver-persona">
                   <div class="modal-dialog modal-dialog-scrollable modal-xm">
                     <div class="modal-content">

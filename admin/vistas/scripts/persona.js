@@ -6,7 +6,7 @@ function init() {
   $("#mRecurso").addClass("active");
   $("#lClienteProveedor").addClass("active");
   
-  lista_de_items()
+  lista_de_items();
   tbla_principal('todos');
 
   // ══════════════════════════════════════ S E L E C T 2 ══════════════════════════════════════
@@ -14,10 +14,10 @@ function init() {
   lista_select2("../ajax/ajax_general.php?op=select2Banco", '#banco', null);
   
   // ══════════════════════════════════════ G U A R D A R   F O R M ══════════════════════════════════════
-  $("#guardar_registro").on("click", function (e) {  $("#submit-form-persona").submit(); });  
+  $("#guardar_registro_persona").on("click", function (e) {  $("#submit-form-persona").submit(); });  
 
   // ══════════════════════════════════════ INITIALIZE SELECT2 ══════════════════════════════════════
-  $("#banco").select2({templateResult: formatState, theme: "bootstrap4", placeholder: "Selecione banco", allowClear: true, });
+  $("#banco").select2({templateResult: formatBanco, theme: "bootstrap4", placeholder: "Selecione banco", allowClear: true, });
   $("#tipo_documento").select2({theme:"bootstrap4", placeholder: "Selec. tipo Doc.", allowClear: true, });
   $("#cargo_trabajador").select2({theme:"bootstrap4", placeholder: "Selecione cargo", allowClear: true, });
 
@@ -29,7 +29,7 @@ function init() {
 
 init();
 
-function formatState (state) {
+function formatBanco (state) {
   //console.log(state);
   if (!state.id) { return state.text; }
   var baseUrl = state.title != '' ? `../dist/docs/banco/logo/${state.title}`: '../dist/docs/banco/logo/logo-sin-banco.svg'; 
@@ -54,7 +54,7 @@ function foto1_eliminar() {
 //Función limpiar
 function limpiar_form_persona() {
   
-  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro_persona").html('Guardar Cambios').removeClass('disabled');
 
   $("#idpersona").val(""); 
   $("#tipo_documento").val("null").trigger("change");
@@ -255,7 +255,7 @@ function guardar_y_editar_persona(e) {
         }
       } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }      
 
-      $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro_persona").html('Guardar Cambios').removeClass('disabled');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -263,20 +263,19 @@ function guardar_y_editar_persona(e) {
         if (evt.lengthComputable) {
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress").css({"width": percentComplete+'%'});
-          $("#barra_progress").text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress_persona").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress").css({ width: "0%",  });
-      $("#barra_progress").text("0%");
+      $("#guardar_registro_persona").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
+      $("#barra_progress_persona").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
+      $("#barra_progress_persona_div").show();
     },
     complete: function () {
-      $("#barra_progress").css({ width: "0%", });
-      $("#barra_progress").text("0%");
+      $("#barra_progress_persona").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
+      $("#barra_progress_persona_div").hide();
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });

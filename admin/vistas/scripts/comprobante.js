@@ -9,31 +9,35 @@ function init() {
 
   $("#lOtroIngreso").addClass("active");
 
+  lista_de_items();
   tbla_principal();
 
   // ══════════════════════════════════════ S E L E C T 2 ══════════════════════════════════════
   lista_select2("../ajax/comprobante.php?op=selecct_produc_o_provee", '#idpersona', null);
-  lista_select2("../ajax/comprobante.php?op=select_tipo_persona", '#idtipopersona', null);
+
+  lista_select2("../ajax/comprobante.php?op=select_tipo_persona", '#idtipopersona', null);  
+  lista_select2("../ajax/ajax_general.php?op=select2_cargo_trabajador", '#cargo_trabajador', null);
   lista_select2("../ajax/ajax_general.php?op=select2Banco", '#banco', null);
 
   // ══════════════════════════════════════ G U A R D A R   F O R M ══════════════════════════════════════ 
   $("#guardar_registro_persona").on("click", function (e) { $("#submit-form-persona").submit(); });
 
-  // ══════════════════════════════════════ INITIALIZE SELECT2 - OTRO INGRESO  ══════════════════════════════════════
-  $("#idpersona").select2({ theme: "bootstrap4", placeholder: "Selecione un proveedor o productor", allowClear: true,   });
+  // ══════════════════════════════════════ INITIALIZE SELECT2 - OTRO INGRESO  ══════════════════════════════════════  
   $("#idtipopersona").select2({ theme: "bootstrap4", placeholder: "Selecione un tipo", allowClear: true,   });
+  $("#tipo_documento").select2({theme:"bootstrap4", placeholder: "Selec. tipo Doc.", allowClear: true, });
+  $("#banco").select2({templateResult: formatBanco, theme: "bootstrap4", placeholder: "Selecione banco", allowClear: true, });  
+  $("#cargo_trabajador").select2({theme:"bootstrap4", placeholder: "Selecione cargo", allowClear: true, });
 
+  $("#idpersona").select2({ theme: "bootstrap4", placeholder: "Selecione un proveedor o trabajdor", allowClear: true,   });
   $("#tipo_comprobante").select2({ theme: "bootstrap4", placeholder: "Seleccinar tipo comprobante", allowClear: true, });
-
   $("#forma_pago").select2({ theme: "bootstrap4", placeholder: "Seleccinar forma de pago", allowClear: true, });
-
-  $("#banco").select2({templateResult: templateBanco, theme: "bootstrap4", placeholder: "Selecione un banco", allowClear: true, });
+  
 
   // Formato para telefono
   $("[data-mask]").inputmask();
 }
 
-function templateBanco (state) {
+function formatBanco (state) {
   //console.log(state);
   if (!state.id) { return state.text; }
   var baseUrl = state.title != '' ? `../dist/docs/banco/logo/${state.title}`: '../dist/docs/banco/logo/logo-sin-banco.svg'; 
@@ -406,8 +410,7 @@ function guardar_y_editar_comprobante(e) {
         if (evt.lengthComputable) {
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress_comprobante").css({"width": percentComplete+'%'});
-          $("#barra_progress_comprobante").text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress_comprobante").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
@@ -568,57 +571,180 @@ function eliminar(idcomprobante, nombre,numero_comprobante) {
     false
   );
 }
-// :::::::::::::::::::::::::::::::::::::::::::::::::::: S E C C I O N   P R O V E E D O R  ::::::::::::::::::::::::::::::::::::::::::::::::::::
-//Función limpiar
-function limpiar_persona() {
-  $("#idproveedor").val("");
-  $("#tipo_documento option[value='RUC']").attr("selected", true);
-  $("#nombre").val("");
-  $("#num_documento").val("");
-  $("#direccion").val("");
-  $("#telefono").val("");
-  $("#banco").val("").trigger("change");
-  $("#c_bancaria").val("");
-  $("#cci").val("");
-  $("#titular_cuenta").val("");
+// :::::::::::::::::::::::::::::::::::::::::::::::::::: S E C C I O N   P E R S O N A  ::::::::::::::::::::::::::::::::::::::::::::::::::::
+function lista_de_items() { 
 
+  $(".lista-items").html(`<li class="nav-item"><a class="nav-link active" role="tab" ><i class="fas fa-spinner fa-pulse fa-sm"></i></a></li>`); 
+
+  $.post("../ajax/persona.php?op=tipo_persona", function (e, status) {
+    
+    e = JSON.parse(e); //console.log(e);
+    // e.data.idtipo_tierra
+    if (e.status) {
+      var data_html = '';
+
+      e.data.forEach((val, index) => {
+        data_html = data_html.concat(`
+        <li class="nav-item">
+          <a class="nav-link" onclick="delay(function(){show_hide_btn_add('${val.idtipo_persona}')}, 50 );" id="tabs-for-activo-fijo-tab" data-toggle="pill" href="#tabs-for-activo-fijo" role="tab" aria-controls="tabs-for-activo-fijo" aria-selected="false">${val.nombre}</a>
+        </li>`);
+      });
+
+      $(".lista-items").html(`${data_html}`); 
+    } else {
+      ver_errores(e);
+    }
+  }).fail( function(e) { ver_errores(e); } );
+}
+
+//Función limpiar
+function limpiar_form_persona() {
+  
+  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+
+  $("#idpersona").val(""); 
+  $("#tipo_documento").val("null").trigger("change");
+  $("#cargo_trabajador").val("1").trigger("change");
+
+  $("#num_documento").val(""); 
+  $("#nombre").val(""); 
+  $("#input_socio").val("0"); 
+  $("#email").val(""); 
+  $("#telefono").val(""); 
+  $("#direccion").val(""); 
+
+  $("#banco").val("").trigger("change");
+  $("#cta_bancaria").val(""); 
+  $("#cci").val(""); 
+  $("#titular_cuenta").val("");    
+
+  $("#socio").prop('checked', false);
+  $(".sino").html('(NO)');
+
+  $("#nacimiento").val("");
+  $("#edad").val("");
+  $(".edad").html("0.00");
+
+  $("#foto1_i").attr("src", "../dist/img/default/img_defecto.png");
+	$("#foto1").val("");
+	$("#foto1_actual").val("");  
+  $("#foto1_nombre").html(""); 
+  
   // Limpiamos las validaciones
   $(".form-control").removeClass('is-valid');
   $(".form-control").removeClass('is-invalid');
   $(".error.invalid-feedback").remove();
+}
 
-  $(".tooltip").removeClass("show").addClass("hidde");
+function show_hide_btn_add(tipo_persona) {
+  $("#sueldo_mensual").val("0.00");
+  $(".campos_trabajador").hide();
+
+  if (tipo_persona=="todos") {
+    $("#id_tipo_persona").val("");
+    $(".class_btn").hide();    
+  }else{
+
+    $("#id_tipo_persona").val(tipo_persona);
+    $(".class_btn").show();
+
+    if (tipo_persona=="2") { // trabajador :::::::::::
+      $(".div_tipo_doc").show();
+      $(".div_num_doc").show();
+      $(".div_nombre").show();
+      $(".div_telefono").show();
+      $(".div_correo").show();
+      $(".div_fecha_nacimiento").show();
+      $(".div_edad").show();
+      $(".div_banco").show();
+      $(".div_cta").show();
+      $(".div_cci").show();
+      $(".div_titular_cuenta").show().removeClass("col-lg-8").addClass("col-lg-4");
+      $(".div_cargo").show();
+      $(".div_sueldo_mensual").show();
+      $(".div_sueldo_diario").show();
+      $(".div_direccion").show();
+      $(".btn_add").html(`<i class="fas fa-plus"></i> Agregar Trabajador`);
+
+      $("#cargo_trabajador").val(null).trigger("change");
+
+    }else if (tipo_persona=="3") { //proveedor :::::::::::
+
+      $(".div_tipo_doc").show();
+      $(".div_num_doc").show();
+      $(".div_nombre").show();
+      $(".div_telefono").show();
+      $(".div_correo").show();
+      $(".div_fecha_nacimiento").hide();
+      $(".div_edad").hide();
+      $(".div_banco").show();
+      $(".div_cta").show();
+      $(".div_cci").show();
+      $(".div_titular_cuenta").show().removeClass("col-lg-4").addClass("col-lg-8");
+      $(".div_cargo").hide();
+      $(".div_sueldo_mensual").hide();
+      $(".div_sueldo_diario").hide();
+      $(".div_direccion").show();
+
+      $(".btn_add").html(`<i class="fas fa-plus"></i> Agregar Proveedor`);
+      $("#cargo_trabajador").val(1).trigger("change");
+
+    }else {
+
+      $(".btn_add").html(`<i class="fas fa-plus"></i> Agregar...`);
+      
+    }    
+  }
 }
 
 //guardar proveedor
-function guardarpersona(e) {
+function guardar_y_editar_persona(e) {
   // e.preventDefault(); //No se activará la acción predeterminada del evento
   var formData = new FormData($("#form-persona")[0]);
 
   $.ajax({
-    url: "../ajax/comprobante.php?op=guardarpersona",
+    url: "../ajax/persona.php?op=guardaryeditar",
     type: "POST",
     data: formData,
     contentType: false,
     processData: false,
     success: function (e) {
-      e = JSON.parse(e);
-
       try {
-        if (e.status == true) {
-          // toastr.success("proveedor registrado correctamente");
-          Swal.fire("Correcto!", "Persona guardado correctamente.", "success");          
-          limpiar_persona();
-          $("#modal-agregar-persona").modal("hide");
-          //Cargamos los items al select persona
-          lista_select2("../ajax/comprobante.php?op=selecct_produc_o_provee", '#idpersona', e.data);
-        } else {
+        e = JSON.parse(e);  //console.log(e); 
+        if (e.status == true) {	
+          Swal.fire("Correcto!", "Persona guardado correctamente", "success");
+          lista_select2("../ajax/comprobante.php?op=selecct_produc_o_provee", '#idpersona', e.data);    
+          limpiar_form_persona();
+          $("#modal-agregar-persona").modal("hide"); 
+          
+        }else{
           ver_errores(e);
         }
-      } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }       
-      
+      } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }      
+
       $("#guardar_registro_persona").html('Guardar Cambios').removeClass('disabled');
     },
+    xhr: function () {
+      var xhr = new window.XMLHttpRequest();
+      xhr.upload.addEventListener("progress", function (evt) {
+        if (evt.lengthComputable) {
+          var percentComplete = (evt.loaded / evt.total)*100;
+          /*console.log(percentComplete + '%');*/
+          $("#barra_progress_persona").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
+        }
+      }, false);
+      return xhr;
+    },
+    beforeSend: function () {
+      $("#guardar_registro_persona").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
+      $("#barra_progress_persona").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
+      $("#barra_progress_persona_div").show();
+    },
+    complete: function () {
+      $("#barra_progress_persona").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
+      $("#barra_progress_persona_div").hide();
+    },
+    error: function (jqXhr) { ver_errores(jqXhr); },
   });
 }
 
