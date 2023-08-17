@@ -31,7 +31,7 @@ function init() {
 
   $("#lCompras").addClass("active");
 
-  $("#idproyecto").val(localStorage.getItem("nube_idproyecto"));
+  $("#idproyecto").val(localStorage.getItem("nube_id_sucursal"));
 
   // ══════════════════════════════════════ S E L E C T 2 ══════════════════════════════════════
   lista_select2("../ajax/ajax_general.php?op=select2Persona_por_tipo&tipo=3", '#idproveedor', null);
@@ -764,37 +764,37 @@ function mostrar_compra(idcompra_producto) {
 
       if (e.data.detalle) {
 
-        e.data.detalle.forEach((element, index) => {
+        e.data.detalle.forEach((val, index) => {
 
           var img = "";
 
-          if (element.imagen == "" || element.imagen == null) {
+          if (val.imagen == "" || val.imagen == null) {
             img = `../dist/docs/producto/img_perfil/producto-sin-foto.svg`;
           } else {
-            img = `../dist/docs/producto/img_perfil/${element.imagen}`;
+            img = `../dist/docs/producto/img_perfil/${val.imagen}`;
           }
 
           var fila = `
           <tr class="filas" id="fila${cont}">
             <td>
-              <button type="button" class="btn btn-warning btn-sm" onclick="mostrar_productos(${element.idproducto}, ${cont})"><i class="fas fa-pencil-alt"></i></button>
+              <button type="button" class="btn btn-warning btn-sm" onclick="mostrar_productos(${val.idproducto}, ${cont})"><i class="fas fa-pencil-alt"></i></button>
               <button type="button" class="btn btn-danger btn-sm" onclick="eliminarDetalle(${cont})"><i class="fas fa-times"></i></button></td>
             </td>
             <td>
-              <input type="hidden" name="idproducto[]" value="${element.idproducto}">
+              <input type="hidden" name="idproducto[]" value="${val.idproducto}">
               <div class="user-block text-nowrap">
-                <img class="profile-user-img img-responsive img-circle cursor-pointer img_perfil_${cont}" src="${img}" alt="user image" onerror="this.src='../dist/svg/404-v2.svg';" onclick="ver_img_producto('${img}', '${encodeHtml(element.nombre)}')">
-                <span class="username"><p class="mb-0 nombre_producto_${cont}" >${element.nombre}</p></span>
-                <span class="description categoria_${cont}"><b>Categoría: </b>${element.categoria}</span>
+                <img class="profile-user-img img-responsive img-circle cursor-pointer img_perfil_${cont}" src="${img}" alt="user image" onerror="this.src='../dist/svg/404-v2.svg';" onclick="ver_img_producto('${img}', '${encodeHtml(val.nombre)}')">
+                <span class="username"><p class="mb-0 nombre_producto_${cont}" >${val.nombre}</p></span>
+                <span class="description categoria_${cont}"><b>Categoría: </b>${val.categoria}</span>
               </div>
             </td>
-            <td> <span class="unidad_medida_${cont}">${element.unidad_medida}</span> <input class="unidad_medida_${cont}" type="hidden" name="unidad_medida[]" id="unidad_medida[]" value="${element.unidad_medida}"> <input class="categoria_${cont}" type="hidden" name="categoria[]" id="categoria[]" value="${element.categoria}"></td>
-            <td class="form-group"><input class="producto_${element.idproducto} producto_selecionado w-100px cantidad_${cont} form-control" type="number" name="cantidad[]" id="cantidad[]" value="${element.cantidad}" min="0.01" required onkeyup="modificarSubtotales()" onchange="modificarSubtotales()"></td>
-            <td class="hidden"><input class="w-135px input-no-border precio_sin_igv_${cont}" type="number" name="precio_sin_igv[]" id="precio_sin_igv[]" value="${element.precio_sin_igv}" readonly ></td>
-            <td class="hidden"><input class="w-135px input-no-border precio_igv_${cont}" type="number"  name="precio_igv[]" id="precio_igv[]" value="${element.igv}" readonly ></td>
-            <td class="form-group"><input type="number" class="w-135px precio_con_igv_${cont} form-control" type="number"  name="precio_con_igv[]" id="precio_con_igv[]" value="${parseFloat(element.precio_con_igv).toFixed(2)}" min="0.01" required onkeyup="modificarSubtotales();" onchange="modificarSubtotales();"></td>
-            <td class="form-group"><input type="number" class="w-135px form-control precio_venta_${cont}" name="precio_venta[]" id="precio_venta[]" value="${parseFloat(element.precio_venta).toFixed(2)}" min="0" ></td>
-            <td><input type="number" class="w-135px descuento_${cont}" name="descuento[]" value="${element.descuento}" onkeyup="modificarSubtotales()" onchange="modificarSubtotales()"></td>
+            <td> <span class="unidad_medida_${cont}">${val.unidad_medida}</span> <input class="unidad_medida_${cont}" type="hidden" name="unidad_medida[]" id="unidad_medida[]" value="${val.unidad_medida}"> <input class="categoria_${cont}" type="hidden" name="categoria[]" id="categoria[]" value="${val.categoria}"></td>
+            <td class="form-group"><input class="producto_${val.idproducto} producto_selecionado w-100px cantidad_${cont} form-control" type="number" name="cantidad[]" id="cantidad[]" value="${val.cantidad}" min="0.01" required onkeyup="modificarSubtotales()" onchange="modificarSubtotales()"></td>
+            <td class="hidden"><input class="w-135px input-no-border precio_sin_igv_${cont}" type="number" name="precio_sin_igv[]" id="precio_sin_igv[]" value="${val.precio_sin_igv}" readonly ></td>
+            <td class="hidden"><input class="w-135px input-no-border precio_igv_${cont}" type="number"  name="precio_igv[]" id="precio_igv[]" value="${val.igv}" readonly ></td>
+            <td class="form-group"><input type="number" class="w-135px precio_con_igv_${cont} form-control" type="number"  name="precio_con_igv[]" id="precio_con_igv[]" value="${parseFloat(val.precio_con_igv).toFixed(2)}" min="0.01" required onkeyup="modificarSubtotales();" onchange="modificarSubtotales();"></td>
+            <td class="form-group"><input type="number" class="w-135px form-control precio_venta_${cont}" name="precio_venta[]" id="precio_venta[]" value="${parseFloat(val.precio_venta).toFixed(2)}" min="0" ></td>
+            <td><input type="number" class="w-135px descuento_${cont}" name="descuento[]" value="${val.descuento}" onkeyup="modificarSubtotales()" onchange="modificarSubtotales()"></td>
             <td class="text-right"><span class="text-right subtotal_producto_${cont}" name="subtotal_producto" id="subtotal_producto">0.00</span></td>
             <td><button type="button" onclick="modificarSubtotales()" class="btn btn-info btn-sm"><i class="fas fa-sync"></i></button></td>
           </tr>`;
@@ -1312,11 +1312,11 @@ function habilitando_socio() {
 
 // abrimos el navegador de archivos
 $("#foto2_i").click(function () { $("#foto2").trigger("click"); });
-$("#foto2").change(function (e) { addImage(e, $("#foto2").attr("id"), "../dist/img/default/img_defecto_producto.jpg"); });
+$("#foto2").change(function (e) { addImage(e, $("#foto2").attr("id"), "../dist/img/default/img_defecto_producto.png"); });
 
 function foto2_eliminar() {
   $("#foto2").val("");
-  $("#foto2_i").attr("src", "../dist/img/default/img_defecto_producto.jpg");
+  $("#foto2_i").attr("src", "../dist/img/default/img_defecto_producto.png");
   $("#foto2_nombre").html("");
 }
 
@@ -1336,7 +1336,7 @@ function limpiar_producto() {
   $("#stock_pro").val('0.00').trigger("change");
   $("#descripcion_pro").val(""); 
 
-  $("#foto1_i").attr("src", "../dist/img/default/img_defecto_producto.jpg");
+  $("#foto1_i").attr("src", "../dist/img/default/img_defecto_producto.png");
   $("#foto1").val("");
   $("#foto1_actual").val("");
   $("#foto1_nombre").html(""); 

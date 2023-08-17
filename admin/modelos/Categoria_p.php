@@ -18,25 +18,25 @@ Class Categoria_p
 	{
 		//var_dump($nombre);die();
 		$sql="INSERT INTO `categoria_producto`(`nombre`, `descripcion`, user_created) VALUES ('$nombre', '$descripcion','$this->id_usr_sesion')";
-		$insertar =  ejecutarConsulta_retornarID($sql); 
-		if ($insertar['status'] == false) {  return $insertar; } 
-		
+		$insertar =  ejecutarConsulta_retornarID($sql); if ($insertar['status'] == false) {  return $insertar; } 
+		$id = $insertar['data'];
 		//add registro en nuestra bitacora
-		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('categoria_producto','".$insertar['data']."','Nueva categoría de insumos registrada','$this->id_usr_sesion')";
+		$sql_d = "$nombre, $descripcion";
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES (5, 'categoria_producto','$id','$sql_d','$this->id_usr_sesion')";
 		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }   
 		
 		return $insertar;
 	}
 
 	//Implementamos un método para editar registros
-	public function editar($idcategoria_producto,$nombre,$descripcion)
+	public function editar($idcategoria_producto, $nombre, $descripcion)
 	{
 		$sql="UPDATE categoria_producto SET nombre='$nombre', descripcion= '$descripcion',user_updated= '$this->id_usr_sesion' WHERE idcategoria_producto='$idcategoria_producto'";
-		$editar =  ejecutarConsulta($sql);
-		if ( $editar['status'] == false) {return $editar; } 
+		$editar =  ejecutarConsulta($sql); if ( $editar['status'] == false) {return $editar; } 
 	
 		//add registro en nuestra bitacora
-		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('categoria_producto','$idcategoria_producto','Categoría de insumos editada','$this->id_usr_sesion')";
+		$sql_d = "$idcategoria_producto, $nombre, $descripcion";
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES (6, 'categoria_producto','$idcategoria_producto','$sql_d','$this->id_usr_sesion')";
 		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }  
 	
 		return $editar;

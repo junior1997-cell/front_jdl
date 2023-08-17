@@ -136,9 +136,16 @@
     /* ══════════════════════════════════════ P R O V E E D O R -- C L I E N T E S  ══════════════════════════════════════ */
 
     public function select2_proveedor_cliente($tipo) {
-      $sql = "SELECT idpersona, nombres, tipo_documento, numero_documento, es_socio, foto_perfil FROM persona 
+      $sql = "SELECT idpersona, nombres, tipo_documento, numero_documento, foto_perfil FROM persona 
       WHERE idtipo_persona ='$tipo' AND estado='1' AND estado_delete ='1'";
+      return ejecutarConsulta($sql);
+      // var_dump($return);die();
+    }
 
+    /* ══════════════════════════════════════ S U C U R S A L  ══════════════════════════════════════ */
+
+    public function select2_sucursal() {
+      $sql = "SELECT * FROM sucursal WHERE estado='1' AND estado_delete ='1'";
       return ejecutarConsulta($sql);
       // var_dump($return);die();
     }
@@ -162,6 +169,13 @@
       return ejecutarConsulta($sql);
     }
 
+    /* ══════════════════════════════════════ M A R C A ════════════════════════════ */
+
+    public function select2_marca() {
+      $sql = "SELECT idmarca, nombre_marca FROM marca WHERE idmarca > 1 AND estado=1 and estado_delete=1;";
+      return ejecutarConsulta($sql);
+    }
+
     /* ══════════════════════════════════════ U N I D A D   D E   M E D I D A ══════════════════════════════════════ */
 
     public function select2_unidad_medida() {
@@ -181,21 +195,55 @@
       return ejecutarConsulta($sql);
     }
 
-    /* ══════════════════════════════════════ T I P O   T I E R R A   C O N C R E T O ══════════════════════════════════════ */
+    /* ══════════════════════════════════════ P R O D U C T O ══════════════════════════════════════ */
+    public function mostrar_producto($idproducto)  {
+      $data = []; $array_marca = []; $array_marca_name = [];
 
-    public function select2_tierra_concreto() {
-      $sql = "SELECT idtipo_tierra_concreto as id, nombre, modulo FROM tipo_tierra_concreto  WHERE estado='1' AND estado_delete = '1' AND idtipo_tierra_concreto > 1  ORDER BY modulo ASC;";
-      return ejecutarConsulta($sql);
+      $sql = "SELECT p.idproducto, p.idcategoria_producto, p.idunidad_medida, p.idmarca, p.idcolor, p.nombre, p.contenido_neto, p.precio_venta, 
+      p.precio_compra, p.stock, p.descripcion, p.imagen,
+      um.nombre as unidad_medida, um.abreviatura, cp.nombre as nombre_categoria, c.nombre_color, m.nombre_marca
+      FROM producto AS p, unidad_medida AS um, categoria_producto as cp, color AS c, marca AS m
+      WHERE p.idunidad_medida = um.idunidad_medida AND p.idcategoria_producto = cp.idcategoria_producto AND p.idcolor = c.idcolor 
+      AND p.idmarca = m.idmarca AND p.idproducto = '$idproducto'";
+      $activos = ejecutarConsultaSimpleFila($sql); if ($activos['status'] == false) { return  $activos;}
+
+      if ( empty($activos['data'])  ) {
+        return $retorno = ['status'=> true, 'message' => 'Salió todo ok,', 'data' => null ];
+      }else{
+       
+        
+        $data = [
+          'idproducto'          => $activos['data']['idproducto'],
+          'idcategoria_producto'=> $activos['data']['idcategoria_producto'],
+          'idunidad_medida'     => $activos['data']['idunidad_medida'],
+          'idmarca'             => $activos['data']['idmarca'],
+          'idcolor'             => $activos['data']['idcolor'],
+          'nombre_producto'     => decodeCadenaHtml($activos['data']['nombre']),
+          'contenido_neto'      => $activos['data']['contenido_neto'],
+          'precio_venta'        => (empty($activos['data']['precio_venta']) ? 0 : floatval($activos['data']['precio_venta']) ),
+          'precio_compra'       => (empty($activos['data']['precio_compra']) ? 0 : floatval($activos['data']['precio_compra']) ),
+          'stock'               => (empty($activos['data']['stock']) ? 0 : floatval($activos['data']['stock']) ),
+          'descripcion'         => $activos['data']['descripcion'],
+          'imagen'              => $activos['data']['imagen'],
+          'unidad_medida'       => $activos['data']['unidad_medida'],
+          'abreviatura'         => $activos['data']['abreviatura'],   
+          'nombre_categoria'    => $activos['data']['nombre_categoria'],
+          'nombre_color'        => $activos['data']['nombre_color'],
+          'nombre_marca'        => $activos['data']['nombre_marca'],          
+                 
+        ];
+
+        return $retorno = ['status'=> true, 'message' => 'Salió todo ok,', 'data' => $data ];  
+      }       
     }
-
-
     //funcion para mostrar registros de prosuctos
     public function tblaProductos() {
-      $sql = "SELECT p.idproducto, p.idcategoria_producto, p.idunidad_medida, p.nombre, p.marca, p.contenido_neto, p.precio_unitario, p.precio_compra_actual,
+      $sql = "SELECT p.idproducto, p.idcategoria_producto, p.idunidad_medida, p.nombre, p.contenido_neto, p.precio_venta, p.precio_compra,
       p.stock, p.descripcion, p.imagen, p.estado,  
-      um.nombre as nombre_medida, cp.nombre AS categoria
-      FROM producto as p, unidad_medida AS um, categoria_producto AS cp
-      WHERE p.idcategoria_producto = cp.idcategoria_producto and p.idunidad_medida = um.idunidad_medida and p.estado='1' AND p.estado_delete='1' ORDER BY p.nombre ASC";
+      um.nombre as nombre_medida, cp.nombre AS categoria, m.nombre_marca, c.nombre_color
+      FROM producto as p, unidad_medida AS um, categoria_producto AS cp, marca as m, color as c
+      WHERE p.idcategoria_producto = cp.idcategoria_producto and p.idunidad_medida = um.idunidad_medida and p.idmarca = m.idmarca and p.idcolor = c.idcolor
+      and p.estado='1' AND p.estado_delete='1' ORDER BY p.nombre ASC";
       return ejecutarConsulta($sql);
     }
     /* ══════════════════════════════════════ S E R V i C I O S  M A Q U I N A RI A ════════════════════════════ */
@@ -210,14 +258,7 @@
     public function select2_empresa_a_cargo() {
       $sql3 = "SELECT idempresa_a_cargo as id, razon_social as nombre, tipo_documento, numero_documento, logo FROM empresa_a_cargo WHERE estado ='1' AND estado_delete ='1' AND idempresa_a_cargo > 1 ;";
       return ejecutarConsultaArray($sql3);
-    }
-
-    /* ══════════════════════════════════════ M A R C A S   D E   A C T I V O S ════════════════════════════ */
-
-    public function marcas_activos() {
-      $sql = "SELECT idmarca, nombre_marca FROM marca WHERE estado=1 and estado_delete=1;";
-      return ejecutarConsulta($sql);
-    }
+    }   
 
   }
 

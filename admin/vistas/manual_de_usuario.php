@@ -915,23 +915,7 @@
                                 </div>
                               </div>
                               
-                              <!--img-material-->
-                              <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                <label for="imagen1">Imagen</label>
-                                <div style="text-align: center;">
-                                  <img
-                                    onerror="this.src='../dist/img/default/img_defecto_materiales.png';"
-                                    src="../dist/img/default/img_defecto_materiales.png"
-                                    class="img-thumbnail"
-                                    id="imagen1_i"
-                                    style="cursor: pointer !important; height: 100% !important;"
-                                    width="auto"
-                                  />
-                                  <input style="display: none;" type="file" name="imagen1" id="imagen1" accept="image/*" />
-                                  <input type="hidden" name="imagen1_actual" id="imagen1_actual" />
-                                  <div class="text-center" id="imagen1_nombre"><!-- aqui va el nombre de la FOTO --></div>
-                                </div>
-                              </div>
+                              
 
                               <!-- Ficha tecnica -->
                               <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">

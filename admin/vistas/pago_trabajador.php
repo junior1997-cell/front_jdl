@@ -355,8 +355,8 @@
                                   <input style="display: none;" id="doc1" type="file" name="doc1" accept="application/pdf, image/*" class="docpdf" />
                                 </div>
                                 <div class="col-6 col-md-6 text-center">
-                                  <button type="button" class="btn btn-info btn-block btn-xs" onclick="re_visualizacion(1,'pago_trabajador', 'comprobante');"><i class="fas fa-redo"></i> Recargar.</button>
-                                </div>
+                                  <button type="button" class="btn btn-info btn-block btn-xs" onclick="re_visualizacion(1,'admin/dist/docs/pago_trabajador/comprobante');"><i class="fas fa-redo"></i> Recargar.</button>
+                                </div> 
                               </div>
                               <div id="doc1_ver" class="text-center mt-4">
                                 <img src="../dist/svg/doc_uploads.svg" alt="" width="50%" />

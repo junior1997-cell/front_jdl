@@ -1,13 +1,12 @@
-var tabla;
+var tabla_color;
 
 //Función que se ejecuta al inicio
 function init() {
   
   $("#bloc_Recurso").addClass("menu-open");
-
   $("#mRecurso").addClass("active");
 
-  listar();
+  listar_tabla_color();
 
   $("#guardar_registro_color").on("click", function (e) { $("#submit-form-color").submit(); });
 
@@ -24,7 +23,7 @@ function init() {
 }
 
 //Función limpiar
-function limpiar() {
+function limpiar_form_color() {
   $("#guardar_registro_color").html('Guardar Cambios').removeClass('disabled');
   //Mostramos los Materiales
   $("#idcolor").val("");
@@ -38,16 +37,18 @@ function limpiar() {
 }
 
 //Función Listar
-function listar() {
+function listar_tabla_color() {
 
-  tabla=$('#tabla-colores').dataTable({
+  tabla_color = $('#tabla-color').dataTable({
     responsive: true,
     lengthMenu: [[ -1, 6, 10, 25, 75, 100, 200,], ["Todos", 6, 10, 25, 75, 100, 200, ]],//mostramos el menú de registros a revisar
     aProcessing: true,//Activamos el procesamiento del datatables
     aServerSide: true,//Paginación y filtrado realizados por el servidor
-    dom: '<Bl<f>rtip>',//Definimos los elementos del control de tabla
+    dom:"<'row'<'col-md-3'B><'col-md-3 float-left'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", //Definimos los elementos del control de tabla
     buttons: [
-      { extend: 'copyHtml5', footer: true, exportOptions: { columns: [0,2,3], } }, { extend: 'excelHtml5', footer: true, exportOptions: { columns: [0,2,3], } }, { extend: 'pdfHtml5', footer: false, exportOptions: { columns: [0,2,3], } } ,
+      { extend: 'copyHtml5', exportOptions: { columns: [0,2,3], }, footer: true, text: `<i class="fas fa-copy" data-toggle="tooltip" data-original-title="Copiar"></i>`, className: "btn bg-gradient-gray"  }, 
+      { extend: 'excelHtml5', exportOptions: { columns: [0,2,3], }, footer: true, text: `<i class="far fa-file-excel fa-lg" data-toggle="tooltip" data-original-title="Excel"></i>`, className: "btn bg-gradient-success",  }, 
+      { extend: 'pdfHtml5', exportOptions: { columns: [0,2,3], }, footer: false, text: `<i class="far fa-file-pdf fa-lg" data-toggle="tooltip" data-original-title="PDF"></i>`, className: "btn bg-gradient-danger",  } ,
     ],
     ajax:{
       url: '../ajax/color.php?op=listar',
@@ -73,12 +74,12 @@ function listar() {
 }
 
 //Función para guardar o editar
-function guardaryeditar_color(e) {
+function guardar_y_editar_color(e) {
   // e.preventDefault(); //No se activará la acción predeterminada del evento
   var formData = new FormData($("#form-color")[0]);
  
   $.ajax({
-    url: "../ajax/color.php?op=guardaryeditar",
+    url: "../ajax/color.php?op=guardar_y_editar_color",
     type: "POST",
     data: formData,
     contentType: false,
@@ -87,11 +88,8 @@ function guardaryeditar_color(e) {
       e = JSON.parse(e);  console.log(e);  
       if (e.status == true) {
         Swal.fire("Correcto!", "Color registrado correctamente.", "success");
-
-	      tabla.ajax.reload(null, false);
-         
-				limpiar();
-
+	      tabla_color.ajax.reload(null, false);         
+				limpiar_form_color();
         $("#modal-agregar-color").modal("hide");
         $("#guardar_registro_color").html('Guardar Cambios').removeClass('disabled');
 			}else{
@@ -99,30 +97,22 @@ function guardaryeditar_color(e) {
 			}
     },
     xhr: function () {
-
       var xhr = new window.XMLHttpRequest();
-
       xhr.upload.addEventListener("progress", function (evt) {
-
         if (evt.lengthComputable) {
-
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress_color").css({"width": percentComplete+'%'});
-
-          $("#barra_progress_color").text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress_color").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
     },
     beforeSend: function () {
       $("#guardar_registro_color").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress_color").css({ width: "0%",  });
-      $("#barra_progress_color").text("0%");
+      $("#barra_progress_color").css({ width: "0%",  }).text("0%");
     },
     complete: function () {
-      $("#barra_progress_color").css({ width: "0%", });
-      $("#barra_progress_color").text("0%");
+      $("#barra_progress_color").css({ width: "0%", }).text("0%");
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
@@ -130,10 +120,10 @@ function guardaryeditar_color(e) {
 
 function mostrar(idcolor) {
   $(".tooltip").removeClass("show").addClass("hidde");
-  $("#cargando-1-fomulario").hide();
-  $("#cargando-2-fomulario").show();
+  $("#cargando-7-fomulario").hide();
+  $("#cargando-8-fomulario").show();
   
-  limpiar();
+  limpiar_form_color();
 
   $("#modal-agregar-color").modal("show")
 
@@ -149,8 +139,8 @@ function mostrar(idcolor) {
         $("#hexadecimal").val(e.data.hexadecimal).trigger('change');
       }       
 
-      $("#cargando-1-fomulario").show();
-      $("#cargando-2-fomulario").hide();
+      $("#cargando-7-fomulario").show();
+      $("#cargando-8-fomulario").hide();
     } else {
       ver_errores(e);
     }
@@ -169,7 +159,7 @@ function eliminar_color(idcolor, nombre) {
     `<b class="text-danger"><del>${nombre}</del></b> <br> En <b>papelera</b> encontrará este registro! <br> Al <b>eliminar</b> no tendrá acceso a recuperar este registro!`, 
     function(){ sw_success('♻️ Papelera! ♻️', "Tu registro ha sido reciclado." ) }, 
     function(){ sw_success('Eliminado!', 'Tu registro ha sido Eliminado.' ) }, 
-    function(){ tabla.ajax.reload(null, false) },
+    function(){ tabla_color.ajax.reload(null, false) },
     false, 
     false, 
     false,
@@ -193,25 +183,20 @@ $(function () {
     errorElement: "span",
 
     errorPlacement: function (error, element) {
-
       error.addClass("invalid-feedback");
-
       element.closest(".form-group").append(error);
     },
 
     highlight: function (element, errorClass, validClass) {
-
       $(element).addClass("is-invalid").removeClass("is-valid");
     },
 
     unhighlight: function (element, errorClass, validClass) {
-
-      $(element).removeClass("is-invalid").addClass("is-valid");
-   
+      $(element).removeClass("is-invalid").addClass("is-valid");   
     },
     submitHandler: function (e) { 
       $(".modal-body").animate({ scrollTop: $(document).height() }, 600); // Scrollea hasta abajo de la página
-      guardaryeditar_color(e);      
+      guardar_y_editar_color(e);      
     },
 
   });

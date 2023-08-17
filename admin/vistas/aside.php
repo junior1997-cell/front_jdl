@@ -86,8 +86,7 @@
               
               <!-- Producto para la empresa -->
               <li class="nav-item ">
-                <a href="producto.php" class="nav-link" id="lAllProducto">                  
-                  <img src="../dist/svg/plomo-abono-ico.svg" class="nav-icon lAllProducto-img" alt="" style="width: 21px !important;" >
+                <a href="producto.php" class="nav-link" id="lAllProducto">    <i class="nav-icon fa-solid fa-computer"></i>    
                   <p>Producto</p>
                 </a>
               </li>              
@@ -247,11 +246,20 @@
               </li>
             <?php  }  ?>
 
-            <?php if ($_SESSION['otro_ingreso']==1) {  ?>
+            <?php if ($_SESSION['comprobante']==1) {  ?>
               <li class="nav-item ">
                 <a href="comprobante.php" class="nav-link pl-2" id="lOtroIngreso">             
-                  <i class="nav-icon fas fa-hand-holding-usd"></i>
+                  <i class="nav-icon fa-solid fa-file-invoice"></i>
                   <p>Comprobantes</p>
+                </a>
+              </li>
+            <?php  }  ?>
+
+            <?php if ($_SESSION['cotizacion_venta']==1) {  ?>
+              <li class="nav-item ">
+                <a href="cotizacion_venta.php" class="nav-link pl-2" id="lCotizacionVenta">             
+                  <i class="nav-icon fas fa-hand-holding-usd"></i>
+                  <p>Cotización</p>
                 </a>
               </li>
             <?php  }  ?>

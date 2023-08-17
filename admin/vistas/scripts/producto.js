@@ -15,13 +15,17 @@ function init() {
 
   lista_select2("../ajax/ajax_general.php?op=select2UnidaMedida", '#unidad_medida', null);
   lista_select2("../ajax/ajax_general.php?op=select2Categoria", '#categoria_producto', null);
+  lista_select2("../ajax/ajax_general.php?op=select2Marca", '#idmarca', null);
+  lista_select2("../ajax/ajax_general.php?op=select2Color", '#idcolor', null);
 
   // ══════════════════════════════════════ G U A R D A R   F O R M ══════════════════════════════════════
   $("#guardar_registro").on("click", function (e) { $("#submit-form-materiales").submit(); });
 
-   // ══════════════════════════════════════ INITIALIZE SELECT2 ══════════════════════════════════════
+  // ══════════════════════════════════════ INITIALIZE SELECT2 ══════════════════════════════════════
   $("#unidad_medida").select2({ theme: "bootstrap4", placeholder: "Seleccinar una unidad", allowClear: true, });
   $("#categoria_producto").select2({ theme: "bootstrap4", placeholder: "Seleccinar una categoria", allowClear: true, });
+  $("#idmarca").select2({ theme: "bootstrap4", placeholder: "Seleccinar una marca", allowClear: true, });
+  $("#idcolor").select2({ templateResult: templateColor, theme: "bootstrap4", placeholder: "Seleccinar una color", allowClear: true, });
 // ══════════════════════════════════════ I N I T I A L I Z E   N U M B E R   F O R M A T ══════════════════════════════════════
   //$('#precio_unitario').number( true, 2 );
   //$('#precio_unitario').number( true, 2 );
@@ -39,11 +43,11 @@ function templateColor (state) {
 }
 // abrimos el navegador de archivos
 $("#foto1_i").click(function () { $("#foto1").trigger("click"); });
-$("#foto1").change(function (e) { addImage(e, $("#foto1").attr("id"), "../dist/img/default/img_defecto_producto.jpg"); });
+$("#foto1").change(function (e) { addImage(e, $("#foto1").attr("id"), "../dist/img/default/img_defecto_producto.png"); });
 
 function foto1_eliminar() {
   $("#foto1").val("");
-  $("#foto1_i").attr("src", "../dist/img/default/img_defecto_producto.jpg");
+  $("#foto1_i").attr("src", "../dist/img/default/img_defecto_producto.png");
   $("#foto1_nombre").html("");
 }
 
@@ -58,13 +62,14 @@ function limpiar_form_material() {
   $("#nombre_producto").val("");  
   $("#categoria_producto").val("").trigger("change");
   $("#unidad_medida").val("null").trigger("change");
-  $("#marca").val(""); 
+  $("#idmarca").val("").trigger("change");
+  $("#idcolor").val("").trigger("change");
   $("#contenido_neto").val(1).trigger("change");  
   $("#precio_unitario").val('0.00');  
   $("#stock").val('0.00').trigger("change");
   $("#descripcion").val(""); 
 
-  $("#foto1_i").attr("src", "../dist/img/default/img_defecto_producto.jpg");
+  $("#foto1_i").attr("src", "../dist/img/default/img_defecto_producto.png");
   $("#foto1").val("");
   $("#foto1_actual").val("");
   $("#foto1_nombre").html("");  
@@ -238,7 +243,8 @@ function mostrar(idproducto) {
     if (e.status == true) {
       $("#idproducto").val(e.data.idproducto);
       $("#nombre_producto").val(e.data.nombre);
-      $("#marca").val(e.data.marca).trigger("change");  
+      $("#idmarca").val(e.data.idmarca).trigger("change");  
+      $("#idcolor").val(e.data.idcolor).trigger("change");  
       $("#descripcion").val(e.data.descripcion);
       $("#stock").val(e.data.stock); 
       $("#contenido_neto").val(e.data.contenido_neto);  
@@ -323,6 +329,14 @@ function verdatos(idproducto){
                   <td>${e.data.nombre_medida}</td>
                 </tr>  
                 <tr data-widget="expandable-table" aria-expanded="false">
+                  <th>Marca</th>
+                  <td>${e.data.marca}</td>
+                </tr>  
+                <tr data-widget="expandable-table" aria-expanded="false">
+                  <th>Color</th>
+                  <td> <b style="background-color: ${e.data.hexadecimal != '' ? `${e.data.hexadecimal}`: '#ffffff00'}; color: ${e.data.hexadecimal != '' ? `${e.data.hexadecimal}`: '#ffffff00'};" class="mr-2"><i class="fas fa-square"></i></b>${e.data.color}</td>
+                </tr>  
+                <tr data-widget="expandable-table" aria-expanded="false">
                   <th>Precio  </th>
                   <td>${e.data.precio_unitario}</td>
                 </tr> 
@@ -388,14 +402,16 @@ init();
 $(function () {   
 
   $('#unidad_medida').on('change', function() { $(this).trigger('blur'); });
-  $('#marca').on('change', function() { $(this).trigger('blur'); });
+  $('#idmarca').on('change', function() { $(this).trigger('blur'); });
+  $('#idcolor').on('change', function() { $(this).trigger('blur'); });
   $('#categoria_producto').on('change', function() { $(this).trigger('blur'); });
 
   $("#form-materiales").validate({
     rules: {
       nombre_producto:    { required: true, minlength:3, maxlength:200},
       categoria_producto: { required: true },
-      marca:              { required: true },
+      idmarca:              { required: true },
+      idcolor:              { required: true },
       unidad_medida:      { required: true },
       contenido_neto:     {  min: 1, number: true },
       //precio_unitario:    { required: true },
@@ -405,7 +421,8 @@ $(function () {
     messages: {
       nombre_producto:    { required: "Por favor ingrese nombre", minlength:"Minimo 3 caracteres", maxlength:"Maximo 200 caracteres" },
       categoria_producto: { required: "Campo requerido", },
-      marca:              { required: "Campo requerido" },
+      idmarca:              { required: "Campo requerido" },
+      idcolor:              { required: "Campo requerido" },
       unidad_medida:      { required: "Campo requerido" },
       contenido_neto:     { minlength: "Minimo 3 caracteres", number:"Tipo nùmerico" },
       //precio_unitario:    { required: "Ingresar precio compra", },      
@@ -434,10 +451,15 @@ $(function () {
   });
 
   $('#unidad_medida').rules('add', { required: true, messages: {  required: "Campo requerido" } });
-  $('#marca').rules('add', { required: true, messages: {  required: "Campo requerido" } });
+  $('#idmarca').rules('add', { required: true, messages: {  required: "Campo requerido" } });
+  $('#idcolor').rules('add', { required: true, messages: {  required: "Campo requerido" } });
   $('#categoria_producto').rules('add', { required: true, messages: {  required: "Campo requerido" } });
 
 });
 
 // .....::::::::::::::::::::::::::::::::::::: F U N C I O N E S    A L T E R N A S  :::::::::::::::::::::::::::::::::::::::..
 
+function reload_unidad_medida(){ lista_select2("../ajax/ajax_general.php?op=select2UnidaMedida", '#unidad_medida', null, '.charge_unidad_medida', `(unico)`); }
+function reload_categoria(){ lista_select2("../ajax/ajax_general.php?op=select2Categoria", '#categoria_producto', null, '.charge_categoria', `(unico)`); }
+function reload_marca(){ lista_select2("../ajax/ajax_general.php?op=select2Marca", '#idmarca', null, '.charge_marca', `(unico)`); }
+function reload_color(){ lista_select2("../ajax/ajax_general.php?op=select2Color", '#idcolor', null, '.charge_color', `(unico)`); }

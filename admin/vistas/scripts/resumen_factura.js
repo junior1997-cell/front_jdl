@@ -378,8 +378,8 @@ function filtros(prova) {
   $('.cargando_visto_bueno').show().html(`<i class="fas fa-spinner fa-pulse fa-sm"></i> Buscando ${nombre_empresa_a_cargo} ${nombre_proveedor} ${nombre_comprobante}...`);
   // console.log(fecha_1, fecha_2, id_proveedor, comprobante);
 
-  tbla_principal(localStorage.getItem("nube_idproyecto"), empresa_a_cargo, fecha_1, fecha_2, id_proveedor, comprobante, modulo_r);
-  tbla_principal_visto_bueno(localStorage.getItem("nube_idproyecto"), empresa_a_cargo, fecha_1, fecha_2, id_proveedor, comprobante, modulo_r);
+  tbla_principal(localStorage.getItem("nube_id_sucursal"), empresa_a_cargo, fecha_1, fecha_2, id_proveedor, comprobante, modulo_r);
+  tbla_principal_visto_bueno(localStorage.getItem("nube_id_sucursal"), empresa_a_cargo, fecha_1, fecha_2, id_proveedor, comprobante, modulo_r);
 }
 
 function select_modulo(modulo) {  
@@ -411,8 +411,8 @@ function select_modulo(modulo) {
   $('.cargando_visto_bueno').show().html(`<i class="fas fa-spinner fa-pulse fa-sm"></i> Buscando ${nombre_empresa_a_cargo} ${nombre_proveedor} ${nombre_comprobante}...`);
   // console.log(fecha_1, fecha_2, id_proveedor, comprobante);
 
-  tbla_principal(localStorage.getItem("nube_idproyecto"), empresa_a_cargo, fecha_1, fecha_2, id_proveedor, comprobante, modulo);
-  tbla_principal_visto_bueno(localStorage.getItem("nube_idproyecto"), empresa_a_cargo, fecha_1, fecha_2, id_proveedor, comprobante, modulo);
+  tbla_principal(localStorage.getItem("nube_id_sucursal"), empresa_a_cargo, fecha_1, fecha_2, id_proveedor, comprobante, modulo);
+  tbla_principal_visto_bueno(localStorage.getItem("nube_id_sucursal"), empresa_a_cargo, fecha_1, fecha_2, id_proveedor, comprobante, modulo);
 }
 
 // ══════════════════════════════════════  SECCION - DOWNLOAD  ══════════════════════════════════════ 

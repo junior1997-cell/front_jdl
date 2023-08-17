@@ -25,7 +25,8 @@
       $idcategoria_producto = isset($_POST["categoria_producto"]) ? limpiarCadena($_POST["categoria_producto"]) : "" ;
       $unidad_medida        = isset($_POST["unidad_medida"]) ? limpiarCadena($_POST["unidad_medida"]) : "" ;
       $nombre_producto      = isset($_POST["nombre_producto"]) ? encodeCadenaHtml($_POST["nombre_producto"]) : "" ;
-      $marca                = isset($_POST["marca"]) ? encodeCadenaHtml($_POST["marca"]) : "" ;
+      $idmarca              = isset($_POST["idmarca"]) ? encodeCadenaHtml($_POST["idmarca"]) : "" ;
+      $idcolor              = isset($_POST["idcolor"]) ? encodeCadenaHtml($_POST["idcolor"]) : "" ;
       $contenido_neto       = isset($_POST["contenido_neto"]) ? limpiarCadena($_POST["contenido_neto"]) : "" ;
       $descripcion          = isset($_POST["descripcion"]) ? encodeCadenaHtml($_POST["descripcion"]) : "" ;
 
@@ -47,7 +48,7 @@
 
           if (empty($idproducto)) {
            
-            $rspta = $producto->insertar($idcategoria_producto, $unidad_medida, $nombre_producto, $marca, $contenido_neto, $descripcion, $imagen1 );            
+            $rspta = $producto->insertar($idcategoria_producto, $unidad_medida, $nombre_producto, $idmarca, $idcolor, $contenido_neto, $descripcion, $imagen1 );            
             echo json_encode( $rspta, true);
 
           } else {
@@ -59,7 +60,7 @@
               if ( !empty( $img1_ant ) ) { unlink("../dist/docs/producto/img_perfil/" . $img1_ant); }
             }
             
-            $rspta = $producto->editar($idproducto, $idcategoria_producto, $unidad_medida, $nombre_producto, $marca, $contenido_neto, $descripcion, $imagen1 );            
+            $rspta = $producto->editar($idproducto, $idcategoria_producto, $unidad_medida, $nombre_producto, $idmarca, $idcolor, $contenido_neto, $descripcion, $imagen1 );            
             echo json_encode( $rspta, true) ;
           }
         break;
@@ -111,17 +112,17 @@
                 "3" => '<div class="user-block">'.
                   '<img class="profile-user-img img-responsive img-circle cursor-pointer" src="../dist/docs/producto/img_perfil/' . $imagen . '" alt="user image" onerror="'.$imagen_error.'" onclick="ver_perfil(\'../dist/docs/producto/img_perfil/' . $imagen . '\', \''.encodeCadenaHtml($reg->nombre_medida).'\');" data-toggle="tooltip" data-original-title="Ver imagen">
                   <span class="username"><p class="mb-0">' . $reg->nombre . '</p></span>
-                  <span class="description"><b>Marca: </b>' . $reg->marca . '</span>
+                  <span class="description"><b>Marca: </b>' . $reg->nombre_marca .' | <b>Color: </b>'. $reg->nombre_color. '</span>
                 </div>' . $toltip,
                 "4" =>  $reg->categoria,
                 "5" => $reg->nombre_medida,     
-                "6" => $reg->precio_unitario,
+                "6" => $reg->precio_venta,
                 "7" =>  '<span class="badge '.$clas_stok.' font-size-14px">'.$reg->stock.'</span>',
                 "8" => $reg->contenido_neto,
                 "9" => '<textarea cols="30" rows="1" class="textarea_datatable" readonly="">' . $reg->descripcion . '</textarea>',
 
                 "10" => $reg->nombre,
-                "11" => $reg->marca                  
+                "11" => $reg->nombre_marca                  
               ];
             }
   

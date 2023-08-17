@@ -17,11 +17,11 @@ Class Unidades_m
 	public function insertar($nombre,$abreviatura,$descripcion)
 	{
 		$sql="INSERT INTO unidad_medida (nombre,abreviatura, descripcion, user_created)VALUES ('$nombre','$abreviatura', '$descripcion','$this->id_usr_sesion')";
-		$intertar =  ejecutarConsulta_retornarID($sql); 
-		if ($intertar['status'] == false) {  return $intertar; } 
+		$intertar =  ejecutarConsulta_retornarID($sql); if ($intertar['status'] == false) {  return $intertar; } 
 		
 		//add registro en nuestra bitacora
-		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('unidad_medida','".$intertar['data']."','Nueva unidad medida registrada','$this->id_usr_sesion')";
+		$sql_d = "$nombre,$abreviatura,$descripcion";
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES (5, 'unidad_medida','".$intertar['data']."','$sql_d','$this->id_usr_sesion')";
 		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }   
 		
 		return $intertar;
@@ -31,11 +31,11 @@ Class Unidades_m
 	public function editar($idunidad_medida,$nombre,$abreviatura,$descripcion)
 	{
 		$sql="UPDATE unidad_medida SET nombre='$nombre',abreviatura='$abreviatura', descripcion = '$descripcion',user_updated= '$this->id_usr_sesion' WHERE idunidad_medida='$idunidad_medida'";
-		$editar =  ejecutarConsulta($sql);
-		if ( $editar['status'] == false) {return $editar; } 
+		$editar =  ejecutarConsulta($sql); if ( $editar['status'] == false) {return $editar; } 
 	
 		//add registro en nuestra bitacora
-		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('unidad_medida','$idunidad_medida','Unidad medida editada','$this->id_usr_sesion')";
+		$sql_d = "$idunidad_medida,$nombre,$abreviatura,$descripcion";
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES (6, 'unidad_medida','$idunidad_medida','$sql_d','$this->id_usr_sesion')";
 		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }  
 	
 		return $editar;
@@ -45,12 +45,10 @@ Class Unidades_m
 	public function desactivar($idunidad_medida)
 	{
 		$sql="UPDATE unidad_medida SET estado='0',user_trash= '$this->id_usr_sesion' WHERE idunidad_medida='$idunidad_medida'";
-		$desactivar= ejecutarConsulta($sql);
-
-		if ($desactivar['status'] == false) {  return $desactivar; }
+		$desactivar= ejecutarConsulta($sql); if ($desactivar['status'] == false) {  return $desactivar; }
 		
 		//add registro en nuestra bitacora
-		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('unidad_medida','".$idunidad_medida."','Unidad de medida desactivada','$this->id_usr_sesion')";
+		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES (2, 'unidad_medida','$idunidad_medida','$idunidad_medida','$this->id_usr_sesion')";
 		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }   
 		
 		return $desactivar;
@@ -67,11 +65,10 @@ Class Unidades_m
 	public function eliminar($idunidad_medida)
 	{
 		$sql="UPDATE unidad_medida SET estado_delete='0',user_delete= '$this->id_usr_sesion' WHERE idunidad_medida='$idunidad_medida'";
-		$eliminar =  ejecutarConsulta($sql);
-		if ( $eliminar['status'] == false) {return $eliminar; }  
+		$eliminar =  ejecutarConsulta($sql); if ( $eliminar['status'] == false) {return $eliminar; }  
 		
 		//add registro en nuestra bitacora
-		$sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES ('unidad_medida','$idunidad_medida','Unidad de medida Eliminaao','$this->id_usr_sesion')";
+		$sql = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES (4, 'unidad_medida','$idunidad_medida','$idunidad_medida','$this->id_usr_sesion')";
 		$bitacora = ejecutarConsulta($sql); if ( $bitacora['status'] == false) {return $bitacora; }  
 		
 		return $eliminar;

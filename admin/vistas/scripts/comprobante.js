@@ -363,7 +363,7 @@ function modal_comprobante(comprobante,tipo,numero_comprobante) {
   var dia_actual = moment().format('DD-MM-YYYY');
   $(".nombre_comprobante").html(`${tipo}-${numero_comprobante}`);
   $('#modal-ver-comprobante').modal("show");
-  $('#ver_fact_pdf').html(doc_view_extencion(comprobante, 'comprobante', 'comprobante', '100%', '550'));
+  $('#ver_fact_pdf').html(doc_view_extencion(comprobante, 'admin/dist/docs/comprobante/comprobante', '100%', '550'));
 
   if (DocExist(`admin/dist/docs/comprobante/comprobante/${comprobante}`) == 200) {
     $("#iddescargar").attr("href","../dist/docs/comprobante/comprobante/"+comprobante).attr("download", `${tipo}-${numero_comprobante}  - ${dia_actual}`).removeClass("disabled");
@@ -463,7 +463,7 @@ function mostrar(idcomprobante) {
       $("#doc_old_1").val(e.data.comprobante);
       $("#doc1_nombre").html(`<div class="row"> <div class="col-md-12"><i>Baucher.${extrae_extencion(e.data.comprobante)}</i></div></div>`);
       // cargamos la imagen adecuada par el archivo
-      $("#doc1_ver").html(doc_view_extencion(e.data.comprobante,'comprobante', 'comprobante', '100%', '210' ));            
+      $("#doc1_ver").html(doc_view_extencion(e.data.comprobante,'admin/dist/docs/comprobante/comprobante', '100%', '210' ));            
     }
 
     $("#cargando-1-fomulario").show();
@@ -482,7 +482,7 @@ function ver_datos(idcomprobante) {
 
     if (e.data.comprobante != '') {
         
-      comprobante =  doc_view_extencion(e.data.comprobante, 'comprobante', 'comprobante', '100%');
+      comprobante =  doc_view_extencion(e.data.comprobante, 'admin/dist/docs/comprobante/comprobante', '100%');
       
       btn_comprobante=`
       <div class="row">

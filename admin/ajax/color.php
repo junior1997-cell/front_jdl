@@ -17,7 +17,7 @@
     $hexadecimal  = isset($_POST["hexadecimal"]) ? limpiarCadena($_POST["hexadecimal"]) : "";
 
     switch ($_GET["op"]) {
-      case 'guardaryeditar':
+      case 'guardar_y_editar_color':
         if (empty($idcolor)) {
           $rspta = $color->insertar($nombre, $hexadecimal);
           echo json_encode( $rspta, true) ;

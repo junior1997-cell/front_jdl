@@ -33,7 +33,7 @@
           <?php
           require 'nav.php';
           require 'aside.php';
-          if ($_SESSION['compra_grano']==1){
+          if ($_SESSION['comprobante']==1){
             //require 'enmantenimiento.php';
             ?>
             <!--Contenido-->

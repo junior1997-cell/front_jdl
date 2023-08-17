@@ -149,7 +149,7 @@
           $retorno = array(
             'status' => true, 
             'message' => 'Salió todo ok', 
-            'data' => '<option value="1" ruc="">CLIENTES VARIOS</option>' . $data, 
+            'data' => '<option value="1" ruc="">PUBLICO EN GENERAL</option>' . $data, 
           );
   
           echo json_encode($retorno, true);
@@ -168,14 +168,14 @@
         if ($rspta['status'] == true) {
 
           foreach ($rspta['data'] as $key => $value) {  
-            $es_socio = $value['es_socio'] ? 'SOCIO': 'NO SOCIO';
-            $data .= '<option value="' .  $value['idpersona'] . '" title="'.$value['foto_perfil'].'" ruc_dni="'.$value['numero_documento'].'">' .$cont++.'. '.  $value['nombres'] .' - '.  $value['numero_documento'] . ' - ' . $es_socio . '</option>';      
+            
+            $data .= '<option value="' .  $value['idpersona'] . '" title="'.$value['foto_perfil'].'" ruc_dni="'.$value['numero_documento'].'">' .$cont++.'. '.  $value['nombres'] .' - '.  $value['numero_documento'] . '</option>';      
           }
 
           $retorno = array(
             'status' => true, 
             'message' => 'Salió todo ok', 
-            'data' => '<option value="1" ruc_dni="">0. ANÓNIMO - 00000000000</option>' . $data, 
+            'data' => '<option value="1" ruc_dni="">0. PUBLICO EN GENERAL - 00000000000</option>' . $data, 
           );
   
           echo json_encode($retorno, true);
@@ -184,7 +184,32 @@
 
           echo json_encode($rspta, true); 
         }
-      break;    
+      break;  
+
+      /* ══════════════════════════════════════ S U C U R S A L  ══════════════════════════════════════ */
+      case 'select2Sucursal': 
+    
+        $rspta=$ajax_general->select2_sucursal();  $cont = 1; $data = "";
+
+        if ($rspta['status'] == true) {
+
+          foreach ($rspta['data'] as $key => $value) {  
+            $data .= '<option value="' .  $value['idsucursal'] . '" codigo="'.$value['codigo_sucursal'].'">' .$cont++.'. '.  $value['apodo_sucursal'] . '</option>';      
+          }
+
+          $retorno = array(
+            'status' => true, 
+            'message' => 'Salió todo ok', 
+            'data' =>  $data, 
+          );
+  
+          echo json_encode($retorno, true);
+
+        } else {
+
+          echo json_encode($rspta, true); 
+        }
+      break;      
       
       /* ══════════════════════════════════════ B A N C O  ══════════════════════════════════════ */
       case 'select2Banco': 
@@ -226,22 +251,36 @@
         $rspta = $ajax_general->select2_color(); $cont = 1; $data = "";
         
         if ($rspta['status'] == true) {
-
           foreach ($rspta['data'] as $key => $value) {    
-
             $data .= '<option value=' . $value['id'] . ' title="'.$value['hexadecimal'].'" >' . $value['nombre'] .'</option>';
           }
-
           $retorno = array(
             'status' => true, 
             'message' => 'Salió todo ok', 
             'data' => '<option value="1" title="#ffffff00" >SIN COLOR</option>'.$data, 
-          );
-  
+          );  
           echo json_encode($retorno, true);
-
         } else {
+          echo json_encode($rspta, true); 
+        }
+      break;
 
+      /* ══════════════════════════════════════ M A R C A ══════════════════════════════════════ */
+      case 'select2Marca': 
+    
+        $rspta = $ajax_general->select2_marca(); $cont = 1; $data = "";
+        
+        if ($rspta['status'] == true) {
+          foreach ($rspta['data'] as $key => $value) {    
+            $data .= '<option value="' . $value['idmarca'] . '"  >' . $value['nombre_marca'] .'</option>';
+          }
+          $retorno = array(
+            'status' => true, 
+            'message' => 'Salió todo ok', 
+            'data' => '<option value="1" title="#ffffff00" >SIN MARCA</option>'.$data, 
+          );  
+          echo json_encode($retorno, true);
+        } else {
           echo json_encode($rspta, true); 
         }
       break;
@@ -278,9 +317,7 @@
         $rspta = $ajax_general->select2_categoria(); $cont = 1; $data = "";
 
         if ($rspta['status'] == true) {
-
           foreach ($rspta['data'] as $key => $value) {  
-
             $data .= '<option value=' . $value['id'] . '>' . $value['nombre'] .'</option>';
           }
 
@@ -288,12 +325,9 @@
             'status' => true, 
             'message' => 'Salió todo ok', 
             'data' => '<option value="1">NINGUNO</option>'.$data, 
-          );
-  
+          );  
           echo json_encode($retorno, true);
-
         } else {
-
           echo json_encode($rspta, true); 
         }
       break;
@@ -324,7 +358,11 @@
       break;
 
       /* ══════════════════════════════════════ P R O D U C T O ══════════════════════════════════════ */
-
+      case 'mostrar_producto':
+        $rspta = $ajax_general->mostrar_producto($_POST["idproducto"]); 
+        echo json_encode($rspta, true);
+      break;
+      
       case 'tblaProductos':
           
         $rspta = $ajax_general->tblaProductos(); 
@@ -345,16 +383,16 @@
             }
 
             if ( $reg->stock <= 0) { $clas_stok = 'badge-danger'; }else if ($reg->stock > 0 && $reg->stock <= 10) { $clas_stok = 'badge-warning'; }else if ($reg->stock > 10) { $clas_stok = 'badge-success'; }
-
+            $data_btn = 'btn-add-producto-'.$reg->idproducto;
             $datas[] = [
-              "0" => '<button class="btn btn-warning" onclick="agregarDetalleComprobante(' . $reg->idproducto . ', \'' .  htmlspecialchars($reg->nombre, ENT_QUOTES) . '\', \'' . $reg->nombre_medida . '\',\'' . $reg->categoria . '\',\'' . $reg->precio_unitario . '\',\'' . $reg->precio_compra_actual . '\',\'' . $img_parametro . '\',\'' .$reg->stock. '\')" data-toggle="tooltip" data-original-title="Agregar Activo"><span class="fa fa-plus"></span></button>',
+              "0" => '<button class="btn btn-warning '.$data_btn.'" onclick="agregarDetalleComprobante(' . $reg->idproducto .')" data-toggle="tooltip" data-original-title="Agregar Activo"><span class="fa fa-plus"></span></button>',
               "1" => '<div class="user-block w-250px">'.
                 '<img class="profile-user-img img-responsive img-circle cursor-pointer" src="' . $img . '" alt="user image" onerror="' . $imagen_error . '" onclick="ver_img_producto(\'' . $img . '\', \''.encodeCadenaHtml($reg->nombre).'\');">'.
                 '<span class="username"><p class="mb-0" >' . $reg->nombre . '</p></span>
                 <span class="description"><b>Categoria: </b>' . $reg->categoria . '</span>'.
               '</div>',
               "2" =>'<span class="badge '.$clas_stok.' font-size-14px" stock="'.$reg->stock.'" id="table_stock_'.$reg->idproducto.'">'.$reg->stock.'</span>',
-              "3" => number_format($reg->precio_unitario, 2, '.', ','),
+              "3" => number_format($reg->precio_venta, 2, '.', ','),
               "4" => '<textarea class="form-control textarea_datatable" cols="30" rows="1">' . $reg->descripcion . '</textarea>'. $toltip,
             ];
           }

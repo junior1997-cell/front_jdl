@@ -16,7 +16,7 @@ function init() {
   $("#lChartCompraProducto").addClass("active");
 
   box_content_reporte();
-  //chart_linea_barra(localStorage.getItem("nube_idproyecto"));
+  //chart_linea_barra(localStorage.getItem("nube_id_sucursal"));
 
   // ══════════════════════════════════════ S E L E C T 2 ══════════════════════════════════════
   var anio_actual = moment().format('YYYY');
@@ -77,7 +77,7 @@ function chart_linea_barra(idnubeproyecto) {
 
   var mode = 'index'; var intersect = true;
 
-  var idnubeproyecto = localStorage.getItem("nube_idproyecto");
+  var idnubeproyecto = localStorage.getItem("nube_id_sucursal");
   var year_filtro = $("#year_filtro").select2("val");
   var month_filtro = $("#month_filtro").select2("val");
   var dias_por_mes =cant_dias_mes(year_filtro, month_filtro);

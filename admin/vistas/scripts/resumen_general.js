@@ -44,7 +44,7 @@ function init() {
   $("#lresumen_general").addClass("active bg-green");
 
   //Mostramos los trabajadores
-  $.post("../ajax/resumen_general.php?op=select2_trabajadores&idproyecto=" + localStorage.getItem("nube_idproyecto"), function (r) {
+  $.post("../ajax/resumen_general.php?op=select2_trabajadores&idproyecto=" + localStorage.getItem("nube_id_sucursal"), function (r) {
     $("#trabajador_filtro").html(r);
     $(".cargando_trabajador").html('Trabajador');
   }).fail( function(e) { ver_errores(e); } );
@@ -1438,7 +1438,7 @@ function filtros() {
   $('.cargando-sumas').removeClass('backgff9100').addClass('bg-danger').html('Sumas totales - calculando <i class="fas fa-spinner fa-pulse fa-sm"></i>');
 
   // ejecutamos las funcioes a filtrar
-  tbla_compras(localStorage.getItem("nube_idproyecto"), fecha_1, fecha_2, id_trabajador, id_proveedor, deuda);
+  tbla_compras(localStorage.getItem("nube_id_sucursal"), fecha_1, fecha_2, id_trabajador, id_proveedor, deuda);
   
 }
 

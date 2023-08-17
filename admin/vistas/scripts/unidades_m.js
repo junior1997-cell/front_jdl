@@ -140,8 +140,8 @@ function guardaryeditar_unidades_m(e) {
 
 function mostrar_unidades_m(idunidad_medida) {
   $(".tooltip").removeClass("show").addClass("hidde");
-  $("#cargando-3-fomulario").hide();
-  $("#cargando-4-fomulario").show();
+  $("#cargando-1-fomulario").hide();
+  $("#cargando-2-fomulario").show();
 
   limpiar_unidades_m();
 
@@ -157,8 +157,8 @@ function mostrar_unidades_m(idunidad_medida) {
       $("#abreviatura").val(e.data.abreviatura);
       $("#descripcion_m").val(e.data.descripcion); 
 
-      $("#cargando-3-fomulario").show();
-      $("#cargando-4-fomulario").hide();
+      $("#cargando-1-fomulario").show();
+      $("#cargando-2-fomulario").hide();
     } else {
       ver_errores(e);
     }

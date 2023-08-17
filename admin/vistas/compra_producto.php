@@ -29,7 +29,7 @@
           <?php
           require 'nav.php';
           require 'aside.php';
-          if ($_SESSION['almacen_abono']==1){
+          if ($_SESSION['comprobante']==1){
             //require 'enmantenimiento.php';
             ?>
             <!--Contenido-->
@@ -1201,7 +1201,7 @@
                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                   <label for="foto2">Imagen</label>
                                   <div style="text-align: center;">
-                                    <img onerror="this.src='../dist/img/default/img_defecto_producto.jpg';" src="../dist/img/default/img_defecto_producto.jpg" class="img-thumbnail"
+                                    <img onerror="this.src='../dist/img/default/img_defecto_producto.png';" src="../dist/img/default/img_defecto_producto.png" class="img-thumbnail"
                                       id="foto2_i" style="cursor: pointer !important; height: 100% !important;" width="auto" />
                                     <input style="display: none;" type="file" name="foto2" id="foto2" accept="image/*" />
                                     <input type="hidden" name="foto2_actual" id="foto2_actual" />

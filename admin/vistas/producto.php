@@ -36,7 +36,7 @@
                 <div class="container-fluid">
                   <div class="row mb-2">
                     <div class="col-sm-6">
-                      <h1><img src="../dist/svg/negro-abono-ico.svg" class="nav-icon" alt="" style="width: 21px !important;"> Producto</h1>
+                      <h1><i class="fa-solid fa-computer nav-icon"></i> Producto</h1>
                     </div>
                     <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
@@ -146,7 +146,7 @@
 
                 <!-- MODAL - AGREGAR MATERIAL - charge-1 -->
                 <div class="modal fade" id="modal-agregar-material">
-                  <div class="modal-dialog modal-dialog-scrollable modal-md">
+                  <div class="modal-dialog modal-dialog-scrollable modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h4 class="modal-title name-modal-title-agregar">Agregar Producto</h4>
@@ -171,10 +171,18 @@
                                 </div>
                               </div>
 
+                              <!-- Marca -->
+                              <div class="col-12 col-sm-12 col-md-12 col-lg-12" >
+                                <div class="form-group">
+                                  <label for="idmarca"><span class="badge badge-info cursor-pointer" data-toggle="tooltip" data-original-title="Recargar" onclick="reload_marca();"><i class="fa-solid fa-rotate-right"></i></span> Marca <sup class="text-danger charge_marca">(unico*)</sup></label>
+                                  <select name="idmarca" id="idmarca" class="form-control select2" style="width: 100%;"> </select>
+                                </div>
+                              </div>  
+
                               <!-- Categoria -->
                               <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                  <label for="categoria_producto">Categoria <sup class="text-danger">(unico*)</sup></label>
+                                  <label for="categoria_producto"><span class="badge badge-info cursor-pointer" data-toggle="tooltip" data-original-title="Recargar" onclick="reload_categoria();"><i class="fa-solid fa-rotate-right"></i></span> Categoria <sup class="text-danger charge_categoria">(unico*)</sup></label>
                                   <select name="categoria_producto" id="categoria_producto" class="form-control select2" style="width: 100%;"> 
                                   </select>
                                 </div>
@@ -183,26 +191,26 @@
                               <!-- Unnidad de medida-->
                               <div class="col-12 col-sm-6 col-md-6 col-lg-6" >
                                 <div class="form-group">
-                                  <label for="Unidad_medida">Unidad medida <sup class="text-danger">(unico*)</sup></label>
+                                  <label for="Unidad_medida"><span class="badge badge-info cursor-pointer" data-toggle="tooltip" data-original-title="Recargar" onclick="reload_unidad_medida();"><i class="fa-solid fa-rotate-right"></i></span> Unidad medida <sup class="text-danger charge_unidad_medida">(unico*)</sup></label>
                                   <select name="unidad_medida" id="unidad_medida" class="form-control select2" style="width: 100%;"> </select>
-                                </div>
-                              </div>
-
-                               <!-- Marca -->
-                               <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                  <label for="marca">Marca <sup class="text-danger">(unico*)</sup></label>
-                                  <input type="text" name="marca" class="form-control" id="marca" placeholder="Marca." />
                                 </div>
                               </div>
 
                               <!-- ContenidoNeto -->
                               <div class="col-12 col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                  <label for="contenido_neto">Contenido Neto <sup class="text-danger">(unico*)</sup></label>
+                                  <label for="contenido_neto">Contenido Neto </label>
                                   <input type="text" name="contenido_neto" id="contenido_neto" class="form-control"  placeholder="Contenido Neto." />
                                 </div>
                               </div>
+
+                              <!-- Color -->
+                              <div class="col-12 col-sm-6 col-md-6 col-lg-6" >
+                                <div class="form-group">
+                                  <label for="idcolor"><span class="badge badge-info cursor-pointer" data-toggle="tooltip" data-original-title="Recargar" onclick="reload_color();" ><i class="fa-solid fa-rotate-right"></i></span> Color <sup class="text-danger charge_color">(unico*)</sup></label>
+                                  <select name="idcolor" id="idcolor" class="form-control select2" style="width: 100%;"> </select>
+                                </div>
+                              </div>                                                          
 
                               <!--Precio U-->
                               <div class="col-12 col-sm-12 col-md-6 col-lg-6">
@@ -232,7 +240,7 @@
                               <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                 <label for="foto1">Imagen</label>
                                 <div style="text-align: center;">
-                                  <img onerror="this.src='../dist/img/default/img_defecto_producto.jpg';" src="../dist/img/default/img_defecto_producto.jpg"
+                                  <img onerror="this.src='../dist/img/default/img_defecto_producto.png';" src="../dist/img/default/img_defecto_producto.png"
                                     class="img-thumbnail" id="foto1_i" style="cursor: pointer !important; height: 100% !important;" width="auto" />
                                   <input style="display: none;" type="file" name="foto1" id="foto1" accept="image/*" />
                                   <input type="hidden" name="foto1_actual" id="foto1_actual" />

@@ -75,6 +75,7 @@
                                   <th class="">#</th>
                                   <th class="">Aciones</th>
                                   <th>Nombres</th>
+                                  <th>Sucursal</th>
                                   <th>Telefono</th>
                                   <th>Usuario</th>
                                   <th>Cargo</th>
@@ -90,6 +91,7 @@
                                   <th>#</th>
                                   <th>Aciones</th>
                                   <th>Nombres</th>
+                                  <th>Sucursal</th>
                                   <th>Telefono</th>
                                   <th>Usuario</th>
                                   <th>Cargo</th>
@@ -111,7 +113,7 @@
                                   <!-- Trabajador -->
                                   <div class="col-12 col-sm-9 col-md-9 col-lg-7 col-xl-7">
                                     <div class="form-group">
-                                      <label for="trabajador" id="trabajador_c">Trabajador <sup class="text-danger">*</sup></label>                               
+                                      <label for="trabajador" id="trabajador_c"> Trabajador <sup class="text-danger">*</sup></label>                               
                                       <select name="trabajador" id="trabajador" class="form-control select2" style="width: 100%;"  onchange="cargo_trabajador();" > </select>
                                       <input type="hidden" name="trabajador_old" id="trabajador_old">
                                     </div>                                                        
@@ -414,6 +416,93 @@
                       <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-danger" onclick="limpiar_form_trabajador();" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success" id="guardar_registro_trabajador">Guardar Cambios</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- MODAL - SUCURSAL - chargue 5 -->
+                <div class="modal fade" id="modal-agregar-sucursal">
+                  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title titulo-modal-sucursal">Sucursal</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span class="text-danger" aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+
+                      <div class="modal-body">
+                        <button type="button" class="btn bg-gradient-primary btn-agregar-sucursal mb-3" onclick="limpiar_form_sucursal(); show_hide_form_sucursal(2);"><i class="fas fa-user-plus"></i> Agregar</button>
+                        <button type="button" class="btn bg-gradient-warning btn-regresar-sucursal mb-2" onclick="limpiar_form_sucursal(); show_hide_form_sucursal(1);" style="display: none !important;"><i class="fas fa-arrow-left"></i> Regresar</button>                            
+
+                        <div class="div_tabla_sucursal">
+                          <table id="tabla-sucursal" class="table table-bordered table-striped display" style="width: 100% !important;">
+                            <thead>
+                              <tr>
+                                <th class="">#</th>
+                                <th class="">Aciones</th>
+                                <th>Nombre</th>
+                                <th>Dirección</th>
+                                <th>Estado</th>
+                              </tr>
+                            </thead>
+                            <tbody>                         
+                              
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <th>#</th>
+                                <th>Aciones</th>
+                                <th>Nombre</th>
+                                <th>Dirección</th>
+                                <th>Estado</th>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                        <!-- form start -->
+                        <form id="form-sucursal" name="form-sucursal" method="POST" style="display: none;">
+                          <div class="card-body">
+
+                            <div class="row" id="cargando-5-fomulario">
+                              <!-- id persona -->
+                              <input type="hidden" name="idpersona_sucursal" id="idpersona_sucursal" />  
+                              <input type="hidden" name="idpersona_suc" id="idpersona_suc" />                            
+
+                              <!-- Sucursal -->
+                              <div class="col-12 col-sm-9 col-md-9 col-lg-12 col-xl-12">
+                                <div class="form-group">
+                                  <label for="sucursal" ><span class="badge badge-info cursor-pointer" data-toggle="tooltip" data-original-title="Recargar" onclick="reload_sucursal();" ><i class="fa-solid fa-rotate-right"></i></span> Sucursal <sup class="text-danger charge_sucursal">*</sup></label>                               
+                                  <select name="sucursal" id="sucursal" class="form-control select2" style="width: 100%;" > </select>                                      
+                                </div>                                                        
+                              </div>              
+
+                              <!-- Progress -->
+                              <div class="col-md-12" id="barra_progress_sucursal_div" style="display: none !important;">
+                                <div class="form-group">
+                                  <div class="progress" >
+                                    <div id="barra_progress_sucursal" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row" id="cargando-6-fomulario" style="display: none;" >
+                              <div class="col-lg-12 text-center">
+                                <i class="fas fa-spinner fa-pulse fa-6x"></i><br><br>
+                                <h4>Cargando...</h4>
+                              </div>
+                            </div>
+                                  
+                          </div>
+                          <!-- /.card-body -->
+                          <button type="submit" style="display: none;" id="submit-form-sucursal">Submit</button>
+                        </form>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-danger" onclick="limpiar_form_sucursal();" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success" id="guardar_registro_sucursal">Guardar Cambios</button>
                       </div>
                     </div>
                   </div>

@@ -9,7 +9,7 @@
     echo json_encode($retorno);  //Validamos el acceso solo a los usuarios logueados al sistema.
   } else {
 
-    if ($_SESSION['otro_ingreso'] == 1) {
+    if ($_SESSION['comprobante'] == 1) {
 
       require_once "../modelos/Comprobante.php";
       require_once "../modelos/Persona.php";

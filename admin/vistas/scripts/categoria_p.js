@@ -32,8 +32,12 @@ function listar_c_insumos_af () {
     lengthMenu: [[ -1, 5, 10, 25, 75, 100, 200,], ["Todos", 5, 10, 25, 75, 100, 200, ]],//mostramos el menú de registros a revisar
     aProcessing: true,//Activamos el procesamiento del datatables
     aServerSide: true,//Paginación y filtrado realizados por el servidor
-    dom: '<Bl<f>rtip>',//Definimos los elementos del control de tabla
-    buttons: ['copyHtml5', 'excelHtml5','pdf'],
+    dom:"<'row'<'col-md-3'B><'col-md-3 float-left'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", //Definimos los elementos del control de tabla
+    buttons: [
+      { extend: 'copyHtml5', exportOptions: { columns: [0,2,3], }, footer: true, text: `<i class="fas fa-copy" data-toggle="tooltip" data-original-title="Copiar"></i>`, className: "btn bg-gradient-gray"  }, 
+      { extend: 'excelHtml5', exportOptions: { columns: [0,2,3], }, footer: true, text: `<i class="far fa-file-excel fa-lg" data-toggle="tooltip" data-original-title="Excel"></i>`, className: "btn bg-gradient-success",  }, 
+      { extend: 'pdfHtml5', exportOptions: { columns: [0,2,3], }, footer: false, text: `<i class="far fa-file-pdf fa-lg" data-toggle="tooltip" data-original-title="PDF"></i>`, className: "btn bg-gradient-danger",  } ,
+    ],
     ajax:{
       url: '../ajax/categoria_p.php?op=listar_c_producto',
       type : "get",
@@ -126,8 +130,8 @@ function mostrar_c_insumos_af (idcategoria_producto ) {
 
   console.log(idcategoria_producto);
 
-  $("#cargando-11-fomulario").hide();
-  $("#cargando-12-fomulario").show();
+  $("#cargando-3-fomulario").hide();
+  $("#cargando-4-fomulario").show();
 
   limpiar_c_af();
 
@@ -142,8 +146,8 @@ function mostrar_c_insumos_af (idcategoria_producto ) {
       $("#nombre_categoria").val(e.data.nombre);
       $("#descripcion_cat").val(e.data.descripcion); 
 
-      $("#cargando-11-fomulario").show();
-      $("#cargando-12-fomulario").hide();
+      $("#cargando-3-fomulario").show();
+      $("#cargando-4-fomulario").hide();
     } else {
       ver_errores(e);
     }

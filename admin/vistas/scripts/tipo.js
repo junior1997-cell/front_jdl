@@ -39,9 +39,11 @@ function listar_tipo() {
     lengthMenu: [[ -1, 5, 10, 25, 75, 100, 200,], ["Todos", 5, 10, 25, 75, 100, 200, ]],//mostramos el menú de registros a revisar
     aProcessing: true,//Activamos el procesamiento del datatables
     aServerSide: true,//Paginación y filtrado realizados por el servidor
-    dom: '<Bl<f>rtip>',//Definimos los elementos del control de tabla
+    dom:"<'row'<'col-md-3'B><'col-md-3 float-left'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", //Definimos los elementos del control de tabla
     buttons: [
-      { extend: 'copyHtml5', footer: true, exportOptions: { columns: [0,2,3], } }, { extend: 'excelHtml5', footer: true, exportOptions: { columns: [0,2,3], } }, { extend: 'pdfHtml5', footer: false, exportOptions: { columns: [0,2], } } ,
+      { extend: 'copyHtml5', exportOptions: { columns: [0,2,3], }, footer: true, text: `<i class="fas fa-copy" data-toggle="tooltip" data-original-title="Copiar"></i>`, className: "btn bg-gradient-gray"  }, 
+      { extend: 'excelHtml5', exportOptions: { columns: [0,2,3], }, footer: true, text: `<i class="far fa-file-excel fa-lg" data-toggle="tooltip" data-original-title="Excel"></i>`, className: "btn bg-gradient-success",  }, 
+      { extend: 'pdfHtml5', exportOptions: { columns: [0,2,3], }, footer: false, text: `<i class="far fa-file-pdf fa-lg" data-toggle="tooltip" data-original-title="PDF"></i>`, className: "btn bg-gradient-danger",  } ,
     ],
     ajax:{
       url: '../ajax/tipo.php?op=listar_tipo',
@@ -131,8 +133,8 @@ function guardaryeditar_tipo(e) {
 
 function mostrar_tipo(idtipo_persona) {
   $(".tooltip").removeClass("show").addClass("hidde");
-  $("#cargando-7-fomulario").hide();
-  $("#cargando-8-fomulario").show();
+  $("#cargando-10-fomulario").hide();
+  $("#cargando-11-fomulario").show();
 
   limpiar_tipo();
 
@@ -147,8 +149,8 @@ function mostrar_tipo(idtipo_persona) {
       $("#nombre_tipo").val(e.data.nombre);
       $("#descripcion_t").val(e.data.descripcion);
 
-      $("#cargando-7-fomulario").show();
-      $("#cargando-8-fomulario").hide();
+      $("#cargando-10-fomulario").show();
+      $("#cargando-11-fomulario").hide();
     } else {
       ver_errores(e);
     }

@@ -28,7 +28,7 @@ function init() {
 
   $("#lVentasProductos").addClass("active");
 
-  $("#idproyecto").val(localStorage.getItem("nube_idproyecto"));
+  $("#idproyecto").val(localStorage.getItem("nube_id_sucursal"));
 
   listarmateriales();
 
@@ -1307,8 +1307,8 @@ function mostrar_editar_pago(idpago_venta) {
         $("#doc_old_1").val(e.data.comprobante);
         $("#doc1_nombre").html(`<div class="row"> <div class="col-md-12"><i>Baucher.${extrae_extencion(e.data.comprobante)}</i></div></div>`);
         // cargamos la imagen adecuada par el archivo
-        $("#doc1_ver").html(doc_view_extencion(e.data.comprobante,'venta_producto', 'comprobante_pago', '100%', '210' ));            
-      }
+        $("#doc1_ver").html(doc_view_extencion(e.data.comprobante,'admin/dist/docs/venta_producto/comprobante_pago', '100%', '210' ));            
+      } 
 
       $("#cargando-7-fomulario").show();
       $("#cargando-8-fomulario").hide();
@@ -1322,7 +1322,7 @@ function mostrar_editar_pago(idpago_venta) {
 function ver_documento_pago(doc, name_download) {
   $('.tile-modal-comprobante').html(name_download);
   $('#modal-ver-comprobante-pago').modal('show');
-  $('.div-view-comprobante-pago').html(doc_view_download_expand(doc, 'dist/docs/venta_producto/comprobante_pago',name_download,'100%', '410'));
+  $('.div-view-comprobante-pago').html(doc_view_download_expand(doc, 'admin/dist/docs/venta_producto/comprobante_pago',name_download,'100%', '410'));
   $('.jq_image_zoom').zoom({ on:'grab' });
 }
 
@@ -1682,11 +1682,11 @@ function habilitando_socio() {
 
 // abrimos el navegador de archivos
 $("#foto2_i").click(function () { $("#foto2").trigger("click"); });
-$("#foto2").change(function (e) { addImage(e, $("#foto2").attr("id"), "../dist/img/default/img_defecto_producto.jpg"); });
+$("#foto2").change(function (e) { addImage(e, $("#foto2").attr("id"), "../dist/img/default/img_defecto_producto.png"); });
 
 function foto2_eliminar() {
   $("#foto2").val("");
-  $("#foto2_i").attr("src", "../dist/img/default/img_defecto_producto.jpg");
+  $("#foto2_i").attr("src", "../dist/img/default/img_defecto_producto.png");
   $("#foto2_nombre").html("");
 }
 
@@ -1707,7 +1707,7 @@ function limpiar_producto() {
   $("#stock_pro").val('0.00').trigger("change");
   $("#descripcion_pro").val(""); 
 
-  $("#foto1_i").attr("src", "../dist/img/default/img_defecto_producto.jpg");
+  $("#foto1_i").attr("src", "../dist/img/default/img_defecto_producto.png");
   $("#foto1").val("");
   $("#foto1_actual").val("");
   $("#foto1_nombre").html("");  

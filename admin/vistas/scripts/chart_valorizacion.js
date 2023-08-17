@@ -28,10 +28,10 @@ function init() {
 
   $("#lChartValorizacion").addClass("active bg-green");
 
-  //chart_linea_barra(localStorage.getItem("nube_idproyecto"));
+  //chart_linea_barra(localStorage.getItem("nube_id_sucursal"));
 
   // ══════════════════════════════════════ S E L E C T 2 ══════════════════════════════════════
-  listar_btn_q_s(localStorage.getItem("nube_idproyecto"));
+  listar_btn_q_s(localStorage.getItem("nube_id_sucursal"));
   
   // ══════════════════════════════════════ INITIALIZE SELECT2 ══════════════════════════════════════
 
@@ -133,7 +133,7 @@ function chart_linea_barra() {
 
   var mode = 'index'; var intersect = true;
 
-  var idnubeproyecto = localStorage.getItem("nube_idproyecto");
+  var idnubeproyecto = localStorage.getItem("nube_id_sucursal");
   var valorizacion_filtro = $("#valorizacion_filtro").select2("val");
 
   var fecha_inicial = ''; var fecha_final = ''; var num_val = '';

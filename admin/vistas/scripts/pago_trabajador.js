@@ -500,9 +500,9 @@ function mostrar_pago(idpago_trabajador) {
         $("#doc1_nombre").html(`<div class="row"> <div class="col-md-12"><i>Baucher.${extrae_extencion(e.data.comprobante)}</i></div></div>`);
         
         // cargamos la imagen adecuada par el archivo
-        $("#doc1_ver").html(doc_view_extencion(e.data.comprobante,'pago_trabajador', 'comprobante', '100%', '210' ));
+        $("#doc1_ver").html(doc_view_extencion(e.data.comprobante,'admin/dist/docs/pago_trabajador/comprobante', '100%', '210' ));
               
-      }
+      } 
 
 
       $("#cargando-3-fomulario").show();
