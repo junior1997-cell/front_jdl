@@ -13,7 +13,7 @@
 
     $empresa = new Empresa($_SESSION['idusuario']);
 
-    date_default_timezone_set('America/Lima'); $date_now = date("d-m-Y h.i.s A");
+    date_default_timezone_set('America/Lima'); $date_now = date("d_m_Y__h_i_s_A");
     $imagen_error = "this.src='../dist/svg/404-v2.svg'";
     $toltip = '<script> $(function () { $(\'[data-toggle="tooltip"]\').tooltip(); }); </script>';
 
@@ -50,7 +50,7 @@
         } else {
           $ext1 = explode(".", $_FILES["foto1"]["name"]);
           $flat_img1 = true;
-          $img_perfil = $date_now .' '. random_int(0, 20) . round(microtime(true)) . random_int(21, 41) . '.' . end($ext1);
+          $img_perfil = $date_now .'__'. random_int(0, 20) . round(microtime(true)) . random_int(21, 41) . '.' . end($ext1);
           move_uploaded_file($_FILES["foto1"]["tmp_name"], "../dist/docs/empresa/img_perfil/" . $img_perfil);
         }
 

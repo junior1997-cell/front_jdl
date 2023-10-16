@@ -15,7 +15,7 @@
 
       $chart_compra_grano = new ChartCompraGrano($_SESSION['idusuario']);
 
-      date_default_timezone_set('America/Lima');  $date_now = date("d-m-Y h.i.s A");
+      date_default_timezone_set('America/Lima');  $date_now = date("d_m_Y__h_i_s_A");
 
       $idproducto = isset($_POST["idproducto"]) ? limpiarCadena($_POST["idproducto"]) : "";
       $idcategoria = isset($_POST["idcategoria_insumos_af"]) ? limpiarCadena($_POST["idcategoria_insumos_af"]) : "";

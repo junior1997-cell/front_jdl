@@ -13,7 +13,7 @@
         return $link_host;
     }
 
-    if ($_SERVER['HTTP_HOST'] == "localhost" || is_numeric(floatval($_SERVER['SERVER_NAME'])) == true ) {
+    if ($_SERVER['HTTP_HOST'] == "localhost" || floatval($_SERVER['SERVER_NAME']) > 0 ) {
         $ruta = enrutamiento('local', $file_go);
     } else {
         $ruta = enrutamiento('nube', $file_go);

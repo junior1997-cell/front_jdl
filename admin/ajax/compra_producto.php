@@ -19,7 +19,7 @@ if (!isset($_SESSION["nombre"])) {
     $persona          = new Persona($_SESSION['idusuario']);
     $producto         = new Producto($_SESSION['idusuario']);      
     
-    date_default_timezone_set('America/Lima');  $date_now = date("d-m-Y h.i.s A");
+    date_default_timezone_set('America/Lima');  $date_now = date("d_m_Y__h_i_s_A");
     $toltip = '<script> $(function () { $(\'[data-toggle="tooltip"]\').tooltip(); }); </script>';
     $scheme_host =  ($_SERVER['HTTP_HOST'] == 'localhost' ? 'http://localhost/front_jdl/admin/' :  $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'].'/');
 
@@ -106,7 +106,7 @@ if (!isset($_SESSION["nombre"])) {
         } else {
           $ext1 = explode(".", $_FILES["foto2"]["name"]);
           $flat_img2 = true;
-          $imagen2 = $date_now .' '. random_int(0, 20) . round(microtime(true)) . random_int(21, 41) . '.' . end($ext1);
+          $imagen2 = $date_now .'__'. random_int(0, 20) . round(microtime(true)) . random_int(21, 41) . '.' . end($ext1);
           move_uploaded_file($_FILES["foto2"]["tmp_name"], "../dist/docs/producto/img_perfil/" . $imagen2);
         }
 
@@ -145,7 +145,7 @@ if (!isset($_SESSION["nombre"])) {
           $imagen1=$_POST["foto1_actual"]; $flat_img1 = false;
         } else {
           $ext1 = explode(".", $_FILES["foto1"]["name"]); $flat_img1 = true;
-          $imagen1 = $date_now .' '. random_int(0, 20) . round(microtime(true)) . random_int(21, 41) . '.' . end($ext1);
+          $imagen1 = $date_now .'__'. random_int(0, 20) . round(microtime(true)) . random_int(21, 41) . '.' . end($ext1);
           move_uploaded_file($_FILES["foto1"]["tmp_name"], "../dist/docs/persona/perfil/" . $imagen1);          
         }
 

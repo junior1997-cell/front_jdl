@@ -9,7 +9,7 @@
     echo json_encode($retorno);  //Validamos el acceso solo a los usuarios logueados al sistema.
   } else {
     
-    require_once "../modelos/categoria_p.php";
+    require_once "../modelos/Categoria_p.php";
 
     $categoria_p = new Categoria_p($_SESSION['idusuario']);
 
