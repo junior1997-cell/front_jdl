@@ -13,7 +13,7 @@ function init(){
   lista_select2("../ajax/ajax_general.php?op=select2EmpresaACargo", '#empresa_acargo', null);
 
   // ══════════════════════════════════════ G U A R D A R   F O R M ══════════════════════════════════════
-  $("#guardar_registro").on("click", function (e) { $("#submit-form-proyecto").submit(); });   
+  $("#guardar_registro").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-proyecto").submit(); }  });   
 
   // mostramos las fechas feriadas
   $.post("../ajax/proyecto.php?op=listar_feriados",  function (data, status) {
@@ -96,7 +96,7 @@ function permanente_pago_obrero() {
 
 //Función limpiar
 function limpiar() {
-  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');  
+  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled send-data');  
   $(".show_hide_select_1").show(); 
   $(".show_hide_select_2").hide();
   $(".show_hide_select_2").html('');
@@ -279,123 +279,45 @@ function guardaryeditar(e) {
     success: function (e) {
       try {
         e = JSON.parse(e);  //console.log(e);  
-        if (e) {
-          
+        if (e) {          
           tabla.ajax.reload(null, false);	
-
-          Swal.fire("Correcto!", "Proyecto guardado correctamente", "success");	      
-          
+          Swal.fire("Correcto!", "Proyecto guardado correctamente", "success");	                
           limpiar(); tablero(); box_proyecto();
-
-          $("#modal-agregar-proyecto").modal("hide");        
-          
+          $("#modal-agregar-proyecto").modal("hide");           
         }else{
           ver_errores(e);				 
         }
       } catch (err) { console.log('Error: ', err.message); toastr.error('<h5 class="font-size-16px">Error temporal!!</h5> puede intentalo mas tarde, o comuniquese con <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>'); } 
-      $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
-
       var xhr = new window.XMLHttpRequest();
-
       xhr.upload.addEventListener("progress", function (evt) {
-
         if (evt.lengthComputable) {
-
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress").css({"width": percentComplete+'%'});
-
-          $("#barra_progress").text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress").css({ width: "0%",  });
-      $("#barra_progress").text("0%");
+      $("#guardar_registro").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress").css({ width: "0%", });
-      $("#barra_progress").text("0%");
+      $("#barra_progress").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
 }
 
-//Función para guardar o editar
-function guardar_editar_valorizacion(e) {
-  e.preventDefault(); //No se activará la acción predeterminada del evento
-  var formData = new FormData($("#form-valorizaciones")[0]);
-
-  $.ajax({
-    url: "../ajax/proyecto.php?op=editar_doc_valorizaciones",
-    type: "POST",
-    data: formData,
-    contentType: false,
-    processData: false,
-    success: function (datos) {
-             
-      if (datos == 'ok') {
-
-        tabla.ajax.reload(null, false);	
-
-        Swal.fire("Correcto!", "Documento guardado correctamente", "success");	      
-         
-				limpiar();
-
-        $("#modal-agregar-valorizaciones").modal("hide");        
-
-			}else{
-
-        Swal.fire("Error!", datos, "error");
-				 
-			}
-    },
-    xhr: function () {
-
-      var xhr = new window.XMLHttpRequest();
-
-      xhr.upload.addEventListener("progress", function (evt) {
-
-        if (evt.lengthComputable) {
-
-          var percentComplete = (evt.loaded / evt.total)*100;
-          /*console.log(percentComplete + '%');*/
-          $("#barra_progress2").css({"width": percentComplete+'%'});
-
-          $("#barra_progress2").text(percentComplete.toFixed(2)+" %");
-
-          if (percentComplete === 100) {
-
-            setTimeout(l_m, 600);
-          }
-        }
-      }, false);
-      return xhr;
-    },
-    error: function (jqXhr) { ver_errores(jqXhr); },
-  });
-}
-
-function l_m(){
-  
-  // limpiar();
-  $("#barra_progress").css({"width":'0%'});
-  $("#barra_progress").text("0%");
-
-  $("#barra_progress2").css({"width":'0%'});
-  $("#barra_progress2").text("0%");
-  
-}
 
 function abrir_proyecto(idproyecto, ec_razon_social, nombre_proyecto, fecha_inicial, fecha_final) {
 
   Swal.fire("Abierto!", `<b class="text-success">${nombre_proyecto}</b> <br> Proyecto abierto corrrectamente`, "success");
 
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
 }
 
 //Función para desactivar registros
@@ -722,7 +644,7 @@ function ver_modal_docs(verdoc1, verdoc2, verdoc3, verdoc4, verdoc5, verdoc6) {
 
   }
 
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
 }
 
 function no_pdf() {
@@ -927,7 +849,7 @@ function mostrar(idproyecto) {
     }
 
   }).fail( function(e) { ver_errores(e); } );
-  $(".tooltip").removeClass("show").addClass("hidde");  
+  $(".tooltip").remove();  
 }
 
 function mostrar_detalle(idproyecto) {
@@ -943,8 +865,8 @@ function mostrar_detalle(idproyecto) {
 
     var ruta_carpeta = window.location.host;
 
-    if (ruta_carpeta == 'localhost') {
-      ruta_carpeta = 'http://localhost/front_jdl/admin/dist/docs/valorizacion/documento/'
+    if (ruta_carpeta == 'localhost' || es_numero(parseFloat(window.location.host)) == true) {
+      ruta_carpeta = `${window.location.origin}/front_jdl/admin/dist/docs/valorizacion/documento/`;
     } else {
       ruta_carpeta = `${window.location.origin}/admin/dist/docs/valorizacion/documento/`;
     }
@@ -1184,7 +1106,7 @@ function mostrar_detalle(idproyecto) {
      
   }).fail( function(e) { ver_errores(e); } );
 
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
 }
 
 function tablero() {   

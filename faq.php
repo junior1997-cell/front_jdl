@@ -3,6 +3,11 @@
 
 <!-- Mirrored from htmlstream.com/front/page-faq.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 May 2021 14:17:05 GMT -->
 <head>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XP4E6YC00F"></script>
+  <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XP4E6YC00F'); </script>
+
   <!-- Title -->
   <title>FAQ | JDL Technology</title>
 
@@ -10,9 +15,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <?php $title = ">Detalle Producto"; require 'head.php'; ?>
+  <?php $title = "Preguntas Frecuentes"; require 'head.php'; ?>
 </head>
 <body>
+  <span class="name_page" style="display: none;" >Preguntas Frecuentes</span>
   <!-- ========== HEADER ========== -->
   <header id="header" class="header header-box-shadow-on-scroll header-abs-top header-bg-transparent header-show-hide"
           data-hs-header-options='{
@@ -886,9 +892,24 @@
 
   <!-- JS Implementing Plugins -->
   <script src="assets/js/vendor.min.js"></script>
-
   <!-- JS Front -->
   <script src="assets/js/theme.min.js"></script>
+
+  <!-- jquery-validation -->
+  <script src="admin/plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="admin/plugins/jquery-validation/additional-methods.min.js"></script>
+  <!-- Select2 -->
+  <script src="admin/plugins/select2/js/select2.full.min.js"></script>
+  <!-- Toastr -->
+  <script src="admin/plugins/toastr/toastr.min.js"></script>
+  <!-- sweetalert2 -->
+  <script src="admin/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+  <!-- Funciones Generales -->
+  <script src="admin/dist/js/funcion_general.js"></script> 
+  <script src="admin/dist/js/funcion_crud.js"></script> 
+
+  <!-- Registro de pagina -->
+  <script src="admin/vistas/scripts/contador_pag.js"></script> 
 
   <!-- JS Plugins Init. -->
   <script>

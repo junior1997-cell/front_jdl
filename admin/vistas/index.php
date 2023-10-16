@@ -7,13 +7,13 @@
             $link_host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'].'/admin/vistas/login.html?file='.$file;
         }else{
             if ($tipo == 'local') {
-                $link_host = "http://localhost/front_jdl/admin/vistas/login.html?file=".$file;
+                $link_host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']."/front_jdl/admin/vistas/login.html?file=".$file;
             }            
         }
         return $link_host;
     }
 
-    if ($_SERVER['HTTP_HOST'] == "localhost") {
+    if ($_SERVER['HTTP_HOST'] == "localhost" || is_numeric(floatval($_SERVER['SERVER_NAME'])) == true ) {
         $ruta = enrutamiento('local', $file_go);
     } else {
         $ruta = enrutamiento('nube', $file_go);

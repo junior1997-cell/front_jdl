@@ -14,7 +14,7 @@ function init() {
   // ══════════════════════════════════════ S E L E C T 2 ══════════════════════════════════════
 
   // ══════════════════════════════════════ G U A R D A R   F O R M ══════════════════════════════════════
-  $("#guardar_registro_cargo").on("click", function (e) {$("#submit-form-cargo").submit(); });
+  $("#guardar_registro_cargo").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-cargo").submit(); } });
 
   // ══════════════════════════════════════ INITIALIZE SELECT2 ══════════════════════════════════════
   
@@ -24,7 +24,7 @@ function init() {
 
 //Función limpiar
 function limpiar_cargo() {
-  $("#guardar_registro_cargo").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro_cargo").html('Guardar Cambios').removeClass('disabled send-data');
   $("#idcargo_trabajador").val("");
   $("#nombre_cargo").val(""); 
 
@@ -88,53 +88,44 @@ function guardaryeditar_cargo(e) {
     contentType: false,
     processData: false,
     success: function (e) { 
-      e = JSON.parse(e);  console.log(e);            
-      if (e.status == true) {
-
-				Swal.fire("Correcto!", "Cargo registrado correctamente.", "success");	 
-
-	      tabla_cargos.ajax.reload(null, false);
-         
-				limpiar_cargo();
-
-        $("#modal-agregar-cargo").modal("hide");
-        $("#guardar_registro_cargo").html('Guardar Cambios').removeClass('disabled');
-			}else{
-				ver_errores(e);
-			}
+      try {
+        e = JSON.parse(e);  console.log(e);            
+        if (e.status == true) {
+          Swal.fire("Correcto!", "Cargo registrado correctamente.", "success");
+          tabla_cargos.ajax.reload(null, false);         
+          limpiar_cargo();
+          $("#modal-agregar-cargo").modal("hide");
+          
+        }else{
+          ver_errores(e);
+        }
+      } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }
+      $("#guardar_registro_cargo").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
-
       var xhr = new window.XMLHttpRequest();
-
       xhr.upload.addEventListener("progress", function (evt) {
-
         if (evt.lengthComputable) {
-
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress_cargo").css({"width": percentComplete+'%'});
-
-          $("#barra_progress_cargo").text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress_cargo").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_cargo").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress_cargo").css({ width: "0%",  });
-      $("#barra_progress_cargo").text("0%");
+      $("#guardar_registro_cargo").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress_cargo").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress_cargo").css({ width: "0%", });
-      $("#barra_progress_cargo").text("0%");
+      $("#barra_progress_cargo").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
 }
 
 function mostrar_cargo(idcargo_trabajador) {
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   $("#cargando-12-fomulario").hide();
   $("#cargando-13-fomulario").show();
 

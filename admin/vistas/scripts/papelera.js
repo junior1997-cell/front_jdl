@@ -72,7 +72,7 @@ function eliminar_permanente(nombre_tabla, nombre_id_tabla, id_tabla) {
       if (result.value.status) {
         Swal.fire("Anulado!", "Tu registro ha sido ELIMINADO PERMANENTEMENTE.", "success");
         tabla_principal.ajax.reload(null, false);
-        $(".tooltip").removeClass("show").addClass("hidde");
+        $(".tooltip").remove();
       }else{
         ver_errores(result.value);
       }
@@ -105,7 +105,7 @@ function recuperar(nombre_tabla, nombre_id_tabla, id_tabla) {
       if (result.value.status) {
         Swal.fire("ReActivado!", "Tu registro ha sido RECUPERADO.", "success");
         tabla_principal.ajax.reload(null, false);
-        $(".tooltip").removeClass("show").addClass("hidde");
+        $(".tooltip").remove();
       }else{
         ver_errores(result.value);
       }

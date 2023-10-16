@@ -1,6 +1,6 @@
 var tabla, tablamateriales;
 
-var host = window.location.host == 'localhost'? `http://localhost/front_jdl/admin/dist/docs/compra_insumo/comprobante_compra/` : `${window.location.origin}/admin/dist/docs/compra_insumo/comprobante_compra/` ;
+var host = window.location.host == 'localhost' || es_numero(parseFloat(window.location.host)) == true ? `${window.location.origin}/front_jdl/admin/dist/docs/compra_insumo/comprobante_compra/` : `${window.location.origin}/admin/dist/docs/compra_insumo/comprobante_compra/` ;
 
 var array_venta = [];
 
@@ -22,7 +22,7 @@ function init() {
   lista_select2("../ajax/ajax_general.php?op=select2Banco", '#banco', null);
 
   // ══════════════════════════════════════ G U A R D A R   F O R M ══════════════════════════════════════ 
-  $("#guardar_registro_cotizacion").on("click", function (e) { $("#submit-form-cotizacion").submit(); });
+  $("#guardar_registro_cotizacion").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-cotizacion").submit(); }  });
 
   // ══════════════════════════════════════ INITIALIZE SELECT2 - PROVEEDOR  ══════════════════════════════════════  
   $("#idtipopersona").select2({ theme: "bootstrap4", placeholder: "Selecione un tipo", allowClear: true,   });
@@ -276,7 +276,7 @@ function lista_de_items() {
 //Función limpiar
 function limpiar_form_persona() {
   
-  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled send-data');
 
   $("#idpersona").val(""); 
   $("#tipo_documento").val("null").trigger("change");
@@ -391,14 +391,13 @@ function guardar_y_editar_persona(e) {
           Swal.fire("Correcto!", "Persona guardado correctamente", "success");
           lista_select2("../ajax/comprobante.php?op=selecct_produc_o_provee", '#idpersona', e.data);    
           limpiar_form_persona();
-          $("#modal-agregar-persona").modal("hide"); 
-          
+          $("#modal-agregar-persona").modal("hide");           
         }else{
           ver_errores(e);
         }
       } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }      
 
-      $("#guardar_registro_persona").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro_persona").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -412,7 +411,7 @@ function guardar_y_editar_persona(e) {
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_persona").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
+      $("#guardar_registro_persona").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
       $("#barra_progress_persona").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
       $("#barra_progress_persona_div").show();
     },
@@ -633,7 +632,7 @@ function extrae_ruc() {
 // ver imagen grande del producto agregado a la compra
 function ver_img_producto(file, nombre) {
   $('.foto-insumo').html(nombre);
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   $("#modal-ver-perfil-insumo").modal("show");
   $('#perfil-insumo').html(`<span class="jq_image_zoom"><img class="img-thumbnail" src="${file}" onerror="this.src='../dist/svg/404-v2.svg';" alt="Perfil" width="100%"></span>`);
   $('.jq_image_zoom').zoom({ on:'grab' });

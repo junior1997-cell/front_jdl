@@ -293,7 +293,7 @@ function crud_guardar_editar_modal_select2_xhr( url, formData, name_progress, ur
 // Desactivar, activar, eliminar, etc...
 function crud_simple_alerta(url, id_tabla, title, mensaje, text_button, callback_true, table_reload_1=false, table_reload_2=false, table_reload_3=false, table_reload_4=false,table_reload_5=false) {
   
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
 
   Swal.fire({
     title: title,
@@ -321,7 +321,7 @@ function crud_simple_alerta(url, id_tabla, title, mensaje, text_button, callback
         if (table_reload_3) { table_reload_3(); }
         if (table_reload_4) { table_reload_4(); }
         if (table_reload_5) { table_reload_5(); }
-        $(".tooltip").removeClass("show").addClass("hidde");
+        $(".tooltip").remove();
       }else{
         ver_errores(result.value);
       }
@@ -331,7 +331,7 @@ function crud_simple_alerta(url, id_tabla, title, mensaje, text_button, callback
 
 function crud_eliminar_papelera(url_papelera, url_eliminar, id_tabla, title, mensaje, callback_true_papelera, callback_true_eliminar, table_reload_1=false, table_reload_2=false, table_reload_3=false, table_reload_4=false,table_reload_5=false) {
   
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
 
   Swal.fire({
     title: title,
@@ -371,7 +371,7 @@ function crud_eliminar_papelera(url_papelera, url_eliminar, id_tabla, title, men
         if (table_reload_3) { table_reload_3(); }
         if (table_reload_4) { table_reload_4(); }
         if (table_reload_5) { table_reload_5(); }
-        $(".tooltip").removeClass("show").addClass("hidde");
+        $(".tooltip").remove();
       }else{
         ver_errores(result.value);
       }
@@ -383,7 +383,7 @@ function crud_eliminar_papelera(url_papelera, url_eliminar, id_tabla, title, men
         if (table_reload_3) { table_reload_3(); }
         if (table_reload_4) { table_reload_4(); }
         if (table_reload_5) { table_reload_5(); }
-        $(".tooltip").removeClass("show").addClass("hidde");
+        $(".tooltip").remove();
       }else{
         ver_errores(result.value);
       }
@@ -491,10 +491,10 @@ function ver_errores(e) {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire('Saliendo...', '<i class="fas fa-spinner fa-pulse"></i> Redireccionando...', 'success');
-        window.location.href = `${window.location.host=='localhost'?'http://localhost/front_jdl/admin':window.location.origin}`;
+        window.location.href = `${window.location.host =='localhost' || es_numero(parseFloat(window.location.host)) == true ?`${window.location.origin}/front_jdl/admin`:window.location.origin}`;
       } else {
         Swal.fire('Cerrando sesion', '<i class="fas fa-spinner fa-pulse"></i> De igual manera vamos a cerrar la sesión, jijijiji...', 'success');
-        window.location.href = `${window.location.host=='localhost'?'http://localhost/front_jdl/admin':window.location.origin}`;
+        window.location.href = `${window.location.host =='localhost' || es_numero(parseFloat(window.location.host)) == true ?`${window.location.origin}/front_jdl/admin`:window.location.origin}`;
       }
     });
 
@@ -522,9 +522,9 @@ function ver_errores(e) {
       cancelButtonAriaLabel: 'Thumbs down'
     }).then((result) => {
       if (result.isConfirmed) {        
-        window.location.href = `${window.location.host=='localhost'?'http://localhost/front_jdl/admin/vistas/escritorio.php':window.location.origin+'/vistas/escritorio.php'}`;
+        window.location.href = `${window.location.host =='localhost' || es_numero(parseFloat(window.location.host)) == true ?`${window.location.origin}/front_jdl/admin/vistas/escritorio.php`:window.location.origin+'/vistas/escritorio.php'}`;
       } else {
-        window.location.href = `${window.location.host=='localhost'?'http://localhost/front_jdl/admin/vistas/escritorio.php':window.location.origin+'/vistas/escritorio.php'}`;
+        window.location.href = `${window.location.host =='localhost' || es_numero(parseFloat(window.location.host)) == true ?`${window.location.origin}/front_jdl/admin/vistas/escritorio.php`:window.location.origin+'/vistas/escritorio.php'}`;
       }
     });
   

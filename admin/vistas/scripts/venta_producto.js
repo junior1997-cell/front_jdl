@@ -11,7 +11,7 @@ var tablamateriales;
 var tabla_pago_venta;
 
 var array_doc = [];
-var host = window.location.host == 'localhost'? `http://localhost/front_jdl/admin/dist/docs/compra_insumo/comprobante_compra/` : `${window.location.origin}/admin/dist/docs/compra_insumo/comprobante_compra/` ;
+var host = window.location.host == 'localhost' || es_numero(parseFloat(window.location.host)) == true ? `${window.location.origin}/front_jdl/admin/dist/docs/compra_insumo/comprobante_compra/` : `${window.location.origin}/admin/dist/docs/compra_insumo/comprobante_compra/` ;
 
 var array_class_trabajador = [];
 
@@ -41,15 +41,15 @@ function init() {
 
   // ══════════════════════════════════════ G U A R D A R   F O R M ══════════════════════════════════════
 
-  $("#guardar_registro_ventas").on("click", function (e) {  $("#submit-form-ventas").submit(); });
+  $("#guardar_registro_ventas").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-ventas").submit(); } });
 
-  $("#guardar_registro_proveedor").on("click", function (e) { $("#submit-form-proveedor").submit(); });
+  $("#guardar_registro_proveedor").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-proveedor").submit(); } });
 
-  $("#guardar_registro_pago_venta").on("click", function (e) {  $("#submit-form-pago-venta").submit(); });
+  $("#guardar_registro_pago_venta").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-pago-venta").submit(); } });
 
-  $("#guardar_registro_comprobante_compra").on("click", function (e) {  $("#submit-form-comprobante-compra").submit();  });  
+  $("#guardar_registro_comprobante_compra").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-comprobante-compra").submit(); } });  
 
-  $("#guardar_registro_material").on("click", function (e) {  $("#submit-form-producto").submit(); });  
+  $("#guardar_registro_material").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-producto").submit(); } });  
 
   // ══════════════════════════════════════ INITIALIZE SELECT2 - FILTROS ══════════════════════════════════════
   $("#filtro_tipo_comprobante").select2({ theme: "bootstrap4", placeholder: "Selecione comprobante", allowClear: true, });
@@ -122,7 +122,7 @@ function templatePersona (state) {
 
 //Función limpiar
 function limpiar_form_compra() {
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
 
   $("#idventa_producto").val("");
   $("#idcliente").val("null").trigger("change");
@@ -426,7 +426,7 @@ function guardar_y_editar_ventas(e) {
 //Función para eliminar registros
 function eliminar_venta(idventa_producto, nombre) {
 
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
 
   crud_eliminar_papelera(
     "../ajax/venta_producto.php?op=papelera_venta",
@@ -1179,7 +1179,7 @@ function tbla_pago_venta( idventa_producto, total_compra, total_pago, cliente) {
 //Función para eliminar registros
 function eliminar_pago_venta(idpago_venta_producto, nombre) {
 
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
 
   crud_eliminar_papelera(
     "../ajax/venta_producto.php?op=papelera_pago_venta",
@@ -1239,9 +1239,7 @@ function guardar_y_editar_pago_venta(e) {
         if (e.status == true) {          
           if (tabla_pago_venta) { tabla_pago_venta.ajax.reload(null, false); } 
           if (tabla_venta_x_proveedor) { tabla_venta_x_proveedor.ajax.reload(null, false); }     
-          if (tabla_venta_producto) { tabla_venta_producto.ajax.reload(null, false); } 
-                
-          
+          if (tabla_venta_producto) { tabla_venta_producto.ajax.reload(null, false); }           
           Swal.fire("Correcto!", "Pago guardado correctamente.", "success");          
           limpiar_form_pago_compra();
           $("#modal-agregar-pago-venta").modal("hide");
@@ -1250,7 +1248,7 @@ function guardar_y_editar_pago_venta(e) {
         }
       } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }       
       
-      $("#guardar_registro_pago_venta").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro_pago_venta").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -1258,20 +1256,17 @@ function guardar_y_editar_pago_venta(e) {
         if (evt.lengthComputable) {
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress_pago_venta").css({"width": percentComplete+'%'});
-          $("#barra_progress_pago_venta").text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress_pago_venta").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_pago_venta").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress_pago_venta").css({ width: "0%",  });
-      $("#barra_progress_pago_venta").text("0%").addClass('progress-bar-striped progress-bar-animated');
+      $("#guardar_registro_pago_venta").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress_pago_venta").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress_pago_venta").css({ width: "0%", });
-      $("#barra_progress_pago_venta").text("0%").removeClass('progress-bar-striped progress-bar-animated');
+      $("#barra_progress_pago_venta").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
@@ -1508,7 +1503,7 @@ function limpiar_form_proveedor() {
   $(".form-control").removeClass('is-invalid');
   $(".error.invalid-feedback").remove();
 
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
 }
 
 // damos formato a: Cta, CCI
@@ -1582,7 +1577,7 @@ function guardar_proveedor(e) {
         }
       } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }       
       
-      $("#guardar_registro_proveedor").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro_proveedor").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -1590,20 +1585,17 @@ function guardar_proveedor(e) {
         if (evt.lengthComputable) {
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress_proveedor").css({"width": percentComplete+'%'});
-          $("#barra_progress_proveedor").text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress_proveedor").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_proveedor").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress_proveedor").css({ width: "0%",  });
-      $("#barra_progress_proveedor").text("0%").addClass('progress-bar-striped progress-bar-animated');
+      $("#guardar_registro_proveedor").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress_proveedor").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress_proveedor").css({ width: "0%", });
-      $("#barra_progress_proveedor").text("0%").removeClass('progress-bar-striped progress-bar-animated');
+      $("#barra_progress_proveedor").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
@@ -1693,7 +1685,7 @@ function foto2_eliminar() {
 //Función limpiar
 function limpiar_producto() {
   
-  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled send-data');
   $('.name-modal-title-agregar').html('Agregar Producto');
 
   //Mostramos los Materiales
@@ -1818,10 +1810,10 @@ function guardar_y_editar_productos(e) {
           ver_errores(e);
         }
       } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); } 
-      $("#guardar_registro_material").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro_material").html('Guardar Cambios').removeClass('disabled send-data');
     },
     beforeSend: function () {
-      $("#guardar_registro_material").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
+      $("#guardar_registro_material").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
     }
   });
 }
@@ -2076,7 +2068,7 @@ function filtros() {
 // ver imagen grande del producto agregado a la compra
 function ver_img_producto(file, nombre) {
   $('.foto-insumo').html(nombre);
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   $("#modal-ver-perfil-insumo").modal("show");
   $('#perfil-insumo').html(`<span class="jq_image_zoom"><img class="img-thumbnail" src="${file}" onerror="this.src='../dist/svg/404-v2.svg';" alt="Perfil" width="100%"></span>`);
   $('.jq_image_zoom').zoom({ on:'grab' });

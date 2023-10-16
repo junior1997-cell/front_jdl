@@ -40,11 +40,11 @@ Class Empresa
 	$ubigeo, $pais , $telefono, $correo, $nombre_impuesto, $monto_impuesto, $moneda, $simbolo,
 	$usuario_sol, $clave_sol, $estado_certificado, $clave_certificado,$img_perfil,$certificado_digital)
 	{
-		$sql_1="UPDATE datos_empresa SET nombre_empresa='$nombre_empresa',tipo_documento='[value-3]',numero_documento='[value-4]',
-		direccion='[value-5]',departamento='[value-6]',provincia='[value-7]',distrito='[value-8]',ubigeo='[value-9]',pais='[value-10]',telefono='[value-11]',
-		correo='[value-12]',logo='[value-13]',nombre_impuesto='[value-14]',monto_impuesto='[value-15]',moneda='[value-16]',simbolo='[value-17]',
-		diasVencer='[value-18]',validezcoti='[value-19]',usuario_sol='[value-20]',clave_sol='[value-21]',estado_certificado='[value-22]',ruta_certificado='[value-23]',
-		clave_certificado='[value-24]' WHERE iddatos_empresa='$iddatos_empresa'";
+		$sql_1="UPDATE datos_empresa SET nombre_empresa='$nombre_empresa',tipo_documento='$tipo_documento',numero_documento='$numero_documento',
+		direccion='$direccion',departamento='$departamento',provincia='$provincia',distrito='$distrito',ubigeo='$ubigeo',pais='$pais',telefono='$telefono',
+		correo='$correo',logo='$img_perfil',nombre_impuesto='$nombre_impuesto',monto_impuesto='$monto_impuesto',moneda='$moneda',simbolo='$simbolo',
+		diasVencer='150',usuario_sol='$usuario_sol',clave_sol='$clave_sol',estado_certificado='$estado_certificado',ruta_certificado='$certificado_digital',
+		clave_certificado='$clave_certificado' WHERE iddatos_empresa='$iddatos_empresa'";
 		$editar =  ejecutarConsulta($sql_1); if ( $editar['status'] == false) {return $editar; } 
 	
 		//add registro en nuestra bitacora

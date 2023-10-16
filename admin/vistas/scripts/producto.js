@@ -19,7 +19,7 @@ function init() {
   lista_select2("../ajax/ajax_general.php?op=select2Color", '#idcolor', null);
 
   // ══════════════════════════════════════ G U A R D A R   F O R M ══════════════════════════════════════
-  $("#guardar_registro").on("click", function (e) { $("#submit-form-materiales").submit(); });
+  $("#guardar_registro").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-materiales").submit(); }  });
 
   // ══════════════════════════════════════ INITIALIZE SELECT2 ══════════════════════════════════════
   $("#unidad_medida").select2({ theme: "bootstrap4", placeholder: "Seleccinar una unidad", allowClear: true, });
@@ -54,7 +54,7 @@ function foto1_eliminar() {
 //Función limpiar
 function limpiar_form_material() {
 
-  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled send-data');
   $('.name-modal-title-agregar').html('Agregar Producto');
 
   //Mostramos los Materiales
@@ -184,22 +184,17 @@ function guardaryeditar(e) {
     success: function (e) {
       try {
         e = JSON.parse(e);  console.log(e);  
-        if (e.status == true) {         
-
+        if (e.status == true) { 
           tabla.ajax.reload(null, false);
-
           limpiar_form_material();
-
           Swal.fire("Correcto!", "Insumo guardado correctamente", "success");
-
-          $("#modal-agregar-material").modal("hide");          
-          
+          $("#modal-agregar-material").modal("hide");           
         } else {
           ver_errores(e);
         }
       } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }      
 
-      $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -207,20 +202,17 @@ function guardaryeditar(e) {
         if (evt.lengthComputable) {
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress").css({"width": percentComplete+'%'});
-          $("#barra_progress").text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress").css({ width: "0%",  });
-      $("#barra_progress").text("0%").addClass('progress-bar-striped progress-bar-animated');
+      $("#guardar_registro").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress").css({ width: "0%", });
-      $("#barra_progress").text("0%").removeClass('progress-bar-striped progress-bar-animated');
+      $("#barra_progress").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');      
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
@@ -369,7 +361,7 @@ function verdatos(idproducto){
 
 function ver_perfil(file, nombre) {
   $('.foto-insumo').html(nombre);
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   $("#modal-ver-perfil-insumo").modal("show");
   $('#perfil-insumo').html(`<span class="jq_image_zoom"><img class="img-thumbnail" src="${file}" onerror="this.src='../dist/svg/404-v2.svg';" alt="Perfil" width="100%"></span>`);
   $('.jq_image_zoom').zoom({ on:'grab' });

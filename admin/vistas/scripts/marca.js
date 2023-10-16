@@ -8,7 +8,7 @@ function init() {
 
   listar_marca();
 
-  $("#guardar_registro_marca").on("click", function (e) { $("#submit-form-marca").submit(); });
+  $("#guardar_registro_marca").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-marca").submit(); }  });
 
   // Formato para telefono
   $("[data-mask]").inputmask();
@@ -16,7 +16,7 @@ function init() {
 
 //Función limpiar
 function limpiar_form_marca() {
-  $("#guardar_registro_tipo").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro_tipo").html('Guardar Cambios').removeClass('disabled send-data');
   //Mostramos los Materiales
   $("#idmarca").val("");
   $("#nombre_marca").val(""); 
@@ -88,10 +88,11 @@ function guardar_y_editar_marca(e) {
 	      tabla_marca.ajax.reload(null, false);         
 				limpiar_form_marca();
         $("#modal-agregar-marca").modal("hide");        
-        $("#guardar_registro_marca").html('Guardar Cambios').removeClass('disabled');
+        
 			}else{
 				ver_errores(e);	
 			}
+      $("#guardar_registro_marca").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -105,18 +106,18 @@ function guardar_y_editar_marca(e) {
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_marca").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress_marca").css({ width: "0%",  }).text("0%");
+      $("#guardar_registro_marca").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress_marca").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress_marca").css({ width: "0%", }).text("0%");
+      $("#barra_progress_marca").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
 }
 
 function mostrar_marca(idmarca) {
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   $("#cargando-5-fomulario").hide();
   $("#cargando-6-fomulario").show();
 

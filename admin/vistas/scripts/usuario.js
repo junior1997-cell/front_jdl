@@ -18,8 +18,8 @@ function init() {
   lista_select2("../ajax/ajax_general.php?op=select2Sucursal", '#sucursal', null);
   
   // ══════════════════════════════════════ G U A R D A R   F O R M ══════════════════════════════════════
-  $("#guardar_registro_trabajador").on("click", function (e) {  $("#submit-form-trabajador").submit(); });
-  $("#guardar_registro_sucursal").on("click", function (e) {  $("#submit-form-sucursal").submit(); });
+  $("#guardar_registro_trabajador").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-trabajador").submit(); }  });
+  $("#guardar_registro_sucursal").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-sucursal").submit(); }  });
 
   // ══════════════════════════════════════ INITIALIZE SELECT2 ══════════════════════════════════════
   $("#trabajador").select2({ templateResult: formatStateTrabajador, theme: "bootstrap4",  placeholder: "Selecione trabajador", allowClear: true, });  
@@ -60,7 +60,7 @@ function formatStateBanco (state) {
 //Función limpiar
 function limpiar_form_usuario() {
   $(".trabajador-name").html(`Crea un nuevo usuario`); 
-  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled send-data');
   // Agregamos la validacion
   $("#trabajador").rules('add', { required: true, messages: {  required: "Campo requerido" } });  
   $("#password").rules('add', { required: true, messages: {  required: "Campo requerido" } });
@@ -193,7 +193,7 @@ function guardar_y_editar_usuario(e) {
           ver_errores(d);
         }
       } catch (err) { console.log('Error: ', err.message); toastr.error('<h5 class="font-size-16px">Error temporal!!</h5> puede intentalo mas tarde, o comuniquese con <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>'); }             
-      $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -207,20 +207,20 @@ function guardar_y_editar_usuario(e) {
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
+      $("#guardar_registro").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
       $("#div_barra_progress_usuario").show();
-      $("#barra_progress_usuario").css({ width: "0%",  }).text("0%");
+      $("#barra_progress_usuario").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
       $("#div_barra_progress_usuario").hide();
-      $("#barra_progress_usuario").css({ width: "0%", }).text("0%");
+      $("#barra_progress_usuario").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
 }
 
 function mostrar(idusuario) {
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   $(".trabajador-name").html(`<i class="fas fa-spinner fa-pulse fa-2x"></i>`);  
 
   limpiar_form_usuario();  
@@ -304,7 +304,7 @@ function foto1_eliminar() {
 
 function limpiar_form_trabajador() {
 
-  $("#guardar_registro_trabajador").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro_trabajador").html('Guardar Cambios').removeClass('disabled send-data');
 
   $("#idpersona_per").val(""); 
   $("#tipo_documento_per").val("null").trigger("change");
@@ -369,7 +369,7 @@ function guardar_y_editar_trabajador(e) {
           ver_errores(e);
         }
       } catch (err) { console.log('Error: ', err.message); toastr.error('<h5 class="font-size-16px">Error temporal!!</h5> puede intentalo mas tarde, o comuniquese con <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>'); }             
-      $("#guardar_registro_trabajador").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro_trabajador").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -383,13 +383,13 @@ function guardar_y_editar_trabajador(e) {
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_trabajador").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
+      $("#guardar_registro_trabajador").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
       $("#barra_progress_trabajador_div").show();
-      $("#barra_progress_trabajador").css({ width: "0%",  }).text("0%");
+      $("#barra_progress_trabajador").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
       $("#barra_progress_trabajador_div").hide();
-      $("#barra_progress_trabajador").css({ width: "0%", }).text("0%");
+      $("#barra_progress_trabajador").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
@@ -528,7 +528,7 @@ function guardar_y_editar_sucursal(e) {
           ver_errores(e);
         }
       } catch (err) { console.log('Error: ', err.message); toastr.error('<h5 class="font-size-16px">Error temporal!!</h5> puede intentalo mas tarde, o comuniquese con <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>'); }             
-      $("#guardar_registro_sucursal").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro_sucursal").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -542,13 +542,13 @@ function guardar_y_editar_sucursal(e) {
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_sucursal").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
+      $("#guardar_registro_sucursal").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
       $("#barra_progress_sucursal_div").show();
-      $("#barra_progress_sucursal").css({ width: "0%",  }).text("0%");
+      $("#barra_progress_sucursal").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
       $("#barra_progress_sucursal_div").hide();
-      $("#barra_progress_sucursal").css({ width: "0%", }).text("0%");
+      $("#barra_progress_sucursal").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });

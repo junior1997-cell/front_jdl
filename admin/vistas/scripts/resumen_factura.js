@@ -219,7 +219,7 @@ function sumas_totales_visto_bueno(nube_idproyecto, fecha_1, fecha_2, id_proveed
 }
 
 function visto_bueno(name_tabla, name_id_tabla, id_tabla, accion, nombre_agregar_quitar) {
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   console.log(name_tabla, name_id_tabla, id_tabla, accion);
   Swal.fire({
     title: `¿Está seguro de ${accion} V°B°?`,
@@ -271,7 +271,7 @@ function modal_comprobante(comprobante, fecha, tipo_comprobante, serie_comproban
       No hay un documento para ver. Edite este registro en su modulo correspondiente.
     </div>`);
   }else{
-    var host = window.location.host == 'localhost'? `http://localhost/front_jdl/admin/dist/docs/${carpeta}/${subcarpeta}/${comprobante}` : `${window.location.origin}/admin/dist/docs/${carpeta}/${subcarpeta}/${comprobante}` ;
+    var host = window.location.host == 'localhost' || es_numero(parseFloat(window.location.host)) == true ? `${window.location.origin}/front_jdl/admin/dist/docs/${carpeta}/${subcarpeta}/${comprobante}` : `${window.location.origin}/admin/dist/docs/${carpeta}/${subcarpeta}/${comprobante}` ;
     
     if ( UrlExists(host) == 200 ) {
       nombre_download = `${format_d_m_a(fecha)} ─ ${tipo_comprobante} - ${serie_comprobante}`;
@@ -299,7 +299,7 @@ function modal_comprobante(comprobante, fecha, tipo_comprobante, serie_comproban
     }    
   }
   
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
 }
 
 function comprobante_multiple(id_tabla, fecha, tipo_comprobante, serie_comprobante, ruta, carpeta, subcarpeta) {
@@ -1955,7 +1955,7 @@ function eliminar_permanente(nombre_tabla, nombre_id_tabla, id_tabla, nombre) {
         $('#modal-ver-compras').modal('hide');
         sumas_totales(nube_idproyecto_r, fecha_1_r, fecha_2_r, id_proveedor_r, comprobante_r,  modulo_r);
         sumas_totales_visto_bueno(nube_idproyecto_r, fecha_1_r, fecha_2_r, id_proveedor_r, comprobante_r,  modulo_r);
-        $(".tooltip").removeClass("show").addClass("hidde");
+        $(".tooltip").remove();
       }else{
         ver_errores(result.value);
       }

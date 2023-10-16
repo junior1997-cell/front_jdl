@@ -113,7 +113,7 @@
                   '<button class="btn btn-warning btn-sm" onclick="mostrar_bancos(' . $reg->idbancos . ')"><i class="fas fa-pencil-alt"></i></button>' . 
                   ' <button class="btn btn-primary btn-sm" onclick="activar_bancos(' . $reg->idbancos . ')"><i class="fa fa-check"></i></button>',
               "2" => '<div class="user-block">
-              <img class="img-circle cursor-pointer" src="../dist/docs/banco/logo/'. $imagen .'" alt="User Image" onerror="'.$imagen_error.'" onclick="ver_perfil(\'../dist/docs/banco/logo/' . $imagen . '\', \''.encodeCadenaHtml($reg->nombre).'\');" data-toggle="tooltip" data-original-title="Ver imagen">
+              <img class="img-circle cursor-pointer" src="../dist/docs/banco/logo/'. $imagen .'" alt="User Image" onerror="'.$imagen_error.'" onclick="ver_perfil_banco(\'' . $imagen . '\', \'admin/dist/docs/banco/logo\', \''.encodeCadenaHtml($reg->nombre).'\');" data-toggle="tooltip" data-original-title="Ver imagen">
               <span class="username"><p class="text-primary m-b-02rem" >'. $reg->nombre .'</p></span>
               <span class="description">'. $reg->alias .
               '</div>',

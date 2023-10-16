@@ -28,7 +28,7 @@
     $ubigeo           = isset($_POST["ubigeo"]) ? limpiarCadena($_POST["ubigeo"]) : "";
     $pais             = isset($_POST["pais"]) ? limpiarCadena($_POST["pais"]) : "";
     $telefono         = isset($_POST["telefono"]) ? limpiarCadena($_POST["telefono"]) : "";
-    $correo           = isset($_POST["correo"]) ? limpiarCadena($_POST["correo"]) : 
+    $correo           = isset($_POST["correo"]) ? limpiarCadena($_POST["correo"]) : "" ;
     
     $nombre_impuesto  = isset($_POST["nombre_impuesto"]) ? limpiarCadena($_POST["nombre_impuesto"]) : "";
     $monto_impuesto   = isset($_POST["monto_impuesto"]) ? limpiarCadena($_POST["monto_impuesto"]) : "";
@@ -38,9 +38,7 @@
     $usuario_sol      = isset($_POST["usuario_sol"]) ? limpiarCadena($_POST["usuario_sol"]) : "";
     $clave_sol        = isset($_POST["clave_sol"]) ? limpiarCadena($_POST["clave_sol"]) : "";
     $estado_certificado = isset($_POST["estado_certificado"]) ? limpiarCadena($_POST["estado_certificado"]) : "";
-    $clave_certificado  = isset($_POST["clave_certificado"]) ? limpiarCadena($_POST["clave_certificado"]) : "";
-    
-    
+    $clave_certificado  = isset($_POST["clave_certificado"]) ? limpiarCadena($_POST["clave_certificado"]) : "";    
 
     switch ($_GET["op"]) {
 
@@ -63,7 +61,7 @@
         } else {
           $ext1 = explode(".", $_FILES["doc1"]["name"]);
           $flat_ficha1 = true;
-          $certificado_digital = 'certificado-digital-'. random_int(0, 20) . round(microtime(true)) . random_int(21, 41) . '.' . end($ext1);
+          $certificado_digital = 'certificado-digital-'.$estado_certificado.'-'. random_int(0, 20) . round(microtime(true)) . random_int(21, 41) . '.' . end($ext1);
           move_uploaded_file($_FILES["doc1"]["tmp_name"], "../public/FACT_WebService/Facturacion/src/" . $certificado_digital);
         }
 
@@ -73,16 +71,17 @@
         } else {
           // validamos si existe LA IMG para eliminarlo          
           if ($flat_img1 == true) {
-            $datos_f1 = $producto->obtener_perfil_certificado($idproducto);
+            $datos_f1 = $empresa->obtener_perfil_certificado($iddatos_empresa);
             $img1_ant = $datos_f1['data']->fetch_object()->logo;
             if ( !empty( $img1_ant ) ) { unlink("../dist/docs/empresa/img_perfil/" . $img1_ant); }
           }
-          //validamos si existe comprobante para eliminarlo
+          //validamos si existe un archivo para eliminarlo
           if ($flat_ficha1 == true) {
-            $datos_cert = $transporte->obtener_perfil_certificado($idtransporte);
+            $datos_cert = $empresa->obtener_perfil_certificado($iddatos_empresa);
             $file_cert = $datos_cert['data']->fetch_object()->ruta_certificado;
             if (!empty($file_cert)) { unlink("../public/FACT_WebService/Facturacion/src/" . $file_cert); }
           }
+          
           $rspta = $empresa->editar($iddatos_empresa, $nombre_empresa, $tipo_documento, $numero_documento, $direccion, $departamento, $provincia, $distrito,
           $ubigeo, $pais , $telefono, $correo, $nombre_impuesto, $monto_impuesto, $moneda, $simbolo,
           $usuario_sol, $clave_sol, $estado_certificado, $clave_certificado, $img_perfil,$certificado_digital);
@@ -103,19 +102,17 @@
 
         if ($rspta['status']) {
           while ($reg = $rspta['data']->fetch_object()) {
-            $imagen = (empty($reg->logo) ? 'producto-sin-foto.svg' : $reg->logo );
-            $data[] = [
-              "0" => $cont++,
-              "1" => '<button class="btn btn-warning btn-sm" onclick="mostrar_empresa(' . $reg->iddatos_empresa . ');" data-toggle="tooltip" data-original-title="Editar"><i class="fas fa-pencil-alt"></i></button>' ,
-              "2" => '<div class="user-block">'.
-                '<img class="profile-user-img img-responsive img-circle cursor-pointer" src="../dist/docs/producto/img_perfil/' . $imagen . '" alt="user image" onerror="'.$imagen_error.'" onclick="ver_perfil(\'../dist/docs/producto/img_perfil/' . $imagen . '\', \''.encodeCadenaHtml($reg->nombre_empresa).'\');" data-toggle="tooltip" data-original-title="Ver imagen">
+            $imagen = (empty($reg->logo) ? 'sin-foto.svg' : $reg->logo );
+            $data[] = [              
+              "0" => '<button class="btn btn-warning btn-sm" onclick="mostrar_empresa(' . $reg->iddatos_empresa . ');" data-toggle="tooltip" data-original-title="Editar"><i class="fas fa-pencil-alt"></i></button>' ,
+              "1" => '<div class="user-block">'.
+                '<img class="profile-user-img img-responsive img-circle cursor-pointer" src="../dist/docs/empresa/img_perfil/' . $imagen . '" alt="user image" onerror="'.$imagen_error.'" onclick="ver_perfil_empresa( \'' . $imagen . '\', \'admin/dist/docs/empresa/img_perfil\', \''.encodeCadenaHtml($reg->nombre_empresa).'\');" data-toggle="tooltip" data-original-title="Ver imagen">
                 <span class="username"><p class="mb-0">' . $reg->nombre_empresa . '</p></span>
                 <span class="description"><b>' . $reg->tipo_documento .':</b> '. $reg->numero_documento. '</span>
               </div>',
-              "3" => $reg->nombre_impuesto . ' ' . $reg->monto_impuesto ,
-              "4" => $reg->moneda . ' ' . $reg->simbolo ,
-              "5" => '<div class="bg-color-242244245" style="overflow: auto; resize: vertical; height: 45px;">'. $reg->direccion . '</div>',
-              "6" => $reg->distrito . $toltip,
+              "2" => $reg->nombre_impuesto . ' | ' . $reg->monto_impuesto ,
+              "3" => $reg->moneda . ' | ' . $reg->simbolo ,
+              "4" => '<div class="bg-color-242244245" style="overflow: auto; resize: vertical; height: 45px;"><b>Direc: </b>'. $reg->direccion  . '<br> <b>Dpto: </b>'.$reg->departamento. '<br> <b>Prov: </b>'.$reg->provincia. '<br><b>Dtto: </b>'.$reg->distrito.'</div>' . $toltip,
             ];
           }
           $results = [

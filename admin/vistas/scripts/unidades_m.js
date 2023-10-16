@@ -9,7 +9,7 @@ function init() {
 
   listar_unidades_m();
 
-  $("#guardar_registro_unidad_m").on("click", function (e) { $("#submit-form-unidad-m").submit(); });
+  $("#guardar_registro_unidad_m").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-unidad-m").submit(); }  });
 
   // Formato para telefono
   $("[data-mask]").inputmask();
@@ -17,7 +17,7 @@ function init() {
 
 //Función limpiar
 function limpiar_unidades_m() {
-  $("#guardar_registro_unidad_m").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro_unidad_m").html('Guardar Cambios').removeClass('disabled send-data');
   //Mostramos los Materiales
   $("#idunidad_medida").val("");
   $("#nombre_medida").val(""); 
@@ -92,54 +92,44 @@ function guardaryeditar_unidades_m(e) {
     contentType: false,
     processData: false,
     success: function (e) {
-      e = JSON.parse(e);  console.log(e);  
-      if (e.status == true) {
-
-				Swal.fire("Correcto!", "Unidad de Medida registrado correctamente.", "success");
-
-	      tabla_unidades_m.ajax.reload(null, false);
-         
-				limpiar_unidades_m();
-
-        $("#modal-agregar-unidad-m").modal("hide");
-        $("#guardar_registro_unidad_m").html('Guardar Cambios').removeClass('disabled');
-
-			}else{
-        ver_errores(e);				 
-			}
+      try {
+        e = JSON.parse(e);  console.log(e);  
+        if (e.status == true) {
+          Swal.fire("Correcto!", "Unidad de Medida registrado correctamente.", "success");
+          tabla_unidades_m.ajax.reload(null, false);         
+          limpiar_unidades_m();
+          $("#modal-agregar-unidad-m").modal("hide");
+          
+        }else{
+          ver_errores(e);				 
+        }
+      } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }
+      $("#guardar_registro_unidad_m").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
-
       var xhr = new window.XMLHttpRequest();
-
       xhr.upload.addEventListener("progress", function (evt) {
-
         if (evt.lengthComputable) {
-
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress_um").css({"width": percentComplete+'%'});
-
-          $("#barra_progress_um").text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress_um").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_unidad_m").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress_um").css({ width: "0%",  });
-      $("#barra_progress_um").text("0%");
+      $("#guardar_registro_unidad_m").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress_um").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress_um").css({ width: "0%", });
-      $("#barra_progress_um").text("0%");
+      $("#barra_progress_um").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
 }
 
 function mostrar_unidades_m(idunidad_medida) {
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   $("#cargando-1-fomulario").hide();
   $("#cargando-2-fomulario").show();
 

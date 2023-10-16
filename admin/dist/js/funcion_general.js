@@ -547,11 +547,8 @@ function addImage(e, id, img_default='') {
 	var file = e.target.files[0], imageType = /image.*/;
 	
 	if (e.target.files[0]) {
-
 		var sizeByte = file.size;
-
 		var sizekiloBytes = parseInt(sizeByte / 1024);
-
 		var sizemegaBytes = (sizeByte / 1000000);
 		// alert("KILO: "+sizekiloBytes+" MEGA: "+sizemegaBytes)
 
@@ -563,24 +560,15 @@ function addImage(e, id, img_default='') {
         $("#"+id+"_i").attr("src", "../dist/img/default/img_defecto.png");
       } else {
         $("#"+id+"_i").attr("src", img_default);
-      }      
-
+      }
 		}else{
-
 			if (sizekiloBytes <= 10240) {
-
 				var reader = new FileReader();
-
 				reader.onload = fileOnload;
-
 				function fileOnload(e) {
-
 					var result = e.target.result;
-
 					$("#"+id+"_i").attr("src", result);
-
           $(`.jq_image_zoom`).zoom({ on:'grab' });
-
 					$("#"+id+"_nombre").html(''+
 						'<div class="row">'+
               '<div class="col-md-12">'+
@@ -591,18 +579,12 @@ function addImage(e, id, img_default='') {
               '</div>'+
             '</div>'+
 					'');
-
 					toastr.success('Imagen aceptada.')
 				}
-
 				reader.readAsDataURL(file);
-
 			} else {
-
-				toastr.warning('La imagen: '+file.name.toUpperCase()+' es muy pesada. Tamaño máximo 10mb')
-
+				toastr.warning('La imagen: '+file.name.toUpperCase()+' es muy pesada. Tamaño máximo 10mb');
 				$("#"+id+"_i").attr("src", "../dist/img/default/img_error.png");
-
 				$("#"+id).val("");
 			}
 		}
@@ -610,13 +592,11 @@ function addImage(e, id, img_default='') {
 	}else{
 
 		toastr.error('Seleccione una Imagen');
-
     if (img_default == '' || img_default == null || img_default == false || img_default == true ) {
       $("#"+id+"_i").attr("src", "../dist/img/default/img_defecto.png");
     } else {
       $("#"+id+"_i").attr("src", img_default);
     }  
-
 		$("#"+id+"_nombre").html("");
 	}
 }
@@ -649,51 +629,18 @@ function addImageApplication(e, id, img_default='', width='100%', height='310', 
         $(`#${id}_ver`).html('<img src="../dist/svg/doc_uploads.svg" alt="" width="50%" >'); 
       } else {
         $(`#${id}_ver`).html(`<img src="${img_default}" alt="" width="50%" >`); 
-      }
-      
+      }      
 
 		}else{
-
 			if (sizekiloBytes <= 40960) {
-
 				var reader = new FileReader();
-
 				reader.onload = fileOnload;
-
 				function fileOnload(e) {
-
 					var result = e.target.result;
+          // cargamos la imagen adecuada par el archivo				  
 
-          // cargamos la imagen adecuada par el archivo
-				  if ( extrae_extencion(file.name) == "doc") {
-            $(`#${id}_ver`).html('<img src="../dist/svg/doc.svg" alt="" width="50%" >');
-          } else if ( extrae_extencion(file.name) == "docx" ) {             
-            $(`#${id}_ver`).html('<img src="../dist/svg/docx.svg" alt="" width="50%" >');
-          }else if ( extrae_extencion(file.name) == "pdf" || extrae_extencion(file.name) == "PDF" ) {              
-            $(`#${id}_ver`).html(`<iframe src="${result}" frameborder="0" scrolling="no" width="${width}" height="${height}"></iframe>`);
-          }else if ( extrae_extencion(file.name) == "csv" ) {              
-            $(`#${id}_ver`).html('<img src="../dist/svg/csv.svg" alt="" width="50%" >');
-          } else if ( extrae_extencion(file.name) == "xls" ) {             
-            $(`#${id}_ver`).html('<img src="../dist/svg/xls.svg" alt="" width="50%" >');
-          } else if ( extrae_extencion(file.name) == "xlsx" ) {             
-            $(`#${id}_ver`).html('<img src="../dist/svg/xlsx.svg" alt="" width="50%" >');
-          } else if ( extrae_extencion(file.name) == "xlsm" ) {             
-            $(`#${id}_ver`).html('<img src="../dist/svg/xlsm.svg" alt="" width="50%" >');
-          } else if ( extrae_extencion(file.name) == "xlsb" ) {             
-            $(`#${id}_ver`).html('<img src="../dist/svg/xlsb.svg" alt="" width="50%" >');
-          } else if ( extrae_extencion(file.name) == "pfx" || extrae_extencion(file.name) == "p12" ) {             
-            $(`#${id}_ver`).html('<img src="../dist/img/default/pfx.jpg" alt="" width="50%" >');
-          } else if (
-            extrae_extencion(file.name) == "jpeg" || extrae_extencion(file.name) == "jpg" || extrae_extencion(file.name) == "jpe" ||
-            extrae_extencion(file.name) == "jfif" || extrae_extencion(file.name) == "gif" || extrae_extencion(file.name) == "png" ||
-            extrae_extencion(file.name) == "tiff" || extrae_extencion(file.name) == "tif" || extrae_extencion(file.name) == "webp" ||
-            extrae_extencion(file.name) == "bmp" || extrae_extencion(file.name) == "svg" ) {
-
-            $(`#${id}_ver`).html(`<span class="jq_image_zoom"><img src="${result}" alt="" width="100%" onerror="this.src='../dist/svg/error-404-x.svg';" ></span>`); 
-            $(`.jq_image_zoom`).zoom({ on:'grab' });
-          } else {
-            $(`#${id}_ver`).html('<img src="../dist/svg/doc_si_extencion.svg" alt="" width="50%" >');
-          }
+          $(`#${id}_ver`).html( identificando_archivo(file.name, result ) );
+          $(`.jq_image_zoom`).zoom({ on:'grab' });
           
           if (detalle_upload == true) {
             $(`#${id}_nombre`).html(`<div class="row">
@@ -807,7 +754,7 @@ function re_visualizacion(id,  url_carpeta, width='100%', height='310') {
 
     pdffile_url=URL.createObjectURL(pdffile);
 
-    var sizeByte = pdffile_url.size; console.log(pdffile_url.type);
+    var sizeByte = pdffile.size; console.log(pdffile.type);
 		var sizekiloBytes = parseInt(sizeByte / 1024);
 		var sizemegaBytes = (sizeByte / 1000000);
 
@@ -831,10 +778,10 @@ function doc_view_extencion(filename, url_carpeta='',  width='50%', height='auto
     host =  `${url_carpeta}` ;
     ruta = host;
   } else {
-    ruta =  `http://localhost/front_jdl/${url_carpeta}/${filename}`;     
-    host = window.location.host == 'localhost'? `http://localhost/front_jdl/${url_carpeta}/${filename}` : `${window.location.origin}/${url_carpeta}/${filename}` ;
+    ruta =  `${window.location.origin}/front_jdl/${url_carpeta}/${filename}`;     
+    host = window.location.host == 'localhost' || es_numero(parseFloat(window.location.host)) == true ? `${window.location.origin}/front_jdl/${url_carpeta}/${filename}` : `${window.location.origin}/${url_carpeta}/${filename}` ;    
   }  
-
+  
   // cargamos la imagen adecuada par el archivo
   if ( UrlExists(host) != 200 ) { console.log('no existe');
     if (error_img == false || error_img == null ) {    
@@ -856,25 +803,25 @@ function doc_view_extencion(filename, url_carpeta='',  width='50%', height='auto
   return html;
 }
 
-function doc_view_download_expand(filename, ruta='', nombre_decarga='', width='50%', height='auto', return_error_img = false, error_img ='') {
+function doc_view_download_expand(filename, ruta='', nombre_decarga='', width='50%', height='auto', error_img = false) {
 
   var html = ''; var extencion = '';
   var expand_disabled = '';
 
-  var ruta_file = window.location.host == 'localhost'? `http://localhost/front_jdl/${ruta}/${filename}` : `${window.location.origin}/${ruta}/${filename}` ;
+  var ruta_file = window.location.host == 'localhost' || es_numero(parseFloat(window.location.host)) == true ? `${window.location.origin}/front_jdl/${ruta}/${filename}` : `${window.location.origin}/${ruta}/${filename}` ;
  
   // cargamos la imagen adecuada par el archivo
   if ( UrlExists(ruta_file) != 200 ) { console.log('no existe');
-    if (return_error_img == true) {    
-      var html_img_error =  error_img == '' || error_img == null ? `<img src="../dist/svg/404-v2.svg" alt="" width="${width}" >` : `<img src="${error_img}" alt="" width="${width}" onerror="this.src='../dist/svg/404-v2.svg';"  >`;
-      return html_img_error;
-    } else {
+    if (error_img == false || error_img == null) {    
       html = `<div class="callout callout-danger">
         <p class="text-danger font-size-12px text-left">404 Documento no encontrado!!</p>
         <p class="font-size-10px text-left">Hubo un <b>error</b> al <b>encontrar este archivo</b> , los mas probable es que se haya eliminado, o se haya movido a otro lugar, se <b>recomienda editar</b> en su módulo correspodiente.</p>
       </div>`;
       extencion = extrae_extencion(filename);
       return html
+    } else {
+      var html_img_error = `<img src="${error_img}" alt="" width="${width}" onerror="this.src='../dist/svg/404-v2.svg';"  >`;
+      return html_img_error;     
     }
   }else {
 
@@ -978,12 +925,8 @@ function identificando_archivo(filename, ruta, width = '100%', height = 'auto') 
   }
 }
 
-function extrae_extencion(filename) { 
-  var exten = "";
-  if (filename == "" || filename == null || filename === undefined) {  }else{
-    exten = filename.split(".").pop();
-  }
-  return exten; 
+function extrae_extencion(filename) {   
+  if (filename == "" || filename == null || filename === undefined) { return exten;  }else{ return  filename.split(".").pop(); }
 }
 
 function pdf_o_img(filename) {
@@ -1328,7 +1271,7 @@ function UrlExists(url) {
 
 function DocExist(url) {  
   
-  var host = window.location.host == 'localhost'? `http://localhost/front_jdl/admin/${url}` : `${window.location.origin}/${url}`;
+  var host = window.location.host == 'localhost' || es_numero(parseFloat(window.location.host)) == true ? `${window.location.origin}/front_jdl/admin/${url}` : `${window.location.origin}/${url}`;
   
   var http = new XMLHttpRequest();
   http.open("HEAD", host, false);
@@ -1480,4 +1423,8 @@ function extrae_ruc(select = null, input = null) {
   }
   
   $('[data-toggle="tooltip"]').tooltip();
+}
+
+function replicar_value_input(cont, input_entrada, input_salida) {
+  var value = $(input_entrada).val(); $(`${input_salida}`).val(value).trigger("change");
 }

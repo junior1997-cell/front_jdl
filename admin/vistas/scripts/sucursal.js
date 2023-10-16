@@ -8,7 +8,7 @@ function init() {
 
   listar_sucursal();
 
-  $("#guardar_registro_sucursal").on("click", function (e) { $("#submit-form-sucursal").submit(); });
+  $("#guardar_registro_sucursal").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-sucursal").submit(); } });
 
   // Formato para telefono
   $("[data-mask]").inputmask();
@@ -16,7 +16,7 @@ function init() {
 
 //Función limpiar
 function limpiar_sucursal() {
-  $("#guardar_registro_sucursal").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro_sucursal").html('Guardar Cambios').removeClass('disabled send-data');
   //Mostramos los Materiales
   $("#idsucursal").val("");
   $("#apodo_sucursal").val(""); 
@@ -123,16 +123,19 @@ function guardaryeditar_sucursal(e) {
     contentType: false,
     processData: false,
     success: function (e) {
-      e = JSON.parse(e);  console.log(e);  
-      if (e.status == true) {
-				Swal.fire("Correcto!", "Sucursal registrado correctamente.", "success");
-	      tabla_sucursal.ajax.reload(null, false);         
-				limpiar_sucursal();
-        $("#modal-agregar-sucursal").modal("hide");
-			}else{
-        ver_errores(e);				 
-			}
-      $("#guardar_registro_sucursal").html('Guardar Cambios').removeClass('disabled');
+      try {
+        e = JSON.parse(e);  console.log(e);  
+        if (e.status == true) {
+          Swal.fire("Correcto!", "Sucursal registrado correctamente.", "success");
+          tabla_sucursal.ajax.reload(null, false);         
+          limpiar_sucursal();
+          $("#modal-agregar-sucursal").modal("hide");
+        }else{
+          ver_errores(e);				 
+        }
+      } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }
+      
+      $("#guardar_registro_sucursal").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -146,18 +149,18 @@ function guardaryeditar_sucursal(e) {
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_sucursal").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress_sucursal").css({ width: "0%",  }).text("0%");
+      $("#guardar_registro_sucursal").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress_sucursal").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress_sucursal").css({ width: "0%", }).text("0%");
+      $("#barra_progress_sucursal").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
 }
 
 function mostrar_sucursal(idsucursal) {
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   $("#cargando-14-fomulario").hide();
   $("#cargando-15-fomulario").show();
 

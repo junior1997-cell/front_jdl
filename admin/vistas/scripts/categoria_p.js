@@ -5,7 +5,7 @@ function init() {
   listar_c_insumos_af();
 
   //Guardar  
-  $("#guardar_registro_categoria_af").on("click", function (e) { $("#submit-form-cateogrias-af").submit(); });
+  $("#guardar_registro_categoria_af").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-cateogrias-af").submit(); }  });
 
   // Formato para telefono
   $("[data-mask]").inputmask();
@@ -13,7 +13,7 @@ function init() {
 
 //Función limpiar 
 function limpiar_c_af() {
-  $("#guardar_registro_categoria_af").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro_categoria_af").html('Guardar Cambios').removeClass('disabled send-data');
   $("#idcategoria_producto").val("");
   $("#nombre_categoria").val(""); 
   $("#descripcion_cat").val(""); 
@@ -79,48 +79,37 @@ function guardaryeditar_c_insumos_af(e) {
     contentType: false,
     processData: false,
     success: function (e) {
-      e = JSON.parse(e);  console.log(e);
-      if ( e.status == true) {
-
-				Swal.fire("Correcto!", "Clasificación registrado correctamente.", "success");	 	 
-
-	      tabla_categorias_af.ajax.reload(null, false);
-         
-				limpiar_c_af();
-
-        $("#modal-agregar-categorias-af").modal("hide");
-
-        $("#guardar_registro_categoria_af").html('Guardar Cambios').removeClass('disabled');
-
-			}else{
-				ver_errores(e);
-			}
+      try {
+        e = JSON.parse(e);  console.log(e);
+        if ( e.status == true) {
+          Swal.fire("Correcto!", "Clasificación registrado correctamente.", "success");	 	 
+          tabla_categorias_af.ajax.reload(null, false);         
+          limpiar_c_af();
+          $("#modal-agregar-categorias-af").modal("hide");
+          
+        }else{
+          ver_errores(e);
+        }
+      } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }
+      $("#guardar_registro_categoria_af").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
-
       var xhr = new window.XMLHttpRequest();
-
       xhr.upload.addEventListener("progress", function (evt) {
-
         if (evt.lengthComputable) {
-
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress_categoria_af").css({"width": percentComplete+'%'});
-
-          $("#barra_progress_categoria_af").text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress_categoria_af").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_categoria_af").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress_categoria_af").css({ width: "0%",  });
-      $("#barra_progress_categoria_af").text("0%");
+      $("#guardar_registro_categoria_af").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress_categoria_af").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress_categoria_af").css({ width: "0%", });
-      $("#barra_progress_categoria_af").text("0%");
+      $("#barra_progress_categoria_af").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });

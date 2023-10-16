@@ -3,6 +3,11 @@
 
 <!-- Mirrored from htmlstream.com/front/page-coming-soon.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 May 2021 14:20:43 GMT -->
 <head>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XP4E6YC00F"></script>
+  <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XP4E6YC00F'); </script>
+
   <!-- Title -->
   <title>Mantenimiento | JDL Technology</title>
 

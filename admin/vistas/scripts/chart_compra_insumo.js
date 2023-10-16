@@ -322,7 +322,7 @@ function mes_o_dia(data_anio, data_mes) {
 
 function ver_perfil(file, nombre) {
   $('.foto-insumo').html(nombre);
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   $("#modal-ver-perfil-insumo").modal("show");
   $('#perfil-insumo').html(`<center><img class="img-thumbnail" src="${file}" onerror="this.src='../dist/svg/404-v2.svg';" alt="Perfil" width="100%"></center>`);
 }

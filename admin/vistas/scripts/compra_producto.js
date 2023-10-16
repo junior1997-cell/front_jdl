@@ -14,7 +14,7 @@ var tabla_pagos2;
 var tabla_pagos3;
 
 var array_doc = [];
-var host = window.location.host == 'localhost'? `http://localhost/front_jdl/admin/dist/docs/compra_insumo/comprobante_compra/` : `${window.location.origin}/admin/dist/docs/compra_insumo/comprobante_compra/` ;
+var host = window.location.host == 'localhost' || es_numero(parseFloat(window.location.host)) == true ? `${window.location.origin}/front_jdl/admin/dist/docs/compra_insumo/comprobante_compra/` : `${window.location.origin}/admin/dist/docs/compra_insumo/comprobante_compra/` ;
 
 var array_class_trabajador = [];
 
@@ -41,11 +41,11 @@ function init() {
   lista_select2("../ajax/ajax_general.php?op=select2Categoria", '#categoria_producto_pro', null);
 
   // ══════════════════════════════════════ G U A R D A R   F O R M ══════════════════════════════════════
-  $("#guardar_registro_compras").on("click", function (e) {  $("#submit-form-compras").submit(); });
-  $("#guardar_registro_proveedor").on("click", function (e) { $("#submit-form-proveedor").submit(); });
-  $("#guardar_registro_pago").on("click", function (e) {  $("#submit-form-pago").submit(); });
-  $("#guardar_registro_comprobante_compra").on("click", function (e) {  $("#submit-form-comprobante-compra").submit();  });  
-  $("#guardar_registro_material").on("click", function (e) {  $("#submit-form-producto").submit(); });  
+  $("#guardar_registro_compras").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-compras").submit(); }  });
+  $("#guardar_registro_proveedor").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-proveedor").submit(); }  });
+  $("#guardar_registro_pago").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-pago").submit(); }  });
+  $("#guardar_registro_comprobante_compra").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-comprobante-compra").submit(); } });  
+  $("#guardar_registro_material").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-producto").submit(); } });  
 
   // ══════════════════════════════════════ INITIALIZE SELECT2 - FILTROS ══════════════════════════════════════
   $("#filtro_tipo_comprobante").select2({ theme: "bootstrap4", placeholder: "Selecione comprobante", allowClear: true, });
@@ -114,7 +114,7 @@ function templatePersona (state) {
 
 //Función limpiar
 function limpiar_form_compra() {
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
 
   $("#idcompra_producto").val("");
   $("#idproveedor").val("null").trigger("change");
@@ -358,7 +358,7 @@ function guardar_y_editar_compras(e) {
 //Función para eliminar registros
 function eliminar_compra(idcompra_producto, nombre) {
 
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
 
   crud_eliminar_papelera(
     "../ajax/compra_producto.php?op=anular",
@@ -1145,7 +1145,7 @@ function limpiar_form_proveedor() {
   $(".form-control").removeClass('is-invalid');
   $(".error.invalid-feedback").remove();
 
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
 }
 
 // damos formato a: Cta, CCI
@@ -1217,7 +1217,7 @@ function guardar_proveedor(e) {
         }
       } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }       
       
-      $("#guardar_registro_proveedor").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro_proveedor").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -1225,22 +1225,19 @@ function guardar_proveedor(e) {
         if (evt.lengthComputable) {
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress_proveedor").css({"width": percentComplete+'%'});
-          $("#barra_progress_proveedor").text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress_proveedor").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
     },
     beforeSend: function () {
-      $("#barra_progress_proveedor_div").show();
-      $("#guardar_registro_proveedor").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress_proveedor").css({ width: "0%",  });
-      $("#barra_progress_proveedor").text("0%").addClass('progress-bar-striped progress-bar-animated');
+      $("#guardar_registro_proveedor").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress_proveedor_div").show();      
+      $("#barra_progress_proveedor").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');      
     },
     complete: function () {
       $("#barra_progress_proveedor_div").hide();
-      $("#barra_progress_proveedor").css({ width: "0%", });
-      $("#barra_progress_proveedor").text("0%").removeClass('progress-bar-striped progress-bar-animated');
+      $("#barra_progress_proveedor").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
@@ -1322,7 +1319,7 @@ function foto2_eliminar() {
 
 //Función limpiar
 function limpiar_producto() {  
-  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled send-data');
   $('.name-modal-title-agregar').html('Agregar Producto');
 
   //Mostramos los Materiales
@@ -1442,15 +1439,14 @@ function guardar_y_editar_productos(e) {
           tablamateriales.ajax.reload(null, false);
           actualizar_producto();
           $("#modal-agregar-productos").modal("hide");
-
         } else {
           ver_errores(e);
         }
       } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); } 
-      $("#guardar_registro_material").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro_material").html('Guardar Cambios').removeClass('disabled send-data');
     },
     beforeSend: function () {
-      $("#guardar_registro_material").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
+      $("#guardar_registro_material").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
     }
   });
 }
@@ -1665,7 +1661,7 @@ function filtros() {
 // ver imagen grande del producto agregado a la compra
 function ver_img_producto(file, nombre) {
   $('.foto-insumo').html(nombre);
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   $("#modal-ver-perfil-insumo").modal("show");
   $('#perfil-insumo').html(`<span class="jq_image_zoom"><img class="img-thumbnail" src="${file}" onerror="this.src='../dist/svg/404-v2.svg';" alt="Perfil" width="100%"></span>`);
   $('.jq_image_zoom').zoom({ on:'grab' });

@@ -11,7 +11,7 @@ function init() {
 
   listar_tipo();
 
-  $("#guardar_registro_tipo").on("click", function (e) { $("#submit-form-tipo").submit(); });
+  $("#guardar_registro_tipo").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-tipo").submit(); }  });
 
   // Formato para telefono
   $("[data-mask]").inputmask();
@@ -19,7 +19,7 @@ function init() {
 
 //Función limpiar
 function limpiar_tipo() {
-  $("#guardar_registro_tipo").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro_tipo").html('Guardar Cambios').removeClass('disabled send-data');
   //Mostramos los Materiales
   $("#idtipo_persona").val("");
   $("#nombre_tipo").val(""); 
@@ -85,54 +85,44 @@ function guardaryeditar_tipo(e) {
     contentType: false,
     processData: false,
     success: function (e) {
-      e = JSON.parse(e);  console.log(e);  
-      if (e.status == true) {
-
-				Swal.fire("Correcto!", "Tipo trabajado registrado correctamente.", "success");
-
-	      tabla_tipo.ajax.reload(null, false);
-         
-				limpiar_tipo();
-
-        $("#modal-agregar-tipo").modal("hide");        
-        
-        $("#guardar_registro_tipo").html('Guardar Cambios').removeClass('disabled');
-			}else{
-				ver_errores(e);	
-			}
+      try {
+        e = JSON.parse(e);  console.log(e);  
+        if (e.status == true) {
+          Swal.fire("Correcto!", "Tipo trabajado registrado correctamente.", "success");
+          tabla_tipo.ajax.reload(null, false);         
+          limpiar_tipo();
+          $("#modal-agregar-tipo").modal("hide");        
+          
+        }else{
+          ver_errores(e);	
+        }
+      } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }
+      $("#guardar_registro_tipo").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
-
       var xhr = new window.XMLHttpRequest();
-
       xhr.upload.addEventListener("progress", function (evt) {
-
         if (evt.lengthComputable) {
-
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress_tipo").css({"width": percentComplete+'%'});
-
-          $("#barra_progress_tipo").text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress_tipo").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_tipo").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress_tipo").css({ width: "0%",  });
-      $("#barra_progress_tipo").text("0%");
+      $("#guardar_registro_tipo").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress_tipo").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress_tipo").css({ width: "0%", });
-      $("#barra_progress_tipo").text("0%");
+      $("#barra_progress_tipo").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
 }
 
 function mostrar_tipo(idtipo_persona) {
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   $("#cargando-10-fomulario").hide();
   $("#cargando-11-fomulario").show();
 

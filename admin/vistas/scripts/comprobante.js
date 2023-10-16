@@ -20,7 +20,7 @@ function init() {
   lista_select2("../ajax/ajax_general.php?op=select2Banco", '#banco', null);
 
   // ══════════════════════════════════════ G U A R D A R   F O R M ══════════════════════════════════════ 
-  $("#guardar_registro_persona").on("click", function (e) { $("#submit-form-persona").submit(); });
+  $("#guardar_registro_persona").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-persona").submit(); }  });
 
   // ══════════════════════════════════════ INITIALIZE SELECT2 - OTRO INGRESO  ══════════════════════════════════════  
   $("#idtipopersona").select2({ theme: "bootstrap4", placeholder: "Selecione un tipo", allowClear: true,   });
@@ -392,17 +392,15 @@ function guardar_y_editar_comprobante(e) {
       try {
         e = JSON.parse(e);
         if (e.status == true) {
-
           Swal.fire("Correcto!", "El registro se guardo correctamente.", "success");
           tabla.ajax.reload(null, false);
           limpiar_form();    
           show_hide_form(1);
-
         } else {
           ver_errores(e);
         }
       } catch (err) { console.log('Error: ', err.message); toastr.error('<h5 class="font-size-16px">Error temporal!!</h5> puede intentalo mas tarde, o comuniquese con <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>'); }      
-      $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro").html('Guardar Cambios').removeClass('disabled send-data');
     },   
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -416,7 +414,7 @@ function guardar_y_editar_comprobante(e) {
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
+      $("#guardar_registro").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
       $("#barra_progress_comprobante").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
       $("#barra_progress_comprobante_div").show();
     },
@@ -600,7 +598,7 @@ function lista_de_items() {
 //Función limpiar
 function limpiar_form_persona() {
   
-  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled send-data');
 
   $("#idpersona").val(""); 
   $("#tipo_documento").val("null").trigger("change");
@@ -715,14 +713,13 @@ function guardar_y_editar_persona(e) {
           Swal.fire("Correcto!", "Persona guardado correctamente", "success");
           lista_select2("../ajax/comprobante.php?op=selecct_produc_o_provee", '#idpersona', e.data);    
           limpiar_form_persona();
-          $("#modal-agregar-persona").modal("hide"); 
-          
+          $("#modal-agregar-persona").modal("hide");           
         }else{
           ver_errores(e);
         }
       } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }      
 
-      $("#guardar_registro_persona").html('Guardar Cambios').removeClass('disabled');
+      $("#guardar_registro_persona").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -736,7 +733,7 @@ function guardar_y_editar_persona(e) {
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_persona").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
+      $("#guardar_registro_persona").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
       $("#barra_progress_persona").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
       $("#barra_progress_persona_div").show();
     },

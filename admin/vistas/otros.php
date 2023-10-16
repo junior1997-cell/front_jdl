@@ -546,26 +546,22 @@
                                       <div class="div_tabla_empresa">
                                         <table id="tabla-empresa" class="table table-bordered table-striped display" style="width: 100% !important;">
                                           <thead>
-                                            <tr>
-                                              <th class="text-center">#</th>
-                                              <th class="">Acciones</th>
-                                              <th>Nombre</th>
+                                            <tr>                                              
+                                              <th class="">OP</th>
+                                              <th>Nombre</th> 
                                               <th>Impuesto</th>
                                               <th>Moneda</th>
-                                              <th>Direccion</th>
-                                              <th>Distrito</th>                                            
+                                              <th>Ubicacion</th>                                          
                                             </tr>
                                           </thead>
                                           <tbody></tbody>
                                           <tfoot>
-                                            <tr>
-                                              <th class="text-center">#</th>
-                                              <th class="">Acciones</th>
+                                            <tr>                                              
+                                              <th class="">OP</th>
                                               <th>Nombre</th>
                                               <th>Impuesto</th>
                                               <th>Moneda</th>
-                                              <th>Direccion</th>
-                                              <th>Distrito</th>
+                                              <th>Ubicacion</th>
                                             </tr>
                                           </tfoot>
                                         </table>
@@ -636,8 +632,8 @@
                                                     <!-- Dirección -->
                                                     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                                       <div class="form-group">
-                                                        <label for="dirección">Dirección Fiscal</label>
-                                                        <textarea name="dirección" id="dirección" class="form-control" rows="1" placeholder="Dirección"></textarea>
+                                                        <label for="direccion">Dirección Fiscal</label>
+                                                        <textarea name="direccion" id="direccion" class="form-control" rows="1" placeholder="Dirección"></textarea>
                                                       </div>
                                                     </div>
                                                     <!-- Departamento -->
@@ -832,7 +828,7 @@
 
                                             <div class="col-12 mt-3">
                                               <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="limpiar_form_empresa(); show_hide_form(1);">Close</button>
-                                              <button type="submit" class="btn btn-success" >Guardar Cambios</button>
+                                              <button type="submit" class="btn btn-success" id="guardar_registro_empresa" >Guardar Cambios</button>
                                             </div>
 
                                           </div>

@@ -8,6 +8,8 @@ function init() {
 
   listar_empresa();  
 
+  // ══════════════════════════════════════ INITIALIZE SELECT2  ══════════════════════════════════════  
+  $("#estado_certificado").select2({ theme: "bootstrap4", placeholder: "Selecione", allowClear: true,   });
   // Formato para telefono
   $("[data-mask]").inputmask();
 }
@@ -56,7 +58,19 @@ function limpiar_form_empresa() {
 
   $("#usuario_sol").val("");
   $("#clave_sol").val("");
+
+  $("#estado_certificado").val("").trigger('change');
   $("#clave_certificado").val("");
+
+  $("#doc_old_1").val("");
+  $("#doc1").val("");  
+  $('#doc1_ver').html(`<img src="../dist/img/default/img_defecto_3.png" alt="" width="50%" >`);
+  $('#doc1_nombre').html("");
+
+  $("#foto1_i").attr("src", "../dist/img/default/img_defecto.png");
+  $("#foto1").val("");
+  $("#foto1_actual").val("");
+  $("#foto1_nombre").html("");  
 
   // Limpiamos las validaciones
   $(".form-control").removeClass('is-valid');
@@ -70,15 +84,15 @@ function show_hide_form(flag) {
     $(".btn-agregar").show("");
 
     $(".div_col_empresa").addClass("col-lg-6 col-xl-6").removeClass("col-lg-12 col-xl-12"); 
-    $(".div_tabla_empresa").show(""); 
-    $(".div_form_empresa").hide(""); 
+    $(".div_tabla_empresa").show(); 
+    $(".div_form_empresa").hide(); 
   } else if (flag == 2) { // formulario
     $(".btn-regresar").show("");
     $(".btn-agregar").hide("");
 
     $(".div_col_empresa").addClass("col-lg-12 col-xl-12").removeClass("col-lg-6 col-xl-6"); 
-    $(".div_tabla_empresa").hide(""); 
-    $(".div_form_empresa").show(""); 
+    $(".div_tabla_empresa").hide(); 
+    $(".div_form_empresa").show(); 
   }
 }
 
@@ -107,13 +121,7 @@ function listar_empresa() {
     },
     createdRow: function (row, data, ixdex) {    
       // columna: #
-      if (data[0] != '') { $("td", row).eq(0).addClass("text-center"); }
-      // columna: #
-      if (data[1] != '') { $("td", row).eq(1).addClass("text-nowrap text-center"); }
-      // columna: #
-      if (data[4] != '') { $("td", row).eq(4).addClass("text-left"); }
-      // columna: #
-      if (data[5] != '') { $("td", row).eq(5).addClass("text-center"); }
+      if (data[0] != '') { $("td", row).eq(0).addClass("text-center"); }     
     },
     language: {
       lengthMenu: "Mostrar: _MENU_ registros",
@@ -142,15 +150,17 @@ function guardaryeditar_empresa(e) {
     contentType: false,
     processData: false,
     success: function (e) {
-      e = JSON.parse(e);  console.log(e);  
-      if (e.status == true) {
-				Swal.fire("Correcto!", "empresa registrado correctamente.", "success");
-	      tabla_empresa.ajax.reload(null, false);         
-				limpiar_form_empresa();
-			}else{
-        ver_errores(e);				 
-			}
-      $("#guardar_registro_empresa").html('Guardar Cambios').removeClass('disabled');
+      try {
+        e = JSON.parse(e);  console.log(e);  
+        if (e.status == true) {
+          Swal.fire("Correcto!", "empresa registrado correctamente.", "success");
+          tabla_empresa.ajax.reload(null, false);         
+          show_hide_form(1);
+        }else{
+          ver_errores(e);				 
+        }
+      } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }      
+      $("#guardar_registro_empresa").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -164,11 +174,11 @@ function guardaryeditar_empresa(e) {
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_empresa").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress_empresa").css({ width: "0%",  }).text("0%");
+      $("#guardar_registro_empresa").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress_empresa").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress_empresa").css({ width: "0%", }).text("0%");
+      $("#barra_progress_empresa").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
@@ -205,6 +215,8 @@ function mostrar_empresa(idempresa) {
     
       $("#usuario_sol").val(e.data.usuario_sol);
       $("#clave_sol").val(e.data.clave_sol);
+
+      $("#estado_certificado").val(e.data.estado_certificado).trigger('change');
       $("#clave_certificado").val(e.data.clave_certificado);
 
       if (e.data.logo != "") {        
@@ -241,7 +253,7 @@ function buscar_empresa() {
           toastr_warning('Ruc Inválido', '¡No Existe RUC!', 700);
         } else {        
           $('#nombre_empresa').val(e.razonSocial);
-          $('#dirección').val(e.direccion);      
+          $('#direccion').val(e.direccion);      
           $('#departamento').val(e.departamento);  
           $('#provincia').val(e.provincia);  
           $('#distrito').val(e.distrito);     
@@ -264,13 +276,15 @@ init();
 
 $(function () {
 
+  $("#estado_certificado").on('change', function() { $(this).trigger('blur'); });
+
   $("#form-empresa").validate({
     rules: {
       nombre_empresa:   { required: true, maxlength: 250, },
       tipo_documento:   { required: true, maxlength: 20, },
       numero_documento: { required: true, maxlength: 20, },
       pais:             { required: true, maxlength: 45, },
-      dirección:        { required: true, maxlength: 250, },
+      direccion:        { required: true, maxlength: 250, },
       departamento:     { required: true, maxlength: 45, },
       provincia:        { required: true, maxlength: 45, },
       distrito:         { required: true, maxlength: 45, },
@@ -292,7 +306,7 @@ $(function () {
       tipo_documento:   { required: "Campo requerido.",maxlength: "Máximo 20 caracteres.", },
       numero_documento: { required: "Campo requerido.",maxlength: "Máximo 20 caracteres.", },
       pais:             { required: "Campo requerido.",maxlength: "Máximo 45 caracteres.", },
-      dirección:        { required: "Campo requerido.", maxlength: "Máximo 250 caracteres.", },
+      direccion:        { required: "Campo requerido.", maxlength: "Máximo 250 caracteres.", },
       departamento:     { required: "Campo requerido.", maxlength: "Máximo 45 caracteres.", },
       provincia:        { required: "Campo requerido.", maxlength: "Máximo 45 caracteres.", },
       distrito:         { required: "Campo requerido.", maxlength: "Máximo 45 caracteres.", },
@@ -330,6 +344,8 @@ $(function () {
     },
 
   });
+
+  $("#estado_certificado").rules("add", { required: true, messages: { required: "Campo requerido" } });
 });
 
 function ver_password(click, input, span ) {
@@ -343,4 +359,12 @@ function ver_password(click, input, span ) {
   }
 
   $('[data-toggle="tooltip"]').tooltip();
+}
+
+function ver_perfil_empresa(file, url_carpeta, nombre) { console.log(url_carpeta);
+  $('.foto-banco').html(nombre);
+  $(".tooltip").remove();
+  $("#modal-ver-perfil-banco").modal("show");
+  $('#perfil-banco').html(doc_view_extencion(file, url_carpeta, '100%', 'auto',false, false));
+  $(`.jq_image_zoom`).zoom({ on:'grab' });
 }

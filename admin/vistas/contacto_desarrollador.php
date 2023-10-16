@@ -167,7 +167,7 @@
       }
     });
 
-    $(".tooltip").removeClass("show").addClass("hidde");
+    $(".tooltip").remove();
   }
 
   //Función Listar en curso o no empezados

@@ -15,7 +15,7 @@ function init() {
   lista_select2(`../ajax/otro_gasto.php?op=selecct_provedor_og&idproyecto=${localStorage.getItem("nube_id_sucursal")}`, '#filtro_proveedor', null);
 
   // ══════════════════════════════════════ G U A R D A R   F O R M ══════════════════════════════════════
-  $("#guardar_registro").on("click", function (e) { $("#submit-form-otro_gasto").submit(); });
+  $("#guardar_registro").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-otro_gasto").submit(); }  });
 
   // ══════════════════════════════════════ INITIALIZE SELECT2 - FILTROS ══════════════════════════════════════
   $("#filtro_tipo_comprobante").select2({ theme: "bootstrap4", placeholder: "Selecione comprobante", allowClear: true, });
@@ -321,29 +321,21 @@ function guardaryeditar(e) {
     data: formData,
     contentType: false,
     processData: false,
-
     success: function (e) {
       try {
         e = JSON.parse(e);  console.log(e); 
         if (e.status == true) {
-
           Swal.fire("Correcto!", "El registro se guardo correctamente.", "success");
-
-          tabla.ajax.reload(null, false);
-  
-          limpiar();
-  
-          $("#modal-agregar-otro_gasto").modal("hide");
-  
+          tabla.ajax.reload(null, false);  
+          limpiar();  
+          $("#modal-agregar-otro_gasto").modal("hide");  
           total(fecha_1_r,fecha_2_r,id_proveedor_r,comprobante_r);
-
         }else{  
           ver_errores(e);
         } 
       } catch (err) {
         console.log('Error: ', err.message); toastr.error('<h5 class="font-size-16px">Error temporal!!</h5> puede intentalo mas tarde, o comuniquese con <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>');
-      } 
-
+      }
     },
   });
 }
@@ -509,7 +501,7 @@ function ver_datos(idotro_gasto) {
 
       $('.jq_image_zoom').zoom({ on:'grab' }); 
 
-      $(".tooltip").removeClass("show").addClass("hidde");
+      $(".tooltip").remove();
 
     } else {
       ver_errores(e);

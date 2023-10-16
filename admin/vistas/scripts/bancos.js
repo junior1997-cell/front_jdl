@@ -7,7 +7,7 @@ function init() {
 
   $("#mRecurso").addClass("active");
 
-  $("#guardar_registro").on("click", function (e) { $("#submit-form-bancos").submit(); });
+  $("#guardar_registro").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-bancos").submit(); }  });
 
   // Formato para telefono
   $("[data-mask]").inputmask();
@@ -27,7 +27,7 @@ function imagen1_eliminar() {
 
 //Función limpiar
 function limpiar_banco() {
-  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro").html('Guardar Cambios').removeClass('disabled send-data');
   //Mostramos los Materiales
   $("#idbancos").val("");
   $("#nombre_b").val(""); 
@@ -107,49 +107,37 @@ function guardaryeditar_bancos(e) {
     contentType: false,
     processData: false,
     success: function (e) {  
-      e = JSON.parse(e);  console.log(e);            
-      if (e.status == true) {
-
-				Swal.fire("Correcto!", "Banco registrado correctamente.", "success");
-
-	      tabla_bancos.ajax.reload(null, false);
-         
-				limpiar_banco();
-
-        $("#modal-agregar-bancos").modal("hide");
-
-        $("#guardar_registro").html('Guardar Cambios').removeClass('disabled');
-
-			}else{
-
-				ver_errores(e);
-			}
+      try {
+        e = JSON.parse(e);  console.log(e);            
+        if (e.status == true) {
+          Swal.fire("Correcto!", "Banco registrado correctamente.", "success");
+          tabla_bancos.ajax.reload(null, false);         
+          limpiar_banco();
+          $("#modal-agregar-bancos").modal("hide");
+          
+        }else{
+          ver_errores(e);
+        }
+      } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }
+      $("#guardar_registro").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
-
       var xhr = new window.XMLHttpRequest();
-
       xhr.upload.addEventListener("progress", function (evt) {
-
         if (evt.lengthComputable) {
-
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress_banco").css({"width": percentComplete+'%'});
-
-          $("#barra_progress_banco").text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress_banco").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress_banco").css({ width: "0%",  });
-      $("#barra_progress_banco").text("0%");
+      $("#guardar_registro").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress_banco").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress_banco").css({ width: "0%", });
-      $("#barra_progress_banco").text("0%");
+      $("#barra_progress_banco").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
@@ -157,7 +145,7 @@ function guardaryeditar_bancos(e) {
 
 function mostrar_bancos(idbancos) {
 
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   
   $("#cargando-8-fomulario").hide();
   $("#cargando-9-fomulario").show();
@@ -191,11 +179,12 @@ function mostrar_bancos(idbancos) {
   }).fail( function(e) { ver_errores(e); } );
 }
 
-function ver_perfil(file, nombre) {
+function ver_perfil_banco(file, url_carpeta, nombre) {
   $('.foto-banco').html(nombre);
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   $("#modal-ver-perfil-banco").modal("show");
-  $('#perfil-banco').html(`<center><img src="${file}" alt="Perfil" width="100%"></center>`);
+  $('#perfil-banco').html(doc_view_extencion(file, url_carpeta, '100%'));
+  $(`.jq_image_zoom`).zoom({ on:'grab' });
 }
 
 //Función para desactivar registros

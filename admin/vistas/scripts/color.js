@@ -8,7 +8,7 @@ function init() {
 
   listar_tabla_color();
 
-  $("#guardar_registro_color").on("click", function (e) { $("#submit-form-color").submit(); });
+  $("#guardar_registro_color").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-color").submit(); } });
 
   //color picker with addon
   $('.my-colorpicker2').colorpicker();
@@ -24,7 +24,7 @@ function init() {
 
 //Función limpiar
 function limpiar_form_color() {
-  $("#guardar_registro_color").html('Guardar Cambios').removeClass('disabled');
+  $("#guardar_registro_color").html('Guardar Cambios').removeClass('disabled send-data');
   //Mostramos los Materiales
   $("#idcolor").val("");
   $("#nombre_color").val("");
@@ -85,16 +85,20 @@ function guardar_y_editar_color(e) {
     contentType: false,
     processData: false,
     success: function (e) {
-      e = JSON.parse(e);  console.log(e);  
-      if (e.status == true) {
-        Swal.fire("Correcto!", "Color registrado correctamente.", "success");
-	      tabla_color.ajax.reload(null, false);         
-				limpiar_form_color();
-        $("#modal-agregar-color").modal("hide");
-        $("#guardar_registro_color").html('Guardar Cambios').removeClass('disabled');
-			}else{
-				ver_errores(e);
-			}
+      try {
+        e = JSON.parse(e);  console.log(e);  
+        if (e.status == true) {
+         Swal.fire("Correcto!", "Color registrado correctamente.", "success");
+          tabla_color.ajax.reload(null, false);         
+          limpiar_form_color();
+          $("#modal-agregar-color").modal("hide");
+          
+        }else{
+          ver_errores(e);
+        }
+      } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }
+      
+      $("#guardar_registro_color").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -108,18 +112,18 @@ function guardar_y_editar_color(e) {
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_color").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled');
-      $("#barra_progress_color").css({ width: "0%",  }).text("0%");
+      $("#guardar_registro_color").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress_color").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress_color").css({ width: "0%", }).text("0%");
+      $("#barra_progress_color").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
 }
 
 function mostrar(idcolor) {
-  $(".tooltip").removeClass("show").addClass("hidde");
+  $(".tooltip").remove();
   $("#cargando-7-fomulario").hide();
   $("#cargando-8-fomulario").show();
   
