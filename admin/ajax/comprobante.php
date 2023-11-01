@@ -42,28 +42,30 @@
 
       // :::::::::::::::::::::::::::::::::::: D A T O S   P E R S O N A ::::::::::::::::::::::::::::::::::::::
 
-      $idpersona	  	  = isset($_POST["idpersona"])? limpiarCadena($_POST["idpersona"]):"";
-      $id_tipo_persona 	= isset($_POST["id_tipo_persona"])? limpiarCadena($_POST["id_tipo_persona"]):"";
-      $nombre 		      = isset($_POST["nombre"])? limpiarCadena($_POST["nombre"]):"";
-      $tipo_documento 	= isset($_POST["tipo_documento"])? limpiarCadena($_POST["tipo_documento"]):"";
-      $num_documento  	= isset($_POST["num_documento"])? limpiarCadena($_POST["num_documento"]):"";
-      $direccion		    = isset($_POST["direccion"])? limpiarCadena($_POST["direccion"]):"";
-      $telefono		      = isset($_POST["telefono"])? limpiarCadena($_POST["telefono"]):"";     
-      $email			      = isset($_POST["email"])? limpiarCadena($_POST["email"]):"";
-      $banco            = isset($_POST["banco"])? $_POST["banco"] :"";
-      $cta_bancaria_format  = isset($_POST["cta_bancaria"])?$_POST["cta_bancaria"]:"";
-      $cta_bancaria     = isset($_POST["cta_bancaria"])?$_POST["cta_bancaria"]:"";
-      $cci_format      	= isset($_POST["cci"])? $_POST["cci"]:"";
-      $cci            	= isset($_POST["cci"])? $_POST["cci"]:"";
-      $titular_cuenta		= isset($_POST["titular_cuenta"])? limpiarCadena($_POST["titular_cuenta"]):"";
+      $idpersona_p	  	  = isset($_POST["idpersona_p"])? limpiarCadena($_POST["idpersona_p"]):"";
+      $id_tipo_persona_p 	= isset($_POST["id_tipo_persona_p"])? limpiarCadena($_POST["id_tipo_persona_p"]):"";
+      $nombre_p 		      = isset($_POST["nombre_p"])? limpiarCadena($_POST["nombre_p"]):"";
+      $tipo_documento_p 	= isset($_POST["tipo_documento_p"])? limpiarCadena($_POST["tipo_documento_p"]):"";
+      $num_documento_p  	= isset($_POST["num_documento_p"])? limpiarCadena($_POST["num_documento_p"]):"";
+      $direccion_p		    = isset($_POST["direccion_p"])? limpiarCadena($_POST["direccion_p"]):"";
+      $telefono_p		      = isset($_POST["telefono_p"])? limpiarCadena($_POST["telefono_p"]):"";     
+      $email_p			      = isset($_POST["email_p"])? limpiarCadena($_POST["email_p"]):"";
 
-      $nacimiento       = isset($_POST["nacimiento"])? limpiarCadena($_POST["nacimiento"]):"";
-      $cargo_trabajador = isset($_POST["cargo_trabajador"])? limpiarCadena($_POST["cargo_trabajador"]):"";
-      $sueldo_mensual   = isset($_POST["sueldo_mensual"])? limpiarCadena($_POST["sueldo_mensual"]):"";
-      $sueldo_diario    = isset($_POST["sueldo_diario"])? limpiarCadena($_POST["sueldo_diario"]):"";
-      $edad             = isset($_POST["edad"])? limpiarCadena($_POST["edad"]):"";
+      $banco_p            = isset($_POST["banco"])? $_POST["banco"] :"";
+      $cta_bancaria_format_p  = isset($_POST["cta_bancaria"])?$_POST["cta_bancaria"]:"";
+      $cta_bancaria_p     = isset($_POST["cta_bancaria"])?$_POST["cta_bancaria"]:"";
+      $cci_format_p      	= isset($_POST["cci"])? $_POST["cci"]:"";
+      $cci_p            	= isset($_POST["cci"])? $_POST["cci"]:"";
+      $titular_cuenta_p		= isset($_POST["titular_cuenta_p"])? limpiarCadena($_POST["titular_cuenta_p"]):"";
+
+      $nacimiento_p       = isset($_POST["nacimiento"])? limpiarCadena($_POST["nacimiento"]):"";
+      $edad_p             = isset($_POST["edad"])? limpiarCadena($_POST["edad"]):"";
+
+      $cargo_trabajador_p = isset($_POST["cargo_trabajador_p"])? limpiarCadena($_POST["cargo_trabajador_p"]):"";
+      $sueldo_mensual_p   = isset($_POST["sueldo_mensual_p"])? limpiarCadena($_POST["sueldo_mensual_p"]):"";
+      $sueldo_diario_p    = isset($_POST["sueldo_diario_p"])? limpiarCadena($_POST["sueldo_diario_p"]):"";      
       
-      $imagen1			    = isset($_POST["foto1"])? limpiarCadena($_POST["foto1"]):"";
+      $imagen1_p			    = isset($_POST["foto1"])? limpiarCadena($_POST["foto1"]):"";
 
       switch ($_GET["op"]) {
         case 'guardar_y_editar_comprobante':
@@ -257,21 +259,21 @@
 
                 
       // :::::::::::::::::::::::::: S E C C I O N   P R O V E E D O R  ::::::::::::::::::::::::::
-      case 'guardarpersona':
+      case 'guardar_y_editar_persona':
     
-        if (empty($idpersona)){
+        if (empty($idpersona_p)){
 
           // imgen de perfil
           if (!file_exists($_FILES['foto1']['tmp_name']) || !is_uploaded_file($_FILES['foto1']['tmp_name'])) {
-						$imagen1=$_POST["foto1_actual"]; $flat_img1 = false;
+						$imagen1_p=$_POST["foto1_actual"]; $flat_img1 = false;
 					} else {
 						$ext1 = explode(".", $_FILES["foto1"]["name"]); $flat_img1 = true;
-            $imagen1 = $date_now .'__'. random_int(0, 20) . round(microtime(true)) . random_int(21, 41) . '.' . end($ext1);
-            move_uploaded_file($_FILES["foto1"]["tmp_name"], "../dist/docs/persona/perfil/" . $imagen1);						
+            $imagen1_p = $date_now .'__'. random_int(0, 20) . round(microtime(true)) . random_int(21, 41) . '.' . end($ext1);
+            move_uploaded_file($_FILES["foto1"]["tmp_name"], "../dist/docs/persona/perfil/" . $imagen1_p);						
 					}
 
-          $rspta=$persona->insertar($id_tipo_persona,$tipo_documento,$num_documento,$nombre,$email,$telefono,$banco,$cta_bancaria,$cci,
-          $titular_cuenta,$direccion,$nacimiento,$cargo_trabajador,$sueldo_mensual,$sueldo_diario,$edad, $imagen1);
+          $rspta=$persona->insertar($id_tipo_persona_p,$tipo_documento_p,$num_documento_p,$nombre_p,$email_p,$telefono_p,$banco_p,$cta_bancaria_p,$cci_p,
+          $titular_cuenta_p,$direccion_p,$nacimiento_p,$cargo_trabajador_p,$sueldo_mensual_p,$sueldo_diario_p,$edad_p, $imagen1_p);
           echo json_encode($rspta, true);
           
         }else{

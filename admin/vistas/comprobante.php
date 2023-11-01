@@ -141,7 +141,7 @@
                                       <label class="text-white d-none show-min-width-576px">.</label> 
                                       <label class="d-none show-max-width-576px" >Nuevo proveedor</label>
                                       <a data-toggle="modal" href="#modal-agregar-persona" >
-                                        <button type="button" class="btn btn-success btn-block" data-toggle="tooltip" data-original-title="Agregar nuevo Provedor" onclick="limpiar_form_persona();">
+                                        <button type="button" class="btn btn-success btn-block" data-toggle="tooltip" data-original-title="Agregar nuevo Provedor" onclick="limpiar_form_persona(); select_one_tab();">
                                           <i class="fa fa-user-plus" aria-hidden="true"></i>
                                         </button>
                                       </a>
@@ -329,15 +329,15 @@
 
                                               <div class="row" id="cargando-3-fomulario">
                                                 <!-- id persona -->
-                                                <input type="hidden" name="idpersona" id="idpersona" />
+                                                <input type="hidden" name="idpersona_p" id="idpersona_p" />
                                                 <!-- tipo persona  -->
-                                                <input type="hidden" name="id_tipo_persona" id="id_tipo_persona" />
+                                                <input type="hidden" name="id_tipo_persona_p" id="id_tipo_persona_p" />
 
                                                 <!-- Tipo de documento -->
                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-2 div_tipo_doc">
                                                   <div class="form-group">
-                                                    <label for="tipo_documento">Tipo Doc.</label>
-                                                    <select name="tipo_documento" id="tipo_documento" class="form-control" placeholder="Tipo de documento">
+                                                    <label for="tipo_documento_p">Tipo Doc.</label>
+                                                    <select name="tipo_documento_p" id="tipo_documento_p" class="form-control" placeholder="Tipo de documento">
                                                       <option selected value="DNI">DNI</option>
                                                       <option value="RUC">RUC</option>
                                                       <option value="CEDULA">CEDULA</option>
@@ -349,13 +349,13 @@
                                                 <!-- N° de documento -->
                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 div_num_doc">
                                                   <div class="form-group">
-                                                    <label for="num_documento">N° de documento</label>
+                                                    <label for="num_documento_p">N° de documento</label>
                                                     <div class="input-group">
-                                                      <input type="number" name="num_documento" class="form-control" id="num_documento" placeholder="N° de documento" />
-                                                      <div class="input-group-append" data-toggle="tooltip" data-original-title="Buscar Reniec/SUNAT" onclick="buscar_sunat_reniec('');">
+                                                      <input type="number" name="num_documento_p" class="form-control" id="num_documento_p" placeholder="N° de documento" />
+                                                      <div class="input-group-append" data-toggle="tooltip" data-original-title="Buscar Reniec/SUNAT" onclick="buscar_sunat_reniec('_p');">
                                                         <span class="input-group-text" style="cursor: pointer;">
-                                                          <i class="fas fa-search text-primary" id="search"></i>
-                                                          <i class="fa fa-spinner fa-pulse fa-fw fa-lg text-primary" id="charge" style="display: none;"></i>
+                                                          <i class="fas fa-search text-primary" id="search_p"></i>
+                                                          <i class="fa fa-spinner fa-pulse fa-fw fa-lg text-primary" id="charge_p" style="display: none;"></i>
                                                         </span>
                                                       </div>
                                                     </div>
@@ -365,24 +365,24 @@
                                                 <!-- Nombre -->
                                                 <div class="col-12 col-sm-12 col-md-12 col-lg-5 div_nombre">
                                                   <div class="form-group">
-                                                    <label for="nombre">Nombres/Razon Social</label>
-                                                    <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombres y apellidos" />
+                                                    <label for="nombre_p">Nombres/Razon Social</label>
+                                                    <input type="text" name="nombre_p" class="form-control" id="nombre_p" placeholder="Nombres y apellidos" />
                                                   </div>
                                                 </div>
 
                                                 <!-- Telefono -->
                                                 <div class="col-12 col-sm-12 col-md-6 col-lg-2 div_telefono">
                                                   <div class="form-group">
-                                                    <label for="telefono">Teléfono</label>
-                                                    <input type="text" name="telefono" id="telefono" class="form-control" data-inputmask="'mask': ['999-999-999', '+51 999 999 999']" data-mask />
+                                                    <label for="telefono_p">Teléfono</label>
+                                                    <input type="text" name="telefono_p" id="telefono_p" class="form-control" data-inputmask="'mask': ['999-999-999', '+51 999 999 999']" data-mask />
                                                   </div>
                                                 </div>
 
                                                 <!-- Correo electronico -->
                                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 div_correo">
                                                   <div class="form-group">
-                                                    <label for="email">Correo electrónico</label>
-                                                    <input type="email" name="email" class="form-control" id="email" placeholder="Correo electrónico" onkeyup="convert_minuscula(this);" />
+                                                    <label for="email_p">Correo electrónico</label>
+                                                    <input type="email_p" name="email_p" class="form-control" id="email_p" placeholder="Correo electrónico" onkeyup="convert_minuscula(this);" />
                                                   </div>
                                                 </div>
 
@@ -414,8 +414,8 @@
                                                 <!-- Titular de la cuenta -->
                                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 div_titular_cuenta">
                                                   <div class="form-group">
-                                                    <label for="titular_cuenta">Titular de la cuenta</label>
-                                                    <input type="text" name="titular_cuenta" class="form-control" id="titular_cuenta" placeholder="Titular de la cuenta" />
+                                                    <label for="titular_cuenta_p">Titular de la cuenta</label>
+                                                    <input type="text" name="titular_cuenta_p" class="form-control" id="titular_cuenta_p" placeholder="Titular de la cuenta" />
                                                   </div>
                                                 </div>
 
@@ -448,8 +448,8 @@
                                                 <!-- cargo_trabajador  -->
                                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 div_cargo">
                                                   <div class="form-group">
-                                                    <label for="cargo_trabajador">Cargo </label>
-                                                    <select name="cargo_trabajador" id="cargo_trabajador" class="form-control select2 cargo_trabajador" style="width: 100%;">
+                                                    <label for="cargo_trabajador_p">Cargo </label>
+                                                    <select name="cargo_trabajador_p" id="cargo_trabajador_p" class="form-control select2 cargo_trabajador" style="width: 100%;">
                                                       <!-- Aqui listamos los cargo_trabajador -->
                                                     </select>
                                                   </div>
@@ -458,16 +458,16 @@
                                                 <!-- Sueldo(Mensual) -->
                                                 <div class="col-12 col-sm-6 col-md-3 col-lg-3 div_sueldo_mensual">
                                                   <div class="form-group">
-                                                    <label for="sueldo_mensual">Sueldo(Mensual)</label>
-                                                    <input type="number" step="any" name="sueldo_mensual" class="form-control" id="sueldo_mensual" onclick="sueld_mensual();" onkeyup="sueld_mensual();" />
+                                                    <label for="sueldo_mensual_p">Sueldo(Mensual)</label>
+                                                    <input type="number" step="any" name="sueldo_mensual_p" class="form-control" id="sueldo_mensual_p" onclick="sueld_mensual();" onkeyup="sueld_mensual();" />
                                                   </div>
                                                 </div>
 
                                                 <!-- Sueldo(Diario) -->
                                                 <div class="col-12 col-sm-6 col-md-3 col-lg-3 div_sueldo_diario">
                                                   <div class="form-group">
-                                                    <label for="sueldo_diario">Sueldo(Diario)</label>
-                                                    <input type="number" step="any" name="sueldo_diario" class="form-control" id="sueldo_diario" readonly />
+                                                    <label for="sueldo_diario_p">Sueldo(Diario)</label>
+                                                    <input type="number" step="any" name="sueldo_diario_p" class="form-control" id="sueldo_diario_p" readonly />
                                                   </div>
                                                 </div>
                                                 
@@ -475,8 +475,8 @@
                                                 <!-- Direccion -->
                                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 div_direccion">
                                                   <div class="form-group">
-                                                    <label for="direccion">Dirección</label>
-                                                    <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Dirección" />
+                                                    <label for="direccion_p">Dirección</label>
+                                                    <input type="text" name="direccion_p" class="form-control" id="direccion_p" placeholder="Dirección" />
                                                   </div>
                                                 </div>
 

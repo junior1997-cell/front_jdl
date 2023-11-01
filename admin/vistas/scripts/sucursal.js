@@ -161,8 +161,8 @@ function guardaryeditar_sucursal(e) {
 
 function mostrar_sucursal(idsucursal) {
   $(".tooltip").remove();
-  $("#cargando-14-fomulario").hide();
-  $("#cargando-15-fomulario").show();
+  $("#cargando-15-fomulario").hide();
+  $("#cargando-16-fomulario").show();
 
   limpiar_sucursal();
 
@@ -221,8 +221,8 @@ function mostrar_sucursal(idsucursal) {
         $(`#numero_${index}`).rules('add', { required: true, messages: {  required: "Campo requerido" } });    
       }
 
-      $("#cargando-14-fomulario").show();
-      $("#cargando-15-fomulario").hide();
+      $("#cargando-15-fomulario").show();
+      $("#cargando-16-fomulario").hide();
     } else {
       ver_errores(e);
     }

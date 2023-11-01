@@ -32,12 +32,37 @@
       // Cerramos curl
       curl_close( $curl );
 
-      $respuestas = json_decode( $json, true );
-
-      return $respuestas;
+      return json_decode( $json, true );
     }
 
-    //CAPTURAR PERSONA  DE RENIEC
+    public function consultaDniReniec($ruc)	{ 
+      $token = 'apis-token-1.aTSI1U7KEuT-6bbbCguH-4Y8TI6KS73N';
+      $nndnii = $_GET['nrodni'];
+
+      // Iniciar llamada a API
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.apis.net.pe/v1/dni?numero=' . $nndnii,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 2,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Referer: https://apis.net.pe/consulta-dni-api',
+          'Authorization: Bearer' . $token
+        ),
+      ));
+      $response = curl_exec($curl);
+      curl_close($curl);
+      // Datos listos para usar
+      return json_decode($response);
+    }
+
+    //CAPTURAR PERSONA  DE SUNAT
     public function datos_sunat($ruc)	{ 
       $url = "https://dniruc.apisperu.com/api/v1/ruc/".$ruc."?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imp1bmlvcmNlcmNhZG9AdXBldS5lZHUucGUifQ.bzpY1fZ7YvpHU5T83b9PoDxHPaoDYxPuuqMqvCwYqsM";
       //  Iniciamos curl
@@ -55,12 +80,35 @@
       // Cerramos curl
       curl_close( $curl );
 
-      $respuestas = json_decode( $json, true );
+      return json_decode( $json, true );
 
-      return $respuestas;    	
+    }  
 
-    }    
+    public function consultaRucSunat($ruc)	{ 
+      $token = 'apis-token-1.aTSI1U7KEuT-6bbbCguH-4Y8TI6KS73N';  
 
+      // Iniciar llamada a API
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.apis.net.pe/v1/ruc?numero=' . $ruc,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Referer: https://apis.net.pe/api-ruc',
+          'Authorization: Bearer' . $token
+        ),
+      ));
+      $response = curl_exec($curl);
+      curl_close($curl);
+      // Datos listos para usar
+      return json_decode($response);
+    }
     /* ══════════════════════════════════════ C O M P R O B A N T E  ══════════════════════════════════════ */
 
     //Implementamos un método para activar categorías
@@ -115,7 +163,7 @@
     }
 
     public function select2_cargo_trabajador() {
-      $sql = "SELECT * FROM cargo_trabajador WHERE estado='1' AND estado_delete = '1' ORDER BY nombre ASC";
+      $sql = "SELECT * FROM cargo_trabajador WHERE  idcargo_trabajador > 1 AND estado='1' AND estado_delete = '1' ORDER BY nombre ASC";
       return ejecutarConsulta($sql);
     }
     

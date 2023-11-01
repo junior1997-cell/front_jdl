@@ -1,29 +1,28 @@
-var tabla_tipo;
+var tabla_tipo_negocio;
 
 //Función que se ejecuta al inicio
-function init() {
+function init_negocio() {
   
   $("#bloc_Recurso").addClass("menu-open");
-
   $("#mRecurso").addClass("active");
 
   //$("#lAllMateriales").addClass("active");
 
-  listar_tipo();
+  listar_tipo_negocio();
 
-  $("#guardar_registro_tipo").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-tipo").submit(); }  });
+  $("#guardar_registro_tipo_negocio").on("click", function (e) { if ( $(this).hasClass('send-data')==false) { $("#submit-form-tipo-negocio").submit(); }  });
 
   // Formato para telefono
   $("[data-mask]").inputmask();
 }
 
 //Función limpiar
-function limpiar_tipo() {
-  $("#guardar_registro_tipo").html('Guardar Cambios').removeClass('disabled send-data');
+function limpiar_tipo_negocio() {
+  $("#guardar_registro_tipo_negocio").html('Guardar Cambios').removeClass('disabled send-data');
   //Mostramos los Materiales
-  $("#idtipo_persona").val("");
-  $("#nombre_tipo").val(""); 
-  $("#descripcion_t").val(""); 
+  $("#idtipo_negocio").val("");
+  $("#nombre_tipo_negocio").val(""); 
+  $("#descripcion_tipo_negocio").val(""); 
 
   // Limpiamos las validaciones
   $(".form-control").removeClass('is-valid');
@@ -32,9 +31,9 @@ function limpiar_tipo() {
 }
 
 //Función Listar
-function listar_tipo() {
+function listar_tipo_negocio() {
 
-  tabla_tipo=$('#tabla-tipo').dataTable({
+  tabla_tipo_negocio=$('#tabla-tipo-negocio').dataTable({
     responsive: true,
     lengthMenu: [[ -1, 5, 10, 25, 75, 100, 200,], ["Todos", 5, 10, 25, 75, 100, 200, ]],//mostramos el menú de registros a revisar
     aProcessing: true,//Activamos el procesamiento del datatables
@@ -46,7 +45,7 @@ function listar_tipo() {
       { extend: 'pdfHtml5', exportOptions: { columns: [0,2,3], }, footer: false, text: `<i class="far fa-file-pdf fa-lg" data-toggle="tooltip" data-original-title="PDF"></i>`, className: "btn bg-gradient-danger",  } ,
     ],
     ajax:{
-      url: '../ajax/tipo.php?op=listar_tipo',
+      url: '../ajax/tipo_negocio.php?op=listar_tipo_negocio',
       type : "get",
       dataType : "json",						
       error: function(e){
@@ -74,12 +73,12 @@ function listar_tipo() {
 
 //Función para guardar o editar
 
-function guardaryeditar_tipo(e) {
+function guardar_y_editar_tipo_negocio(e) {
   // e.preventDefault(); //No se activará la acción predeterminada del evento
-  var formData = new FormData($("#form-tipo")[0]);
+  var formData = new FormData($("#form-tipo-negocio")[0]);
  
   $.ajax({
-    url: "../ajax/tipo.php?op=guardaryeditar_tipo",
+    url: "../ajax/tipo_negocio.php?op=guardar_y_editar_tipo_negocio",
     type: "POST",
     data: formData,
     contentType: false,
@@ -89,15 +88,15 @@ function guardaryeditar_tipo(e) {
         e = JSON.parse(e);  console.log(e);  
         if (e.status == true) {
           Swal.fire("Correcto!", "Tipo trabajado registrado correctamente.", "success");
-          tabla_tipo.ajax.reload(null, false);         
-          limpiar_tipo();
-          $("#modal-agregar-tipo").modal("hide");        
+          tabla_tipo_negocio.ajax.reload(null, false);         
+          limpiar_tipo_negocio();
+          $("#modal-agregar-tipo-negocio").modal("hide");        
           
         }else{
           ver_errores(e);	
         }
       } catch (err) { console.log('Error: ', err.message); toastr_error("Error temporal!!",'Puede intentalo mas tarde, o comuniquese con:<br> <i><a href="tel:+51921305769" >921-305-769</a></i> ─ <i><a href="tel:+51921487276" >921-487-276</a></i>', 700); }
-      $("#guardar_registro_tipo").html('Guardar Cambios').removeClass('disabled send-data');
+      $("#guardar_registro_tipo_negocio").html('Guardar Cambios').removeClass('disabled send-data');
     },
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
@@ -105,39 +104,39 @@ function guardaryeditar_tipo(e) {
         if (evt.lengthComputable) {
           var percentComplete = (evt.loaded / evt.total)*100;
           /*console.log(percentComplete + '%');*/
-          $("#barra_progress_tipo").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
+          $("#barra_progress_tipo_negocio").css({"width": percentComplete+'%'}).text(percentComplete.toFixed(2)+" %");
         }
       }, false);
       return xhr;
     },
     beforeSend: function () {
-      $("#guardar_registro_tipo").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
-      $("#barra_progress_tipo").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
+      $("#guardar_registro_tipo_negocio").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').addClass('disabled send-data');
+      $("#barra_progress_tipo_negocio").css({ width: "0%",  }).text("0%").addClass('progress-bar-striped progress-bar-animated');
     },
     complete: function () {
-      $("#barra_progress_tipo").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
+      $("#barra_progress_tipo_negocio").css({ width: "0%", }).text("0%").removeClass('progress-bar-striped progress-bar-animated');
     },
     error: function (jqXhr) { ver_errores(jqXhr); },
   });
 }
 
-function mostrar_tipo(idtipo_persona) {
+function mostrar_tipo_negocio(idtipo_negocio) {
   $(".tooltip").remove();
   $("#cargando-11-fomulario").hide();
   $("#cargando-12-fomulario").show();
 
-  limpiar_tipo();
+  limpiar_tipo_negocio();
 
-  $("#modal-agregar-tipo").modal("show")
+  $("#modal-agregar-tipo-negocio").modal("show")
 
-  $.post("../ajax/tipo.php?op=mostrar_tipo", { idtipo_persona: idtipo_persona }, function (e, status) {
+  $.post("../ajax/tipo_negocio.php?op=mostrar_tipo", { idtipo_negocio: idtipo_negocio }, function (e, status) {
 
     e = JSON.parse(e);  console.log(e);  
 
     if (e.status) {
-      $("#idtipo_persona").val(e.data.idtipo_persona);
-      $("#nombre_tipo").val(e.data.nombre);
-      $("#descripcion_t").val(e.data.descripcion);
+      $("#idtipo_negocio").val(e.data.idtipo_negocio);
+      $("#nombre_tipo_negocio").val(e.data.nombre);
+      $("#descripcion_tipo_negocio").val(e.data.descripcion);
 
       $("#cargando-11-fomulario").show();
       $("#cargando-12-fomulario").hide();
@@ -148,12 +147,12 @@ function mostrar_tipo(idtipo_persona) {
 }
 
 //Función para eliminar registros
-function eliminar_tipo(idtipo_persona, nombre) {  
+function eliminar_tipo_negocio(idtipo_negocio, nombre) {  
   
   crud_eliminar_papelera(
-    "../ajax/tipo.php?op=desactivar_tipo",
-    "../ajax/tipo.php?op=eliminar_tipo", 
-    idtipo_persona, 
+    "../ajax/tipo_negocio.php?op=desactivar_tipo",
+    "../ajax/tipo_negocio.php?op=eliminar_tipo", 
+    idtipo_negocio, 
     "!Elija una opción¡", 
     `<b class="text-danger"><del>${nombre}</del></b> <br> En <b>papelera</b> encontrará este registro! <br> Al <b>eliminar</b> no tendrá acceso a recuperar este registro!`, 
     function(){ sw_success('♻️ Papelera! ♻️', "Tu registro ha sido reciclado." ) }, 
@@ -167,16 +166,16 @@ function eliminar_tipo(idtipo_persona, nombre) {
 
 }
 
-init();
+init_negocio();
 
-$(function () {
+$(function () { 
 
-  $("#form-tipo").validate({
+  $("#form-tipo-negocio").validate({
     rules: {
-      nombre_tipo: { required: true }      // terms: { required: true },
+      nombre_tipo_negocio: { required: true, maxlength: 100, minlength: 3 }      // terms: { required: true },
     },
     messages: {
-      nombre_tipo: { required: "Por favor ingrese nombre.", },
+      nombre_tipo_negocio: { required: "Por favor ingrese nombre.", maxlength: "Maximo 100 caracteres.", minlength: "Maximo 3 caracteres." },      
     },
         
     errorElement: "span",
@@ -194,7 +193,7 @@ $(function () {
       $(element).removeClass("is-invalid").addClass("is-valid");   
     },
     submitHandler: function (e) {
-      guardaryeditar_tipo(e);      
+      guardar_y_editar_tipo_negocio(e);      
     },
   });
 });

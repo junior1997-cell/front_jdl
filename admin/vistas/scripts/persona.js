@@ -201,7 +201,7 @@ function show_hide_btn_add(tipo_persona) {
 
       $("#cargo_trabajador").val(null).trigger("change");
 
-    }else if (tipo_persona=="3") { //proveedor :::::::::::
+    }else if (tipo_persona=="3" || tipo_persona=="4") { //proveedor :::::::::::
 
       $(".div_tipo_doc").show();
       $(".div_num_doc").show();
@@ -219,7 +219,7 @@ function show_hide_btn_add(tipo_persona) {
       $(".div_sueldo_diario").hide();
       $(".div_direccion").show();
 
-      $(".btn_add").html(`<i class="fas fa-plus"></i> Agregar Proveedor`);
+      $(".btn_add").html(`<i class="fas fa-plus"></i> Agregar ${tipo_persona=="3" ? 'Proveedor' : (tipo_persona=="4" ? 'Cliente' : '' )} `);
       $("#cargo_trabajador").val(1).trigger("change");
 
     }else {

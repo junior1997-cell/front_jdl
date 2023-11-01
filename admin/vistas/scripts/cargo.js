@@ -126,8 +126,8 @@ function guardaryeditar_cargo(e) {
 
 function mostrar_cargo(idcargo_trabajador) {
   $(".tooltip").remove();
-  $("#cargando-12-fomulario").hide();
-  $("#cargando-13-fomulario").show();
+  $("#cargando-13-fomulario").hide();
+  $("#cargando-14-fomulario").show();
 
   limpiar_cargo();
 
@@ -142,8 +142,8 @@ function mostrar_cargo(idcargo_trabajador) {
       $("#idcargo_trabajador").val(e.data.idcargo_trabajador);
       $("#nombre_cargo").val(e.data.nombre); 
 
-      $("#cargando-12-fomulario").show();
-      $("#cargando-13-fomulario").hide();
+      $("#cargando-13-fomulario").show();
+      $("#cargando-14-fomulario").hide();
     } else {
       ver_errores(e);
     }

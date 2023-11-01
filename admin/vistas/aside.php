@@ -263,6 +263,15 @@
                 </a>
               </li>
             <?php  }  ?>
+
+            <?php if ($_SESSION['cotizacion_venta']==1) {  ?>
+              <li class="nav-item ">
+                <a href="cliente_sistema.php" class="nav-link pl-2" id="lCotizacionVenta">             
+                  <i class="nav-icon fa-solid fa-building-user"></i>
+                  <p>Cliente Sistema</p>
+                </a>
+              </li>
+            <?php  }  ?>
             
           </ul>
         </li>

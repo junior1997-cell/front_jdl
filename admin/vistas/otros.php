@@ -445,7 +445,65 @@
                                 </div>    
                                 <!-- /.col-12 -->
                               </div>
-                            </div>                           
+                            </div> 
+
+                            <div class="col-sm-12 col-md-12 col-lg-6g col-xl-6">
+                              <!-- TBLA - TIPO NEGOCIO-->
+                              <div class="row">
+                                
+                                <div class="col-sm-6">
+                                  <h2>Tipo de negocio</h2>
+                                </div>
+                                <!-- /.col-6 -->
+
+                                <div class="col-sm-6">
+                                  <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active">Tipo de negocio</li>
+                                  </ol>
+                                </div>
+                                <!-- /.col-6 -->
+
+                                <div class="col-12">
+                                  <div class="card card-primary card-outline">
+                                    <div class="card-header">
+                                      <h3 class="card-title">
+                                        <button type="button" class="btn bg-gradient-primary" data-toggle="modal" data-target="#modal-agregar-tipo-negocio" onclick="limpiar_tipo_negocio();"><i class="fas fa-plus-circle"></i> Agregar</button>
+                                        Admnistrar tipo de negocio.
+                                      </h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                      <table id="tabla-tipo-negocio" class="table table-bordered table-striped display" style="width: 100% !important;">
+                                        <thead>
+                                          <tr>
+                                            <th class="text-center">#</th>
+                                            <th class="">Acciones</th>                                
+                                            <th>Nombre</th>
+                                            <th>Descripcion</th>
+                                            <th>Estado</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                        <tfoot>
+                                          <tr>
+                                            <th class="text-center">#</th>
+                                            <th class="">Acciones</th>                                
+                                            <th>Nombre</th>
+                                            <th>Descripcion</th>
+                                            <th>Estado</th>
+                                          </tr>
+                                        </tfoot>
+                                      </table>
+                                    </div>
+                                    <!-- /.card-body -->
+                                  </div>
+                                  <!-- /.card -->
+                                </div>    
+                                <!-- /.col-12 -->
+                              </div>
+                            </div> 
+
                           </div>
                           <!-- /.row -->
                         </div>
@@ -866,7 +924,7 @@
               </section>
               <!-- /.content -->                         
 
-              <!-- MODAL - UNIDAD DE MEDIDA - chague 1 -->
+              <!-- MODAL - UNIDAD DE MEDIDA - chague 1,2 -->
               <div class="modal fade" id="modal-agregar-unidad-m">
                 <div class="modal-dialog modal-dialog-scrollable modal-md">
                   <div class="modal-content">
@@ -940,7 +998,7 @@
                 </div>
               </div>
 
-              <!-- MODAL - CATEGORIAS - chague 3 -->
+              <!-- MODAL - CATEGORIAS - chague 3,4 -->
               <div class="modal fade" id="modal-agregar-categorias-af">
                 <div class="modal-dialog modal-dialog-scrollable modal-md">
                   <div class="modal-content">
@@ -1005,7 +1063,7 @@
                 </div>
               </div>  
               
-              <!-- MODAL - MARCA - chague 5 -->
+              <!-- MODAL - MARCA - chague 5,6 -->
               <div class="modal fade" id="modal-agregar-marca">
                 <div class="modal-dialog modal-dialog-scrollable modal-md">
                   <div class="modal-content">
@@ -1071,7 +1129,7 @@
                 </div>
               </div>
 
-              <!-- MODAL - COLOR - chague 7 -->
+              <!-- MODAL - COLOR - chague 7,8 -->
               <div class="modal fade" id="modal-agregar-color">
                 <div class="modal-dialog modal-dialog-scrollable modal-md">
                   <div class="modal-content">
@@ -1152,7 +1210,7 @@
                 </div>
               </div>              
 
-              <!-- MODAL - BANCOS - chague 8 -->
+              <!-- MODAL - BANCOS - chague 9,10 -->
               <div class="modal fade" id="modal-agregar-bancos">
                 <div class="modal-dialog modal-dialog-scrollable modal-md">
                   <div class="modal-content">
@@ -1167,7 +1225,7 @@
                       <!-- form start -->
                       <form id="form-bancos" name="form-bancos" method="POST" autocomplete="off">
                         <div class="card-body">
-                          <div class="row" id="cargando-8-fomulario">
+                          <div class="row" id="cargando-9-fomulario">
                             <!-- id banco -->
                             <input type="hidden" name="idbancos" id="idbancos" />
 
@@ -1239,7 +1297,7 @@
                             </div>
                           </div>
 
-                          <div class="row" id="cargando-9-fomulario" style="display: none;">
+                          <div class="row" id="cargando-10-fomulario" style="display: none;">
                             <div class="col-lg-12 text-center">
                               <i class="fas fa-spinner fa-pulse fa-6x"></i><br />
                               <br />
@@ -1259,7 +1317,7 @@
                 </div>
               </div>
 
-              <!-- MODAL - TIPO DE TRABAJDOR - chague 10 -->
+              <!-- MODAL - TIPO DE TRABAJDOR - chague 11,12 -->
               <div class="modal fade" id="modal-agregar-tipo">
                 <div class="modal-dialog modal-dialog-scrollable modal-md">
                   <div class="modal-content">
@@ -1274,7 +1332,7 @@
                       <!-- form start -->
                       <form id="form-tipo" name="form-tipo" method="POST" autocomplete="off">
                         <div class="card-body">
-                          <div class="row" id="cargando-10-fomulario">
+                          <div class="row" id="cargando-11-fomulario">
                             <!-- id idunidad_medida -->
                             <input type="hidden" name="idtipo_persona" id="idtipo_persona" />
 
@@ -1305,7 +1363,7 @@
 
                           </div>
 
-                          <div class="row" id="cargando-11-fomulario" style="display: none;">
+                          <div class="row" id="cargando-12-fomulario" style="display: none;">
                             <div class="col-lg-12 text-center">
                               <i class="fas fa-spinner fa-pulse fa-6x"></i><br />
                               <br />
@@ -1325,7 +1383,7 @@
                 </div>
               </div>
 
-              <!-- MODAL - CARGO TRABAJDOR - chague 12-->
+              <!-- MODAL - CARGO TRABAJDOR - chague 13,14 -->
               <div class="modal fade" id="modal-agregar-cargo">
                 <div class="modal-dialog modal-dialog-scrollable modal-md">
                   <div class="modal-content">
@@ -1340,7 +1398,7 @@
                       <!-- form start -->
                       <form id="form-cargo" name="form-cargo" method="POST" autocomplete="off">
                         <div class="card-body">
-                          <div class="row" id="cargando-12-fomulario">
+                          <div class="row" id="cargando-13-fomulario">
                             <!-- id idunidad_medida -->
                             <input type="hidden" name="idcargo_trabajador" id="idcargo_trabajador" />
 
@@ -1364,7 +1422,7 @@
 
                           </div>
 
-                          <div class="row" id="cargando-13-fomulario" style="display: none;">
+                          <div class="row" id="cargando-14-fomulario" style="display: none;">
                             <div class="col-lg-12 text-center">
                               <i class="fas fa-spinner fa-pulse fa-6x"></i><br />
                               <br />
@@ -1383,8 +1441,74 @@
                   </div>
                 </div>
               </div>    
+
+              <!-- MODAL - TIPO DE NEGOCIO - chague 17,18 -->
+              <div class="modal fade" id="modal-agregar-tipo-negocio">
+                <div class="modal-dialog modal-dialog-scrollable modal-md">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Tipo Negocio</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="text-danger" aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+                      <!-- form start -->
+                      <form id="form-tipo-negocio" name="form-tipo-negocio" method="POST" autocomplete="off">
+                        <div class="card-body">
+                          <div class="row" id="cargando-17-fomulario">
+                            <!-- id idunidad_medida -->
+                            <input type="hidden" name="idtipo_negocio" id="idtipo_negocio" />
+
+                            <!-- nombre_medida -->
+                            <div class="col-lg-12 class_pading">
+                              <div class="form-group">
+                                <label for="nombre_tipo_negocio">Nombre Tipo Persona</label>
+                                <input type="text" name="nombre_tipo_negocio" id="nombre_tipo_negocio" class="form-control" placeholder="Nombre tipo Persona" />
+                              </div>
+                            </div>
+
+                              <!-- Descripciòn -->
+                              <div class="col-lg-12 class_pading">
+                              <div class="form-group">
+                                <label for="descripcion_tipo_negocio">Descripciòn</label>
+                                <textarea name="descripcion_tipo_negocio" id="descripcion_tipo_negocio" class="form-control" rows="2"></textarea>
+                              </div>
+                            </div>
+
+                            <!-- barprogress -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+                              <div class="progress" id="div_barra_progress_tipo">
+                                <div id="barra_progress_tipo" class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+                                  0%
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+
+                          <div class="row" id="cargando-18-fomulario" style="display: none;">
+                            <div class="col-lg-12 text-center">
+                              <i class="fas fa-spinner fa-pulse fa-6x"></i><br />
+                              <br />
+                              <h4>Cargando...</h4>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <button type="submit" style="display: none;" id="submit-form-tipo-negocio">Submit</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="limpiar_tipo_negocio();">Close</button>
+                      <button type="submit" class="btn btn-success" id="guardar_registro_tipo_negocio">Guardar Cambios</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               
-              <!-- MODAL - SUCURSAL - chargue 14 -->
+              <!-- MODAL - SUCURSAL - chargue 15,16 -->
               <div class="modal fade" id="modal-agregar-sucursal">
                 <div class="modal-dialog modal-dialog-scrollable modal-md">
                   <div class="modal-content">
@@ -1399,7 +1523,7 @@
                       <!-- form start -->
                       <form id="form-sucursal" name="form-sucursal" method="POST" autocomplete="off">
                         <div class="card-body">
-                          <div class="row" id="cargando-14-fomulario">
+                          <div class="row" id="cargando-15-fomulario">
                             <!-- id idunidad_medida -->
                             <input type="hidden" name="idsucursal" id="idsucursal" />
 
@@ -1451,7 +1575,7 @@
 
                           </div>
 
-                          <div class="row" id="cargando-15-fomulario" style="display: none;">
+                          <div class="row" id="cargando-16-fomulario" style="display: none;">
                             <div class="col-lg-12 text-center">
                               <i class="fas fa-spinner fa-pulse fa-6x"></i><br />
                               <br />
@@ -1509,6 +1633,7 @@
         <script type="text/javascript" src="scripts/bancos.js"></script>
         <script type="text/javascript" src="scripts/unidades_m.js"></script>
         <script type="text/javascript" src="scripts/tipo.js"></script>
+        <script type="text/javascript" src="scripts/tipo_negocio.js"></script>
         <script type="text/javascript" src="scripts/cargo.js"></script>
         <script type="text/javascript" src="scripts/categoria_p.js"></script>
         <script type="text/javascript" src="scripts/sucursal.js"></script>

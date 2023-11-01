@@ -20,7 +20,7 @@
       $rspta = $usuario->verificar($logina, $clavehash);   //$fetch = $rspta->fetch_object();
 
       if ( $rspta['status'] == true ) {
-        if ( !empty($rspta['data']) ) {
+        if ( !empty($rspta['data']['usuario']) ) {
 
           // validamos si esta vacio la "sucursal"
           if (empty($rspta['data']['sucursal']) && $rspta['data']['usuario']['cargo'] != 'Administrador' ) {

@@ -147,8 +147,8 @@ function mostrar_bancos(idbancos) {
 
   $(".tooltip").remove();
   
-  $("#cargando-8-fomulario").hide();
-  $("#cargando-9-fomulario").show();
+  $("#cargando-9-fomulario").hide();
+  $("#cargando-10-fomulario").show();
 
   limpiar_banco(); //console.log(idbancos);
 
@@ -171,8 +171,8 @@ function mostrar_bancos(idbancos) {
         $("#imagen1_actual").val(e.data.icono);
       }
 
-      $("#cargando-8-fomulario").show();
-      $("#cargando-9-fomulario").hide();
+      $("#cargando-9-fomulario").show();
+      $("#cargando-10-fomulario").hide();
     } else {
       ver_errores(e);
     }

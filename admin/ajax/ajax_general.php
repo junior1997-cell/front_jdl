@@ -33,25 +33,29 @@
 
       // buscar datos de RENIEC
       case 'reniec':
-
         $dni = $_POST["dni"];
-
         $rspta = $ajax_general->datos_reniec($dni);
-
         echo json_encode($rspta);
+      break;
 
+      case 'consultaDniReniec':
+        $dni = $_POST["dni"];
+        $rspta = $ajax_general->consultaDniReniec($dni);
+        echo json_encode($datosDniCli);
       break;
       
       // buscar datos de SUNAT
       case 'sunat':
-
         $ruc = $_POST["ruc"];
-
         $rspta = $ajax_general->datos_sunat($ruc);
-
         echo json_encode($rspta, true);
-
       break;
+
+      case 'consultaRucSunat':
+        $ruc = $_POST["ruc"];
+        $rspta = $ajax_general->consultaRucSunat($ruc);
+        echo json_encode($datosRucCli);
+      break;      
 
       /* ══════════════════════════════════════ C O M P R O B A N T E  ══════════════════════════════════════ */
       case 'autoincrement_comprobante':
@@ -123,7 +127,7 @@
           $retorno = array(
             'status' => true, 
             'message' => 'Salió todo ok', 
-            'data' => $data, 
+            'data' => '<option value="1" >NINGUNO</option>' . $data, 
           );
   
           echo json_encode($retorno, true);
