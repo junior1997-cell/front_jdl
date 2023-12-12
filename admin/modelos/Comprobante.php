@@ -94,11 +94,27 @@ class Comprobante
   }
 
   //Implementar un método para listar los registros
-  public function tbla_principal() {
+  public function tbla_principal($fecha_1, $fecha_2, $id_proveedor, $comprobante) {
+
+    $filtro_proveedor = ""; $filtro_fecha = ""; $filtro_comprobante = ""; 
+
+    if ( !empty($fecha_1) && !empty($fecha_2) ) {
+      $filtro_fecha = "AND c.fecha_ingreso BETWEEN '$fecha_1' AND '$fecha_2'";
+    } else if (!empty($fecha_1)) {      
+      $filtro_fecha = "AND c.fecha_ingreso = '$fecha_1'";
+    }else if (!empty($fecha_2)) {        
+      $filtro_fecha = "AND c.fecha_ingreso = '$fecha_2'";
+    }    
+
+    if (empty($id_proveedor) ) {  $filtro_proveedor = ""; } else { $filtro_proveedor = "AND c.idpersona = '$id_proveedor'"; }
+
+    if ( empty($comprobante) ) { } else { $filtro_comprobante = "AND c.tipo_comprobante = '$comprobante'"; } 
+
     $sql = "SELECT c.idcomprobante, c.idpersona, c.fecha_ingreso, c.tipo_comprobante, c.numero_comprobante, c.forma_de_pago, c.precio_sin_igv, 
     c.precio_igv, c.precio_con_igv, c.tipo_gravada, c.descripcion, c.comprobante, p.nombres,p.numero_documento,p.tipo_documento, p.direccion
     FROM comprobante as c, persona as p 
-    WHERE c.estado=1 AND c.estado_delete=1 AND c.idpersona=p.idpersona";
+    WHERE c.estado=1 AND c.estado_delete=1 AND c.idpersona=p.idpersona $filtro_proveedor $filtro_comprobante $filtro_fecha 
+    ORDER BY c.fecha_ingreso DESC";
     return ejecutarConsulta($sql);
 
   }

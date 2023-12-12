@@ -14,6 +14,8 @@ function init() {
 
   // ══════════════════════════════════════ S E L E C T 2 ══════════════════════════════════════
   lista_select2("../ajax/comprobante.php?op=selecct_produc_o_provee", '#idpersona', null);
+
+  lista_select2("../ajax/comprobante.php?op=selecct_produc_o_provee", '#filtro_proveedor', null);
   
   lista_select2("../ajax/ajax_general.php?op=select2_cargo_trabajador", '#cargo_trabajador_p', null);
   lista_select2("../ajax/ajax_general.php?op=select2Banco", '#banco', null);
@@ -29,11 +31,22 @@ function init() {
   $("#idpersona").select2({ theme: "bootstrap4", placeholder: "Selecione un proveedor o trabajdor", allowClear: true,   });
   $("#tipo_comprobante").select2({ theme: "bootstrap4", placeholder: "Seleccinar tipo comprobante", allowClear: true, });
   $("#forma_pago").select2({ theme: "bootstrap4", placeholder: "Seleccinar forma de pago", allowClear: true, });
+
+  // ══════════════════════════════════════ INITIALIZE SELECT2 - FILTROS ══════════════════════════════════════
+  $("#filtro_tipo_comprobante").select2({ theme: "bootstrap4", placeholder: "Selecione comprobante", allowClear: true, });
+  $("#filtro_proveedor").select2({ theme: "bootstrap4", placeholder: "Selecione proveedor", allowClear: true, });
   
+  // Inicializar - Date picker  
+  $('#filtro_fecha_inicio').datepicker({ format: "dd-mm-yyyy", clearBtn: true, language: "es", autoclose: true, weekStart: 0, orientation: "bottom auto", todayBtn: true });
+  $('#filtro_fecha_fin').datepicker({ format: "dd-mm-yyyy", clearBtn: true, language: "es", autoclose: true, weekStart: 0, orientation: "bottom auto", todayBtn: true });
+
 
   // Formato para telefono
   $("[data-mask]").inputmask();
 }
+
+$('.click-btn-fecha-inicio').on('click', function (e) {$('#filtro_fecha_inicio').focus().select(); });
+$('.click-btn-fecha-fin').on('click', function (e) {$('#filtro_fecha_fin').focus().select(); });
 
 function formatBanco (state) {
   //console.log(state);
@@ -101,7 +114,7 @@ function show_hide_form(flag) {
 }
 
 //Función Listar
-function tbla_principal() {
+function tbla_principal(fecha_1, fecha_2, id_proveedor, comprobante) {
   tabla = $("#tabla-comprobante").dataTable({
     responsive: true,
     lengthMenu: [[ -1, 5, 10, 25, 75, 100, 200,], ["Todos", 5, 10, 25, 75, 100, 200, ]], //mostramos el menú de registros a revisar
@@ -116,12 +129,11 @@ function tbla_principal() {
       { extend: "colvis", text: `Columnas`, className: "btn bg-gradient-gray", exportOptions: { columns: "th:not(:last-child)", }, },
     ],
     ajax: {
-      url: "../ajax/comprobante.php?op=tbla_principal",
+      url: `../ajax/comprobante.php?op=tbla_principal&fecha_1=${fecha_1}&fecha_2=${fecha_2}&id_proveedor=${id_proveedor}&comprobante=${comprobante}`,
       type: "get",
       dataType: "json",
-      error: function (e) {
-        console.log(e.responseText); verer
-      },
+      error: function (e) { console.log(e.responseText); },
+      complete: function () { $('.cargando').hide(); }
     },
     createdRow: function (row, data, ixdex) {
       // columna: #
@@ -138,11 +150,11 @@ function tbla_principal() {
     },
     footerCallback: function( tfoot, data, start, end, display ) {
       var api1 = this.api(); var total1 = api1.column( 6 ).data().reduce( function ( a, b ) { return  (parseFloat(a) + parseFloat( b)) ; }, 0 )
-      $( api1.column( 6 ).footer() ).html( `<span class="float-left">S/</span> <span class="float-right">${formato_miles(total1)}</span>` );       
+      $( api1.column( 6 ).footer() ).html( `S/ ${formato_miles(total1)}` );       
     },
     bDestroy: true,
     iDisplayLength: 10, //Paginación
-    order: [[0, "asc"]], //Ordenar (columna,orden)
+    order: [[5, "desc"]], //Ordenar (columna,orden)
     columnDefs: [
       { targets: [9,10,11,12,13,14,15,16], visible: false, searchable: false, }, 
       { targets: [5], render: $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY'), },
@@ -267,16 +279,11 @@ function comprob_factura() {
 }
 
 function validando_igv() {
-
   if ($("#tipo_comprobante").select2("val") == "Factura") {
-
     $("#val_igv").prop("readonly",false);
     $("#val_igv").val(0.18); 
-
   }else {
-
     $("#val_igv").val(0); 
-
   }  
 }
 
@@ -792,15 +799,40 @@ function formato_banco() {
 }
 
 function sueld_mensual(){
-
-  var sueldo_mensual = $('#sueldo_mensual_p').val()
-
+  var sueldo_mensual = $('#sueldo_mensual_p').val();
   var sueldo_diario=(sueldo_mensual/30).toFixed(1);
-
   var sueldo_horas=(sueldo_diario/8).toFixed(1);
-
   $("#sueldo_diario_p").val(sueldo_diario);
+}
 
+function cargando_search() {
+  $('.cargando').show().html(`<i class="fas fa-spinner fa-pulse fa-sm"></i> Buscando ...`);
+}
+
+function filtros() {  
+
+  var fecha_1       = $("#filtro_fecha_inicio").val();
+  var fecha_2       = $("#filtro_fecha_fin").val();  
+  var id_proveedor  = $("#filtro_proveedor").select2('val');
+  var comprobante   = $("#filtro_tipo_comprobante").select2('val');   
+  
+  var nombre_proveedor = $('#filtro_proveedor').find(':selected').text();
+  var nombre_comprobante = ' ─ ' + $('#filtro_tipo_comprobante').find(':selected').text();
+
+  // filtro de fechas
+  if (fecha_1 == "" || fecha_1 == null) { fecha_1 = ""; } else{ fecha_1 = format_a_m_d(fecha_1) == '-'? '': format_a_m_d(fecha_1);}
+  if (fecha_2 == "" || fecha_2 == null) { fecha_2 = ""; } else{ fecha_2 = format_a_m_d(fecha_2) == '-'? '': format_a_m_d(fecha_2);} 
+
+  // filtro de proveedor
+  if (id_proveedor == '' || id_proveedor == 0 || id_proveedor == null) { id_proveedor = ""; nombre_proveedor = ""; }
+
+  // filtro de trabajdor
+  if (comprobante == '' || comprobante == null || comprobante == 0 ) { comprobante = ""; nombre_comprobante = "" }
+
+  $('.cargando').show().html(`<i class="fas fa-spinner fa-pulse fa-sm"></i> Buscando ${nombre_proveedor} ${nombre_comprobante}...`);
+  //console.log(fecha_1, fecha_2, id_proveedor, comprobante);
+
+  tbla_principal(fecha_1, fecha_2, id_proveedor, comprobante);
 }
 
 // .....::::::::::::::::::::::::::::::::::::: V A L I D A T E   F O R M  :::::::::::::::::::::::::::::::::::::::..

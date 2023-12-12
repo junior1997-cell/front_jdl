@@ -146,7 +146,7 @@
         break;
       
         case 'tbla_principal':
-          $rspta = $comprobante_m->tbla_principal();
+          $rspta = $comprobante_m->tbla_principal( $_GET["fecha_1"], $_GET["fecha_2"], $_GET["id_proveedor"], $_GET["comprobante"]);
           //Vamos a declarar un array
           $data = [];  $comprobante = '';   $cont = 1;
 
