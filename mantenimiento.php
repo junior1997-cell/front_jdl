@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="assets/css/theme.minc619.css?v=1.0">
 </head>
 <body>
+  <span class="name_page" style="display: none;" >Mantenimiento</span>
   <!-- ========== HEADER ========== -->
   <header id="header" class="header header-bg-transparent header-abs-top py-3">
     <div class="header-section">
@@ -105,12 +106,7 @@
   <?php require 'footer_v6.php'; ?>
   <!-- ========== END FOOTER ========== -->
 
-
-  <!-- JS Implementing Plugins -->
-  <script src="assets/js/vendor.min.js"></script>
-
-  <!-- JS Front -->
-  <script src="assets/js/theme.min.js"></script>
+  <?php require 'script_vista.php'; ?>
 
   <!-- JS Plugins Init. -->
   <script>

@@ -78,19 +78,13 @@ function extraer_ultimo_dia_mes(fecha) {
 }
 
 function extraer_nombre_mes(fecha) {
-
   var nombre_completo = "";
-
   if (fecha == '' || fecha == null || fecha == '0000-00-00') { nombre_completo = "-"; } else {
-    const array_mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-    
-    let date = new Date(fecha.replace(/-+/g, '/'));
-      
+    const array_mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];    
+    let date = new Date(fecha.replace(/-+/g, '/'));      
     var mes_indice = date.getMonth();
-
     nombre_completo = array_mes[mes_indice];
   }
-
   return nombre_completo;
 }
 
@@ -180,8 +174,7 @@ function cant_dias_mes(date_anio, date_mes) {
     //   console.log(`El día número ${dia} del mes ${mes} del año ${año} es ${diasSemana[indice]}`);
     // }
     return diasMes;
-  }   
-  
+  }
 }
 
 function fecha_dentro_de_rango(fecha, rango_inicial, rango_final) {

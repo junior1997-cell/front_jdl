@@ -70,4 +70,7 @@
     $("#bloc_PagosTrabajador").removeClass('bg-color-191f24').addClass('bg-color-191f24');
   });
 
+  // Foco en el buscador de Select2
+  $(document).on('select2:open', () => {  document.querySelector('.select2-search__field').focus(); });
+
 </script>

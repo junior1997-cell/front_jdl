@@ -60,11 +60,11 @@
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
 
-                      <!-- CANIDAD DE PROYECTOS -->
+                      <!-- CANIDAD DE TRABAJDORES -->
                       <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                           <div class="inner">
-                            <h3 id="cantidad_box_producto" > <i class="fas fa-spinner fa-pulse "></i> </h3>
+                            <h3 id="cantidad_box_trabajdor" > <i class="fas fa-spinner fa-pulse "></i> </h3>
                             <p>Total Trabajadores </p>
                           </div>
                           <div class="icon">
@@ -74,11 +74,11 @@
                         </div>
                       </div>
 
-                      <!-- CANTIDAD DE PROVEEDORES -->
+                      <!-- CANTIDAD DE COMPRA -->
                       <div class="col-lg-3 col-6">
                         <div class="small-box bg-success">
                           <div class="inner">
-                            <h3 id="cantidad_box_agricultor"> <i class="fas fa-spinner fa-pulse "></i>   </h3>
+                            <h3 id="cantidad_box_compra"> <i class="fas fa-spinner fa-pulse "></i>   </h3>
                             <p>Total Compras</p>
                           </div>
                           <div class="icon"><i class="nav-icon fas fa-map"></i> </div>
@@ -86,11 +86,11 @@
                         </div>
                       </div>
 
-                      <!-- CANTIDAD DE TRABAJADORES -->
+                      <!-- CANTIDAD DE VENTA -->
                       <div class="col-lg-3 col-6">
                         <div class="small-box bg-warning">
                           <div class="inner">
-                            <h3 id="cantidad_box_trabajador"> <i class="fas fa-spinner fa-pulse "></i> </h3>
+                            <h3 id="cantidad_box_venta"> <i class="fas fa-spinner fa-pulse "></i> </h3>
                             <p>Total ventas</p>
                           </div>
                           <div class="icon"> <i class="fa-solid fa-cart-shopping nav-icon"></i> </div>
@@ -98,7 +98,7 @@
                         </div>
                       </div>
 
-                      <!-- CANTIDAD DE SERVICIOS -->
+                      <!-- PAGINA MAS VISITADA -->
                       <div class="col-lg-3 col-6">
                         <div class="small-box bg-secondary" style="background-color: #6c757dd9!important;">
                           <div class="inner">
@@ -121,154 +121,149 @@
                 <section class="content">
                   <div class="container-fluid">
                     <div class="row">
-                      <div class="col-12">
-                        <div class="card card-primary card-outline">
-                          <div class="card-header">
-                            <h1 class="mb-0 text-success text-bold font-size-16px"><i class="fa-solid fa-chart-column"></i> REPORTES</h1>                      
-                          </div>
-                          <!-- /.card-header -->
-                          <div class="card-body">
+                          
+                      <!-- :::::::::::::::::::::::::::::::: VISITAS POR DIA :::::::::::::::::::::::::::::::: -->
+                      <div class="col-md-4 ">
+                        
+                        <div class="card">
 
-                            <div class="row mb-3">
-                              <!-- :::::::::::::::::::::::::::::::: VISITAS POR DIA :::::::::::::::::::::::::::::::: -->
-                              <div class="col-md-4 ">
-                                
-                                <div class="card card-primary">
-
-                                  <div class="card-header">
-                                  <span class="text-bold text-lg">Visita</span> <span> por día</span>
-                                  </div>
-
-                                  <div class="card-body" >
-
-                                    <div class="position-relative text-center">
-                                      <canvas id="radar-chart-visita-por-dia" height="350" ></canvas>
-                                    </div>
-
-                                    <!-- <div class="d-flex flex-row justify-content-end">
-                                      <span class="mr-2" ><i class="fas fa-square" style="color: #28a745;" ></i> Total venta</span>
-                                      <span class="mr-2"><i class="fas fa-square" style="color: #ced4da;"></i> Total pago</span>
-                                    </div> -->
-
-                                  </div>
-                                </div>                                      
-                                <!-- /.card -->                      
-                              </div>     
-                              <!-- /.col -->
-
-                              <!-- :::::::::::::::::::::::::::::::: VISITAS POR MES :::::::::::::::::::::::::::::::: -->
-                              <div class="col-md-4 ">
-                                
-                                <div class="card card-primary">
-
-                                  <div class="card-header">
-                                  <span class="text-bold text-lg">Visita</span> <span> por mes</span>
-                                  </div>
-
-                                  <div class="card-body" >
-
-                                    <div class="position-relative text-center">
-                                      <canvas id="barras-chart-visita-por-mes" height="550" ></canvas>
-                                    </div>
-
-                                    <!-- <div class="d-flex flex-row justify-content-end">
-                                      <span class="mr-2" ><i class="fas fa-square" style="color: #28a745;" ></i> Total venta</span>
-                                      <span class="mr-2"><i class="fas fa-square" style="color: #ced4da;"></i> Total pago</span>
-                                    </div> -->
-
-                                  </div>
-                                </div>                                      
-                                <!-- /.card -->                      
-                              </div>     
-                              <!-- /.col -->
-
-                              <!-- :::::::::::::::::::::::::::::::: VISITAS POR PAGINA :::::::::::::::::::::::::::::::: -->
-                              <div class="col-md-4 ">
-                                <div class="row">
-                                  <div class="col-md-12 "> 
-                                    <div class="card card-primary">
-                                      <div class="card-header">
-                                        <!-- <h3 class="card-title">visitas a la página web</h3> -->
-                                        <span class="text-bold text-lg">visitas </span> <span> por página </span>
-
-                                      </div>
-                                      <div class="card-body">
-                                        <canvas id="donut-chart-visita-por-pagina" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
-                                      </div>
-                                    </div>    
-                                  </div>    
-                                  <!-- /.row -->                      
-                                </div>
-                              </div>     
-                              <!-- /.col -->
-                              
-                              <!-- :::::::::::::::::::::::::::::::: VENTAS TOURS :::::::::::::::::::::::::::::::: -->
-                              <div class="col-md-6 ">
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <div class="card card-primary">
-
-                                      <div class="card-header">
-                                      <span class="text-bold text-lg">Compras</span> <span> por mes</span>
-                                      </div>
-
-                                      <div class="card-body">
-
-                                        <div class="position-relative mb-4">
-                                          <canvas id="venta-tours-chart" height="350"></canvas>
-                                        </div>
-
-                                        <div class="d-flex flex-row justify-content-end">
-                                          <span class="mr-2" ><i class="fas fa-square" style="color: #28a745;" ></i> Total venta</span>
-                                          <span class="mr-2"><i class="fas fa-square" style="color: #ced4da;"></i> Total pago</span>
-                                        </div>
-
-                                      </div>
-
-                                    </div>
-                                  </div>
-                                </div>    
-                                <!-- /.row -->                      
-                              </div>     
-                              <!-- /.col -->
-
-                              <!-- :::::::::::::::::::::::::::::::: VENTAS PAQUETE :::::::::::::::::::::::::::::::: -->
-                              <div class="col-md-6 ">
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <div class="card card-primary">
-
-                                      <div class="card-header">
-                                      <span class="text-bold text-lg">Ventas</span> <span> por mes</span>
-                                      </div>
-
-                                      <div class="card-body">
-
-                                        <div class="position-relative mb-4">
-                                          <canvas id="venta-paquete-chart" height="350"></canvas>
-                                        </div>
-
-                                        <div class="d-flex flex-row justify-content-end">
-                                          <span class="mr-2" ><i class="fas fa-square" style="color: #28a745;" ></i> Total venta</span>
-                                          <span class="mr-2"><i class="fas fa-square" style="color: #ced4da;"></i> Total pago</span>
-                                        </div>
-
-                                      </div>
-
-                                    </div>
-                                  </div>
-                                </div>    
-                                <!-- /.row -->                      
-                              </div>     
-                              <!-- /.col -->
+                          <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                              <h3 class="card-title">Visitas por dia</h3>
+                              <a href="javascript:void(0);">View Report</a>
                             </div>
-                            <!-- /.row --> 
                           </div>
-                          <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                      </div>
+
+                          <div class="card-body" >
+
+                            <div class="position-relative text-center">
+                              <canvas id="radar-chart-visita-por-dia" height="350" ></canvas>
+                            </div>
+
+                            <!-- <div class="d-flex flex-row justify-content-end">
+                              <span class="mr-2" ><i class="fas fa-square" style="color: #28a745;" ></i> Total venta</span>
+                              <span class="mr-2"><i class="fas fa-square" style="color: #ced4da;"></i> Total pago</span>
+                            </div> -->
+
+                          </div>
+                        </div>                                      
+                        <!-- /.card -->                      
+                      </div>     
                       <!-- /.col -->
+
+                      <!-- :::::::::::::::::::::::::::::::: VISITAS POR MES :::::::::::::::::::::::::::::::: -->
+                      <div class="col-md-4 ">
+                        
+                        <div class="card">
+
+                          <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                              <h3 class="card-title">visitas por mes</h3>
+                              <a href="javascript:void(0);">View Report</a>
+                            </div>
+                          </div>
+
+                          <div class="card-body" >
+
+                            <div class="position-relative text-center">
+                              <canvas id="barras-chart-visita-por-mes" height="350" ></canvas>
+                            </div>
+
+                            <!-- <div class="d-flex flex-row justify-content-end">
+                              <span class="mr-2" ><i class="fas fa-square" style="color: #28a745;" ></i> Total venta</span>
+                              <span class="mr-2"><i class="fas fa-square" style="color: #ced4da;"></i> Total pago</span>
+                            </div> -->
+
+                          </div>
+                        </div>                                      
+                        <!-- /.card -->                      
+                      </div>     
+                      <!-- /.col -->
+
+                      <!-- :::::::::::::::::::::::::::::::: VISITAS POR PAGINA :::::::::::::::::::::::::::::::: -->
+                      <div class="col-md-4 ">
+                        <div class="row">
+                          <div class="col-md-12 "> 
+                            <div class="card card-primary">
+                              <div class="card-header">
+                                <!-- <h3 class="card-title">visitas a la página web</h3> -->
+                                <span class="text-bold text-lg">visitas </span> <span> por página </span>
+
+                              </div>
+                              <div class="card-body">
+                                <canvas id="donut-chart-visita-por-pagina" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+                              </div>
+                            </div>    
+                          </div>    
+                          <!-- /.row -->                      
+                        </div>
+                      </div>   
+                      <!-- /.col -->
+                      
+                      <!-- :::::::::::::::::::::::::::::::: VENTAS TOURS :::::::::::::::::::::::::::::::: -->
+                      <div class="col-md-6 ">
+                        <div class="row">
+                          <div class="col-md-12">
+                            
+                            <div class="card card-primary">
+
+                              <div class="card-header">
+                                <div class="d-flex justify-content-between">
+                                  <h3 class="card-title">Online Store Visitors</h3>
+                                  <a href="javascript:void(0);">View Report</a>
+                                </div>
+                              </div>
+
+                              <div class="card-body">
+
+                                <div class="position-relative mb-4">
+                                  <canvas id="venta-tours-chart" height="350"></canvas>
+                                </div>
+
+                                <div class="d-flex flex-row justify-content-end">
+                                  <span class="mr-2" ><i class="fas fa-square" style="color: #28a745;" ></i> Total venta</span>
+                                  <span class="mr-2"><i class="fas fa-square" style="color: #ced4da;"></i> Total pago</span>
+                                </div>
+
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>    
+                        <!-- /.row -->                      
+                      </div>     
+                      <!-- /.col -->
+
+                      <!-- :::::::::::::::::::::::::::::::: VENTAS PAQUETE :::::::::::::::::::::::::::::::: -->
+                      <div class="col-md-6 ">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="card card-primary">
+
+                              <div class="card-header">
+                              <span class="text-bold text-lg">Ventas</span> <span> por mes</span>
+                              </div>
+
+                              <div class="card-body">
+
+                                <div class="position-relative mb-4">
+                                  <canvas id="venta-paquete-chart" height="350"></canvas>
+                                </div>
+
+                                <div class="d-flex flex-row justify-content-end">
+                                  <span class="mr-2" ><i class="fas fa-square" style="color: #28a745;" ></i> Total venta</span>
+                                  <span class="mr-2"><i class="fas fa-square" style="color: #ced4da;"></i> Total pago</span>
+                                </div>
+
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>    
+                        <!-- /.row -->                      
+                      </div>     
+                      <!-- /.col -->                          
+                      
                     </div>
                     <!-- /.row -->
                   </div>

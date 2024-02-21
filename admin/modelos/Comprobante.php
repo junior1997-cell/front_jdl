@@ -17,18 +17,39 @@ class Comprobante
   //Implementamos un método para insertar registros
   public function insertar($idpersona, $fecha_i, $forma_pago, $tipo_comprobante, $nro_comprobante, $subtotal, $igv, $val_igv, $tipo_gravada, $precio_parcial, $descripcion, $comprobante)
   {
+    $sql_0 = "SELECT c.tipo_comprobante, c.numero_comprobante, p.nombres, p.tipo_documento, p.numero_documento, c.estado, c.estado_delete
+    FROM comprobante as c
+    INNER JOIN persona as p ON p.idpersona = c.idpersona
+    WHERE c.idpersona = '$idpersona' AND c.numero_comprobante = '$nro_comprobante' AND c.tipo_comprobante = '$tipo_comprobante';";
 
-    $sql = "INSERT INTO comprobante( idpersona, fecha_ingreso, tipo_comprobante, numero_comprobante, forma_de_pago, precio_sin_igv, precio_igv, precio_con_igv,val_igv, tipo_gravada, descripcion, comprobante, user_created) 
-    VALUES ('$idpersona', '$fecha_i', '$tipo_comprobante', '$nro_comprobante', '$forma_pago', '$subtotal', '$igv', '$precio_parcial',$val_igv, '$tipo_gravada', '$descripcion', '$comprobante','$this->id_usr_sesion')";
-    $intertar =  ejecutarConsulta_retornarID($sql); if ($intertar['status'] == false) {  return $intertar; } 
+    $existe = ejecutarConsultaArray($sql_0); if ($existe['status'] == false) { return $existe;}
 
-		//add registro en nuestra bitacora
-    $sql_d = $idpersona.', '.$fecha_i.', '.$forma_pago.', '.$tipo_comprobante.', '.$nro_comprobante.', '.$subtotal.', '.$igv.', '.$val_igv.', '.$tipo_gravada.', '.$precio_parcial.', '.$descripcion.', '.$comprobante;
-		$sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES (5,'comprobante','".$intertar['data']."','$sql_d','$this->id_usr_sesion')";
-		$bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }   
+    if ( empty($existe['data']) ) {
+      $sql = "INSERT INTO comprobante( idpersona, fecha_ingreso, tipo_comprobante, numero_comprobante, forma_de_pago, precio_sin_igv, precio_igv, precio_con_igv,val_igv, tipo_gravada, descripcion, comprobante, user_created) 
+      VALUES ('$idpersona', '$fecha_i', '$tipo_comprobante', '$nro_comprobante', '$forma_pago', '$subtotal', '$igv', '$precio_parcial',$val_igv, '$tipo_gravada', '$descripcion', '$comprobante','$this->id_usr_sesion')";
+      $intertar =  ejecutarConsulta_retornarID($sql); if ($intertar['status'] == false) {  return $intertar; } 
 
-		return $intertar;
+      //add registro en nuestra bitacora
+      $sql_d = $idpersona.', '.$fecha_i.', '.$forma_pago.', '.$tipo_comprobante.', '.$nro_comprobante.', '.$subtotal.', '.$igv.', '.$val_igv.', '.$tipo_gravada.', '.$precio_parcial.', '.$descripcion.', '.$comprobante;
+      $sql_bit = "INSERT INTO bitacora_bd( idcodigo, nombre_tabla, id_tabla, sql_d, id_user) VALUES (5,'comprobante','".$intertar['data']."','$sql_d','$this->id_usr_sesion')";
+      $bitacora = ejecutarConsulta($sql_bit); if ( $bitacora['status'] == false) {return $bitacora; }
+      return $intertar;
+    }else{
+      $info_repetida = ''; 
 
+      foreach ($existe['data'] as $key => $value) {
+        $info_repetida .= '<li class="text-left font-size-13px">
+          <span class="font-size-15px text-danger"><b>Nombre: </b>'.$value['nombres'].'</span><br>
+          <b>'.$value['tipo_documento'].': </b>'.$value['numero_documento'].'<br>
+          <b>Tipo: </b>'.$value['tipo_comprobante'].'<br>
+          <b>Numero: </b>'.$value['numero_comprobante'].'<br>
+          <b>Papelera: </b>'.( $value['estado']==0 ? '<i class="fas fa-check text-success"></i> SI':'<i class="fas fa-times text-danger"></i> NO') .' <b>|</b>
+          <b>Eliminado: </b>'. ($value['estado_delete']==0 ? '<i class="fas fa-check text-success"></i> SI':'<i class="fas fa-times text-danger"></i> NO').'<br>
+          <hr class="m-t-2px m-b-2px">
+        </li>'; 
+      }
+      return array( 'status' => 'duplicado', 'message' => 'duplicado', 'data' => '<ul>'.$info_repetida.'</ul>', 'id_tabla' => '' );
+    }
   }
 
   //Implementamos un método para editar registros

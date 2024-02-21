@@ -17,28 +17,27 @@ class Escritorio
   
   // optenemos el total de PROYECTOS, PROVEEDORES, TRABAJADORES, SERVICIO
   public function tablero()  {
-    $sql = "SELECT COUNT(`idtours`) total_tours from tours where `estado`='1' and `estado_delete`='1';";
-    $sql2 = "SELECT COUNT(`idpaquete`) total_paquete from paquete where `estado`='1' and `estado_delete`='1';;";
-    $sql3 = "SELECT SUM(`total`) as total_ventas_tours FROM `venta_tours` WHERE `estado`='1' AND `estado_delete`='1';";
-    $sql4 = "SELECT SUM(`total`) as total_ventas_paquete FROM `venta_paquete` WHERE `estado`='1' AND `estado_delete`='1';";
-    $sql5 = "SELECT nombre_vista, SUM(cantidad) as cantidad FROM visitas_pag GROUP BY nombre_vista HAVING SUM(cantidad) > 1 LIMIT 1;";
+    $sql  = "SELECT COUNT( p.idpersona ) cant_trabajador FROM persona as p WHERE p.idtipo_persona = '2' AND estado = '1' AND estado_delete = '1';";
+    $sql2 = "SELECT sum(IFNULL(cp.total, 0)) as total_compra FROM compra_producto as cp WHERE estado = '1' AND estado_delete = '1';";
+    $sql3 = "SELECT sum(IFNULL(cp.total, 0)) as total_venta FROM venta_producto as cp WHERE estado = '1' AND estado_delete = '1';";
+    $sql4 = "SELECT nombre_vista, SUM(cantidad) as cantidad FROM visitas_pag GROUP BY nombre_vista HAVING SUM(cantidad) > 1 LIMIT 1;";
 
     $data1 = ejecutarConsultaSimpleFila($sql); if ($data1['status'] == false) { return $data1; }
     $data2 = ejecutarConsultaSimpleFila($sql2); if ($data2['status'] == false) { return $data2; }
     $data3 = ejecutarConsultaSimpleFila($sql3); if ($data3['status'] == false) { return $data3; }
     $data4 = ejecutarConsultaSimpleFila($sql4); if ($data4['status'] == false) { return $data4; }
-    $data5 = ejecutarConsultaSimpleFila($sql5); if ($data5['status'] == false) { return $data5; }
 
-    $total_tours = (empty($data3['data']) ? 0 : (empty($data3['data']['total_ventas_tours']) ? 0 : floatval($data3['data']['total_ventas_tours']) ) );
-    $total_paquete = (empty($data4['data']) ? 0 : (empty($data4['data']['total_ventas_paquete']) ? 0 : floatval($data4['data']['total_ventas_paquete'])  ) );
+    $cant_trabajador= (empty($data1['data']) ? 0 : (empty($data1['data']['cant_trabajador']) ? 0 : floatval($data1['data']['cant_trabajador']) ) );
+    $total_compra    = (empty($data2['data']) ? 0 : (empty($data2['data']['total_compra']) ? 0 : floatval($data2['data']['total_compra']) ) );
+    $total_venta  = (empty($data3['data']) ? 0 : (empty($data3['data']['total_venta']) ? 0 : floatval($data3['data']['total_venta'])  ) );
     
     $results = [
       "status" => true,
       "data" => [
-        "total_tours"  => (empty($data1['data']) ? 0 : (empty($data1['data']['total_tours']) ? 0 : floatval($data1['data']['total_tours']) ) ),
-        "total_paquete" => (empty($data2['data']) ? 0 : (empty($data2['data']['total_paquete']) ? 0 : floatval($data2['data']['total_paquete']) ) ),
-        "total_ventas"=> ($total_tours+$total_paquete),
-        "visitas_pag"=> $data5['data'],
+        "cant_trabajador" => $cant_trabajador,
+        "total_compra"    => $total_compra,
+        "total_venta"     => $total_venta,
+        "visitas_pag"     => $data4['data'],
       ],
       "message"=> 'Todo oka'
     ];
@@ -48,25 +47,32 @@ class Escritorio
   //visitas a la pagina web
   function vistas_pagina_web(){
     $data_barra = Array(); $data_radar = Array();
+    $total_barra = 0;
 
-    $sql ="SELECT SUM(`cantidad`) AS total, nombre_vista FROM `visitas_pag` GROUP BY `nombre_vista`;";
+    $sql ="SELECT SUM(cantidad) AS total, nombre_vista FROM visitas_pag GROUP BY nombre_vista;";
     $char_donut = ejecutarConsultaArray($sql);	if ($char_donut['status'] == false) { return $char_donut; }
 
     for ($i=1; $i <= 12 ; $i++) { 
       $sql_1 = "SELECT nombre_vista, SUM(cantidad) as cantidad , ELT(MONTH(fecha), 'En.', 'Febr.', 'Mzo.', 'Abr.', 'My.', 'Jun.', 'Jul.', 'Agt.', 'Sept.', 'Oct.', 'Nov.', 'Dic.') as mes_name_abreviado, 
       ELT(MONTH(fecha), 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre') as mes_name, fecha 
-      FROM visitas_pag  WHERE MONTH(fecha)='$i'  AND estado='1' AND estado_delete='1';";
+      FROM visitas_pag  WHERE MONTH(fecha)='$i'  AND estado='1' AND estado_delete='1' GROUP BY nombre_vista, fecha;";
       $mes = ejecutarConsultaSimpleFila($sql_1); if ($mes['status'] == false) { return $mes; }
       array_push($data_barra, (empty($mes['data']) ? 0 : (empty($mes['data']['cantidad']) ? 0 : floatval($mes['data']['cantidad']) ) )); 
+      $total_barra += (empty($mes['data']) ? 0 : (empty($mes['data']['cantidad']) ? 0 : floatval($mes['data']['cantidad']) ) );
     }
 
-    for ($i=0; $i <= 6 ; $i++) { 
-      $sql_1 = "SELECT nombre_vista, SUM(cantidad) as cantidad , ELT(WEEKDAY(fecha) + 1, 'Dom.', 'Lun.', 'Mar.', 'Mie.', 'Jue.', 'Vie.', 'Sab.') as mes_name_abreviado, 
-      ELT(WEEKDAY(fecha) + 1, 'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado') as mes_name, fecha 
-      FROM visitas_pag  WHERE WEEKDAY(fecha)='$i'  AND estado='1' AND estado_delete='1';";
-      $dia = ejecutarConsultaSimpleFila($sql_1); if ($dia['status'] == false) { return $dia; }
-      array_push($data_radar, (empty($dia['data']) ? 0 : (empty($dia['data']['cantidad']) ? 0 : floatval($dia['data']['cantidad']) ) )); 
+    foreach ($char_donut['data'] as $key => $val) {
+      $data_radar_x_vista = []; $vista_all = [];
+      for ($i=0; $i <= 6 ; $i++) { 
+        $sql_1 = "SELECT WEEKDAY(fecha) as nro_dia, SUM(cantidad) as cantidad, fecha, nombre_day, nombre_month, nombre_year
+        FROM visitas_pag  WHERE WEEKDAY(fecha)='$i'  AND estado='1' AND estado_delete='1' AND nombre_vista ='".$val['nombre_vista']."' GROUP BY fecha, nombre_day, nombre_month, nombre_year;";
+        $dia = ejecutarConsultaSimpleFila($sql_1); if ($dia['status'] == false) { return $dia; }
+        array_push($data_radar_x_vista, (empty($dia['data']) ? 0 : (empty($dia['data']['cantidad']) ? 0 : floatval($dia['data']['cantidad']) ) ));         
+        array_push($vista_all, $dia['data'] );         
+      }
+      $data_radar[] = [ 'nombre_vista'  =>$val['nombre_vista'], 'total'  =>$val['total'], 'dia'  => $data_radar_x_vista, 'vista_all'  => $vista_all  ];
     }
+    
 
     $char_donut_vacio = [
       0 => ['nombre_vista'  => 'Detalle paquetes',  'total' =>  0], 
@@ -80,8 +86,8 @@ class Escritorio
     $results = [
       "status" => true,
       "data" => [
-        "chart_radar" => $data_radar,
-        "chart_barra" => $data_barra,
+        "chart_radar" =>   $data_radar ,
+        "chart_barra" => ["total" => $total_barra, "mes" => $data_barra,  ] ,
         "char_donut"  => (empty($char_donut['data']) ? $char_donut_vacio : $char_donut['data'] ),
       ],
       "message"=> 'Todo oka'

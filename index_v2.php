@@ -14,6 +14,7 @@
 </head>
 
 <body>
+  <span class="name_page" style="display: none;" >Inicio 2</span>
   <!-- ========== HEADER ========== -->
   <header id="header" class="header header-box-shadow-on-scroll header-abs-top header-bg-transparent header-show-hide"
           data-hs-header-options='{
@@ -2497,11 +2498,7 @@
   <!-- End Go to Top -->
 
 
-  <!-- JS Implementing Plugins -->
-  <script src="assets/js/vendor.min.js"></script>
-
-  <!-- JS Front -->
-  <script src="assets/js/theme.min.js"></script>
+  <?php require 'script_vista.php'; ?>
 
   <!-- JS Plugins Init. -->
   <script>
